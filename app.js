@@ -37,7 +37,7 @@ morgan.token("req-headers", function (req, res) {
 process.env.NODE_ENV != "production" &&
   app.use(morgan(":method :url :status :req-headers"));
 
-// app.use("/api/auth", require("./routes/authRoutes"));
+app.use("/api/auth", require("./routes/authRoutes"));
 
 //all invalid urls handled here
 app.all("*", (req, res, next) => {
