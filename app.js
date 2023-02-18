@@ -38,6 +38,10 @@ process.env.NODE_ENV != "production" &&
   app.use(morgan(":method :url :status :req-headers"));
 
 app.use("/api/auth", require("./routes/authRoutes"));
+app.use("/api/user", require("./routes/userRoutes"));
+app.use("/api/impetus", require("./routes/impetusTeamRoutes"));
+app.use("/api/eHack", require("./routes/eHackTeamRoutes"));
+app.use("/api/innoventure", require("./routes/innoventureTeamRoutes"));
 
 //all invalid urls handled here
 app.all("*", (req, res, next) => {
