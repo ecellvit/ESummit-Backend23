@@ -70,7 +70,31 @@ const errorCodes = {
   ROUND_ONE_NOT_COMPLETED: 37, // round one not completed
   ROUND_THREE_NOT_STARTED: 38, //round three not started
   ROUND_TWO_NOT_STARTED: 39,
+  ALREADY_REGISTERED: 40,
+  NOT_REGISTERED: 41,
+  PART_OF_TEAM_CANT_UNREGSITER: 42,
+  PENDING_MEMBER_REQUEST: 43,
+  INVALID_USER_ID: 44,
+  TEAM_LEADER_REQUESTS_LIMIT_REACHED: 45,
+  PENDING_REQUEST_OTHER_MODEL: 46,
+  TEAM_LEADER_REQUESTS_PENDING_DELETE_TEAM: 47,
 };
+
+const eventCodes = {
+  IMPETUS: 1,
+  EHACK: 2,
+  INNOVENTURE: 3,
+  EVENT_4: 4,
+  EVENT_5: 5,
+  EVENT_6: 6,
+};
+
+const registerTypes = {
+  REGISTERED: 0,
+  NOT_REGISTERED: 1,
+};
+
+const objectIdLength = 24;
 
 module.exports = {
   loginType,
@@ -78,4 +102,7 @@ module.exports = {
   requestStatusTypes,
   approvalStatusTypes,
   errorCodes,
+  objectIdLength,
+  eventCodes,
+  registerTypes,
 };
