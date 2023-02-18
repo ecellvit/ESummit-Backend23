@@ -19,8 +19,12 @@ const teamSchema = mongoose.Schema(
         ref: "Users",
       },
     ],
+    noOfPendingRequests: {
+      type: Number,
+      default: 0,
+    },
   },
-  { collection: "Innoventure_Teams" }
+  { collection: "InnoventureTeams" }
 );
 
-module.exports = mongoose.model("Innoventure_Teams", teamSchema);
+module.exports = mongoose.model("InnoventureTeams", teamSchema);

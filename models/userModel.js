@@ -27,6 +27,11 @@ const userSchema = new mongoose.Schema(
     mobileNumber: {
       type: String,
     },
+    registeredEvents: [
+      {
+        type: Number,
+      },
+    ],
     eHackPendingRequests: {
       type: Number,
     },
