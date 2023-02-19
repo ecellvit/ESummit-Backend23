@@ -42,4 +42,12 @@ module.exports = {
     });
     return Schema.validate(body);
   },
+
+  registerEventBodyValidation: (body) => {
+    const Schema = Joi.object({
+      op: Joi.number().min(0).max(1),
+      eventCode: Joi.number().min(1).max(6),
+    });
+    return Schema.validate(body);
+  },
 };
