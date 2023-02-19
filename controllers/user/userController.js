@@ -28,6 +28,7 @@ const {
   joinTeamViaTokenBodyValidation,
   fillUserDetailsBodyValidation,
   hasFilledDetailsBodyValidation,
+  registerEventBodyValidation,
 } = require("./validationSchema");
 const { verifyTeamToken } = require("./utils");
 const client = new OAuth2Client(process.env.CLIENT_ID);
@@ -35,12 +36,24 @@ const path = require("path");
 require("dotenv").config({ path: path.resolve(__dirname, "../.env") });
 
 exports.registerEvent = catchAsync(async (req, res, next) => {
+  const { error } = registerEventBodyValidation(req.body);
+  if (error) {
+    return next(
+      new AppError(
+        error.details[0].message,
+        400,
+        errorCodes.INPUT_PARAMS_INVALID
+      )
+    );
+  }
+
   const user = await User.findById({ _id: req.user._id });
 
   //to register
+  console.log(req.body.op, typeof req.body.op);
   if (req.body.op === 0) {
     if (
-      user.registeredEvents[req.body.eventCodes] === registerTypes.REGISTERED //already registered
+      user.registeredEvents[req.body.eventCode] === registerTypes.REGISTERED //already registered
     ) {
       return next(
         new AppError(
@@ -58,8 +71,7 @@ exports.registerEvent = catchAsync(async (req, res, next) => {
       },
       {
         $set: {
-          [`registeredEvents.${req.body.eventCode}.value`]:
-            registerTypes.REGISTERED,
+          [`registeredEvents.${req.body.eventCode}`]: registerTypes.REGISTERED,
         },
       }
     );
@@ -73,7 +85,7 @@ exports.registerEvent = catchAsync(async (req, res, next) => {
       req.body.eventCode === eventCodes.EVENT_6
     ) {
       if (
-        user.registeredEvents[req.body.eventCodes] ===
+        user.registeredEvents[req.body.eventCode] ===
         registerTypes.NOT_REGISTERED // not registered
       ) {
         return next(
@@ -91,7 +103,7 @@ exports.registerEvent = catchAsync(async (req, res, next) => {
         },
         {
           $set: {
-            [`registeredEvents.${req.body.eventCode}.value`]:
+            [`registeredEvents.${req.body.eventCode}`]:
               registerTypes.NOT_REGISTERED,
           },
         }
@@ -100,7 +112,7 @@ exports.registerEvent = catchAsync(async (req, res, next) => {
     //for team events
     else {
       if (
-        user.registeredEvents[req.body.eventCodes] ===
+        user.registeredEvents[req.body.eventCode] ===
         registerTypes.NOT_REGISTERED // not registered
       ) {
         return next(
@@ -151,7 +163,7 @@ exports.registerEvent = catchAsync(async (req, res, next) => {
         },
         {
           $set: {
-            [`registeredEvents.${req.body.eventCode}.value`]:
+            [`registeredEvents.${req.body.eventCode}`]:
               registerTypes.NOT_REGISTERED,
           },
         }
