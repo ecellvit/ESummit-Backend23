@@ -3,7 +3,7 @@ const userController = require("../controllers/user/userController");
 const userRouter = express.Router();
 const auth = require("../middleware/authMiddleware");
 
-userRouter.route("/details").get(userController.hasFilledDetails);
+userRouter.route("/details").patch(userController.hasFilledDetails);
 userRouter.route("/details").post(auth, userController.fillUserDetails);
 userRouter.route("/register").patch(auth, userController.registerEvent);
 userRouter.route("/").get(auth, userController.getDetails);
