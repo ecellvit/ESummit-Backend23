@@ -1411,9 +1411,13 @@ exports.getDetails = catchAsync(async (req, res, next) => {
       firstName: 1,
       lastName: 1,
       mobileNumber: 1,
+      registeredEvents: 1,
       impetusTeamRole: 1,
       eHackTeamRole: 1,
       innoventureTeamRole: 1,
+      eHackPendingRequests: 1,
+      impetusPendingRequests: 1,
+      innoventurePendingRequests: 1,
     }
   ).populate([
     {
