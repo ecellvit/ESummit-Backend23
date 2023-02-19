@@ -5,7 +5,6 @@ module.exports = {
     const Schema = Joi.object({
       firstName: Joi.string().required(),
       lastName: Joi.string().required(),
-      regNo: Joi.string().required(),
       mobileNumber: Joi.string()
         .length(10)
         .pattern(/^[0-9]+$/)
