@@ -50,7 +50,6 @@ exports.registerEvent = catchAsync(async (req, res, next) => {
   const user = await User.findById({ _id: req.user._id });
 
   //to register
-  console.log(req.body.op, typeof req.body.op);
   if (req.body.op === 0) {
     if (
       user.registeredEvents[req.body.eventCode] === registerTypes.REGISTERED //already registered
