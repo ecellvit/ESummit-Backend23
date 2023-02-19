@@ -90,8 +90,8 @@ const eventCodes = {
 };
 
 const registerTypes = {
-  REGISTERED: 0,
-  NOT_REGISTERED: 1,
+  NOT_REGISTERED: 0,
+  REGISTERED: 1,
 };
 
 const objectIdLength = 24;
