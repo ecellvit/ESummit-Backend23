@@ -43,15 +43,15 @@ const userSchema = new mongoose.Schema(
     },
     eHackTeamId: {
       type: mongoose.Schema.Types.ObjectId,
-      ref: "ehackTeamModel",
+      ref: "EHackTeams",
     },
     impetusTeamId: {
       type: mongoose.Schema.Types.ObjectId,
-      ref: "impetusTeamModel",
+      ref: "ImpetusTeams",
     },
     innoventureTeamId: {
       type: mongoose.Schema.Types.ObjectId,
-      ref: "innoventureTeamModel",
+      ref: "InnoventureTeams",
     },
     eHackTeamRole: {
       type: Number,
