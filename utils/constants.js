@@ -81,12 +81,12 @@ const errorCodes = {
 };
 
 const eventCodes = {
-  IMPETUS: 1,
-  EHACK: 2,
-  INNOVENTURE: 3,
-  EVENT_4: 4,
-  EVENT_5: 5,
-  EVENT_6: 6,
+  IMPETUS: 0,
+  EHACK: 1,
+  INNOVENTURE: 2,
+  EVENT_4: 3,
+  EVENT_5: 4,
+  EVENT_6: 5,
 };
 
 const registerTypes = {
