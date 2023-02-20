@@ -46,7 +46,7 @@ module.exports = {
   registerEventBodyValidation: (body) => {
     const Schema = Joi.object({
       op: Joi.number().min(0).max(1),
-      eventCode: Joi.number().min(1).max(6),
+      eventCode: Joi.number().min(0).max(5),
     });
     return Schema.validate(body);
   },
