@@ -36,6 +36,16 @@ exports.createTeam = catchAsync(async (req, res, next) => {
     );
   }
 
+  if (user.registeredEvents[eventCodes.IMPETUS] === 0) {
+    return next(
+      new AppError(
+        "User not registered for impetus",
+        412,
+        errorCodes.USER_NOT_REGISTERED_FOR_EVENT
+      )
+    );
+  }
+
   const user = await User.findById({ _id: req.user._id });
 
   //check whether teamname already taken

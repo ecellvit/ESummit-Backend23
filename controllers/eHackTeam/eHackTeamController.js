@@ -10,6 +10,7 @@ const {
   teamRole,
   approvalStatusTypes,
   objectIdLength,
+  eventCodes,
 } = require("../../utils/constants");
 const {
   createTeamBodyValidation,
@@ -36,6 +37,16 @@ exports.createTeam = catchAsync(async (req, res, next) => {
   }
 
   const user = await User.findById({ _id: req.user._id });
+
+  if (user.registeredEvents[eventCodes.EHACK] === 0) {
+    return next(
+      new AppError(
+        "User not registered for eHack",
+        412,
+        errorCodes.USER_NOT_REGISTERED_FOR_EVENT
+      )
+    );
+  }
 
   //check whether teamname already taken
   const eHackTeam = await eHackTeams.findOne({

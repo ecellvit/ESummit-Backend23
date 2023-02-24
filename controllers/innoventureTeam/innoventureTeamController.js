@@ -35,6 +35,16 @@ exports.createTeam = catchAsync(async (req, res, next) => {
     );
   }
 
+  if (user.registeredEvents[eventCodes.INNOVENTURE] === 0) {
+    return next(
+      new AppError(
+        "User not registered for Innoventure",
+        412,
+        errorCodes.USER_NOT_REGISTERED_FOR_EVENT
+      )
+    );
+  }
+
   const user = await User.findById({ _id: req.user._id });
 
   //check whether teamname already taken
