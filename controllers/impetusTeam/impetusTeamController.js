@@ -10,6 +10,7 @@ const {
   teamRole,
   approvalStatusTypes,
   objectIdLength,
+  eventCodes,
 } = require("../../utils/constants");
 const {
   createTeamBodyValidation,
@@ -35,7 +36,10 @@ exports.createTeam = catchAsync(async (req, res, next) => {
       )
     );
   }
-
+  
+  
+  const user = await User.findById({ _id: req.user._id });
+  
   if (user.registeredEvents[eventCodes.IMPETUS] === 0) {
     return next(
       new AppError(
@@ -46,7 +50,7 @@ exports.createTeam = catchAsync(async (req, res, next) => {
     );
   }
 
-  const user = await User.findById({ _id: req.user._id });
+ 
 
   //check whether teamname already taken
   const impetusTeam = await impetusTeams.findOne({
