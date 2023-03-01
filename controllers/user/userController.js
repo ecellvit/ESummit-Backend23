@@ -1479,6 +1479,8 @@ exports.getDetails = catchAsync(async (req, res, next) => {
 });
 
 exports.impetusGetMemberRequest = catchAsync(async (req, res, next) => {
+  const user = await User.findById({ _id: req.user._id });
+
   if (user.impetusTeamId) {
     return next(
       new AppError(
@@ -1509,6 +1511,8 @@ exports.impetusGetMemberRequest = catchAsync(async (req, res, next) => {
 });
 
 exports.eHackGetMemberRequest = catchAsync(async (req, res, next) => {
+  const user = await User.findById({ _id: req.user._id });
+
   if (user.eHackTeamId) {
     return next(
       new AppError(
@@ -1539,6 +1543,8 @@ exports.eHackGetMemberRequest = catchAsync(async (req, res, next) => {
 });
 
 exports.innoventureGetMemberRequest = catchAsync(async (req, res, next) => {
+  const user = await User.findById({ _id: req.user._id });
+
   if (user.innoventureTeamId) {
     return next(
       new AppError(
@@ -1580,6 +1586,8 @@ exports.impetusUpdateMemberRequest = catchAsync(async (req, res, next) => {
       )
     );
   }
+
+  const user = await User.findById({ _id: req.user._id });
 
   if (user.impetusTeamId) {
     return next(
@@ -1738,6 +1746,8 @@ exports.eHackUpdateMemberRequest = catchAsync(async (req, res, next) => {
     );
   }
 
+  const user = await User.findById({ _id: req.user._id });
+
   if (user.eHackTeamId) {
     return next(
       new AppError(
@@ -1885,6 +1895,8 @@ exports.innoventureUpdateMemberRequest = catchAsync(async (req, res, next) => {
       )
     );
   }
+
+  const user = await User.findById({ _id: req.user._id });
 
   if (user.innoventureTeamId) {
     return next(
