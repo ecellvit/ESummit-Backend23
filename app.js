@@ -40,7 +40,7 @@ process.env.NODE_ENV != "production" &&
 app.use("/api/auth", require("./routes/authRoutes"));
 app.use("/api/user", require("./routes/userRoutes"));
 app.use("/api/impetus", require("./routes/impetusTeamRoutes"));
-app.use("/api/eHack", require("./routes/eHackTeamRoutes"));
+app.use("/api/ehack", require("./routes/eHackTeamRoutes"));
 app.use("/api/innoventure", require("./routes/innoventureTeamRoutes"));
 app.use("/api/events", require("./routes/eventRoutes"));
 
