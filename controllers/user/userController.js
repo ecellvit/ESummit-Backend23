@@ -1861,13 +1861,13 @@ exports.eHackUpdateMemberRequest = catchAsync(async (req, res, next) => {
       }
     );
 
-    if (impetusTeam.members.length === 3) {
-      await impetusTeamLeaderApprovalsModel.deleteMany({
+    if (eHackTeam.members.length === 3) {
+      await eHackTeamLeaderApprovalsModel.deleteMany({
         teamId: req.params.teamId,
         status: requestStatusTypes.PENDING_APPROVAL,
       });
 
-      await impetusTeams.findOneAndUpdate(
+      await eHackTeams.findOneAndUpdate(
         {
           _id: req.params.teamId,
         },
