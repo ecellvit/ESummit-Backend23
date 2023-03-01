@@ -8,16 +8,16 @@ innoventureTeamRouter
   .route("/")
   .get(auth, pagination(), innoventureTeamController.getAllTeams);
 innoventureTeamRouter
-  .route("/")
+  .route("/team")
   .post(auth, innoventureTeamController.createTeam);
 innoventureTeamRouter
-  .route("/:teamId")
+  .route("/team/:teamId")
   .get(auth, innoventureTeamController.getTeamDetails);
 innoventureTeamRouter
-  .route("/:teamId")
+  .route("/team/:teamId")
   .patch(auth, innoventureTeamController.updateTeam);
 innoventureTeamRouter
-  .route("/:teamId")
+  .route("/team/:teamId")
   .delete(auth, innoventureTeamController.deleteTeam);
 
 innoventureTeamRouter
@@ -32,7 +32,7 @@ innoventureTeamRouter
   .get(auth, innoventureTeamController.getTeamToken);
 
 innoventureTeamRouter
-  .route("/user/:teamId")
+  .route("/remove/:teamId")
   .patch(auth, innoventureTeamController.removeMember);
 innoventureTeamRouter
   .route("/user")

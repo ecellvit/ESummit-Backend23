@@ -7,10 +7,16 @@ const { pagination } = require("../controllers/eHackTeam/pagination");
 eHackTeamRouter
   .route("/")
   .get(auth, pagination(), eHackTeamController.getAllTeams);
-eHackTeamRouter.route("/").post(auth, eHackTeamController.createTeam);
-eHackTeamRouter.route("/:teamId").get(auth, eHackTeamController.getTeamDetails);
-eHackTeamRouter.route("/:teamId").patch(auth, eHackTeamController.updateTeam);
-eHackTeamRouter.route("/:teamId").delete(auth, eHackTeamController.deleteTeam);
+eHackTeamRouter.route("/team/").post(auth, eHackTeamController.createTeam);
+eHackTeamRouter
+  .route("/team/:teamId")
+  .get(auth, eHackTeamController.getTeamDetails);
+eHackTeamRouter
+  .route("/team/:teamId")
+  .patch(auth, eHackTeamController.updateTeam);
+eHackTeamRouter
+  .route("/team/:teamId")
+  .delete(auth, eHackTeamController.deleteTeam);
 
 eHackTeamRouter
   .route("/requests/:teamId")
@@ -24,7 +30,7 @@ eHackTeamRouter
   .get(auth, eHackTeamController.getTeamToken);
 
 eHackTeamRouter
-  .route("/user/:teamId")
+  .route("/remove/:teamId")
   .patch(auth, eHackTeamController.removeMember);
 eHackTeamRouter.route("/user").get(auth, eHackTeamController.getAllMembers);
 

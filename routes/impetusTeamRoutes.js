@@ -7,15 +7,15 @@ const { pagination } = require("../controllers/impetusTeam/pagination");
 impetusTeamRouter
   .route("/")
   .get(auth, pagination(), impetusTeamController.getAllTeams);
-impetusTeamRouter.route("/").post(auth, impetusTeamController.createTeam);
+impetusTeamRouter.route("/team").post(auth, impetusTeamController.createTeam);
 impetusTeamRouter
-  .route("/:teamId")
+  .route("/team/:teamId")
   .get(auth, impetusTeamController.getTeamDetails);
 impetusTeamRouter
-  .route("/:teamId")
+  .route("/team/:teamId")
   .patch(auth, impetusTeamController.updateTeam);
 impetusTeamRouter
-  .route("/:teamId")
+  .route("/team/:teamId")
   .delete(auth, impetusTeamController.deleteTeam);
 
 impetusTeamRouter
@@ -30,7 +30,7 @@ impetusTeamRouter
   .get(auth, impetusTeamController.getTeamToken);
 
 impetusTeamRouter
-  .route("/user/:teamId")
+  .route("/remove/:teamId")
   .patch(auth, impetusTeamController.removeMember);
 impetusTeamRouter.route("/user").get(auth, impetusTeamController.getAllMembers);
 
