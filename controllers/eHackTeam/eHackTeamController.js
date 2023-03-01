@@ -718,10 +718,7 @@ exports.getTeamToken = catchAsync(async (req, res, next) => {
 exports.getAllMembers = catchAsync(async (req, res, next) => {
   const user = await User.findById({ _id: req.user._id });
 
-  if (
-    user.eHackTeamId === null ||
-    user.eHackTeamRole !== teamRole.LEADER
-  ) {
+  if (user.eHackTeamId === null || user.eHackTeamRole !== teamRole.LEADER) {
     return next(
       new AppError(
         "User not part of any team or user not a leader",
@@ -744,10 +741,7 @@ exports.getAllMembers = catchAsync(async (req, res, next) => {
 exports.getMemberRequests = catchAsync(async (req, res, next) => {
   const user = await User.findById({ _id: req.user._id });
 
-  if (
-    user.eHackTeamId === null ||
-    user.eHackTeamRole !== teamRole.LEADER
-  ) {
+  if (user.eHackTeamId === null || user.eHackTeamRole !== teamRole.LEADER) {
     return next(
       new AppError(
         "User not part of any team or user not a leader",
@@ -774,19 +768,14 @@ exports.getMemberRequests = catchAsync(async (req, res, next) => {
 });
 
 exports.addMemberRequest = catchAsync(async (req, res, next) => {
-  console.log("jcjf");
-  console.log(req.user);
   const user = await User.findById({ _id: req.user._id });
-  console.log("ef");
+
   const leaderTeam = await eHackTeams.findById({
     _id: user.eHackTeamId,
   });
 
   console.log("jcjf");
-  if (
-    user.eHackTeamId === null ||
-    user.eHackTeamRole !== teamRole.LEADER
-  ) {
+  if (user.eHackTeamId === null || user.eHackTeamRole !== teamRole.LEADER) {
     return next(
       new AppError(
         "User not part of any team or user not a leader",
@@ -884,10 +873,7 @@ exports.addMemberRequest = catchAsync(async (req, res, next) => {
 exports.removeMemberRequest = catchAsync(async (req, res, next) => {
   const user = await User.findById({ _id: req.user._id });
 
-  if (
-    user.eHackTeamId === null ||
-    user.eHackTeamRole !== teamRole.LEADER
-  ) {
+  if (user.eHackTeamId === null || user.eHackTeamRole !== teamRole.LEADER) {
     return next(
       new AppError(
         "User not part of any team or user not a leader",
