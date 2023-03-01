@@ -736,7 +736,7 @@ exports.getAllMembers = catchAsync(async (req, res, next) => {
 
   if (
     user.innoventureTeamId === null ||
-    user.innoventureTeamRole !== teamRoleTypes.LEADER
+    user.innoventureTeamRole !== teamRole.LEADER
   ) {
     return next(
       new AppError(
@@ -762,7 +762,7 @@ exports.getMemberRequests = catchAsync(async (req, res, next) => {
 
   if (
     user.innoventureTeamId === null ||
-    user.innoventureTeamRole !== teamRoleTypes.LEADER
+    user.innoventureTeamRole !== teamRole.LEADER
   ) {
     return next(
       new AppError(
@@ -796,7 +796,7 @@ exports.addMemberRequest = catchAsync(async (req, res, next) => {
   });
   if (
     user.innoventureTeamId === null ||
-    user.innoventureTeamRole !== teamRoleTypes.LEADER
+    user.innoventureTeamRole !== teamRole.LEADER
   ) {
     return next(
       new AppError(
@@ -897,7 +897,7 @@ exports.removeMemberRequest = catchAsync(async (req, res, next) => {
 
   if (
     user.innoventureTeamId === null ||
-    user.innoventureTeamRole !== teamRoleTypes.LEADER
+    user.innoventureTeamRole !== teamRole.LEADER
   ) {
     return next(
       new AppError(

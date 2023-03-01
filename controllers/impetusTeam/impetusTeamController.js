@@ -718,7 +718,7 @@ exports.getAllMembers = catchAsync(async (req, res, next) => {
 
   if (
     user.impetusTeamId === null ||
-    user.impetusTeamRole !== teamRoleTypes.LEADER
+    user.impetusTeamRole !== teamRole.LEADER
   ) {
     return next(
       new AppError(
@@ -744,7 +744,7 @@ exports.getMemberRequests = catchAsync(async (req, res, next) => {
 
   if (
     user.impetusTeamId === null ||
-    user.impetusTeamRole !== teamRoleTypes.LEADER
+    user.impetusTeamRole !== teamRole.LEADER
   ) {
     return next(
       new AppError(
@@ -778,7 +778,7 @@ exports.addMemberRequest = catchAsync(async (req, res, next) => {
   });
   if (
     user.impetusTeamId === null ||
-    user.impetusTeamRole !== teamRoleTypes.LEADER
+    user.impetusTeamRole !== teamRole.LEADER
   ) {
     return next(
       new AppError(
@@ -879,7 +879,7 @@ exports.removeMemberRequest = catchAsync(async (req, res, next) => {
 
   if (
     user.impetusTeamId === null ||
-    user.impetusTeamRole !== teamRoleTypes.LEADER
+    user.impetusTeamRole !== teamRole.LEADER
   ) {
     return next(
       new AppError(

@@ -720,7 +720,7 @@ exports.getAllMembers = catchAsync(async (req, res, next) => {
 
   if (
     user.eHackTeamId === null ||
-    user.eHackTeamRole !== teamRoleTypes.LEADER
+    user.eHackTeamRole !== teamRole.LEADER
   ) {
     return next(
       new AppError(
@@ -746,7 +746,7 @@ exports.getMemberRequests = catchAsync(async (req, res, next) => {
 
   if (
     user.eHackTeamId === null ||
-    user.eHackTeamRole !== teamRoleTypes.LEADER
+    user.eHackTeamRole !== teamRole.LEADER
   ) {
     return next(
       new AppError(
@@ -780,7 +780,7 @@ exports.addMemberRequest = catchAsync(async (req, res, next) => {
   });
   if (
     user.eHackTeamId === null ||
-    user.eHackTeamRole !== teamRoleTypes.LEADER
+    user.eHackTeamRole !== teamRole.LEADER
   ) {
     return next(
       new AppError(
@@ -881,7 +881,7 @@ exports.removeMemberRequest = catchAsync(async (req, res, next) => {
 
   if (
     user.eHackTeamId === null ||
-    user.eHackTeamRole !== teamRoleTypes.LEADER
+    user.eHackTeamRole !== teamRole.LEADER
   ) {
     return next(
       new AppError(
