@@ -716,11 +716,13 @@ exports.getTeamToken = catchAsync(async (req, res, next) => {
 });
 
 exports.getAllMembers = catchAsync(async (req, res, next) => {
+
   const user = await User.findById({ _id: req.user._id });
+
 
   if (
     user.eHackTeamId === null ||
-    user.eHackTeamRole !== teamRoleTypes.LEADER
+    user.eHackTeamRole !== teamRole.LEADER
   ) {
     return next(
       new AppError(
@@ -746,7 +748,7 @@ exports.getMemberRequests = catchAsync(async (req, res, next) => {
 
   if (
     user.eHackTeamId === null ||
-    user.eHackTeamRole !== teamRoleTypes.LEADER
+    user.eHackTeamRole !== teamRole.LEADER
   ) {
     return next(
       new AppError(
@@ -780,7 +782,7 @@ exports.addMemberRequest = catchAsync(async (req, res, next) => {
   });
   if (
     user.eHackTeamId === null ||
-    user.eHackTeamRole !== teamRoleTypes.LEADER
+    user.eHackTeamRole !== teamRole.LEADER
   ) {
     return next(
       new AppError(
@@ -881,7 +883,7 @@ exports.removeMemberRequest = catchAsync(async (req, res, next) => {
 
   if (
     user.eHackTeamId === null ||
-    user.eHackTeamRole !== teamRoleTypes.LEADER
+    user.eHackTeamRole !== teamRole.LEADER
   ) {
     return next(
       new AppError(
