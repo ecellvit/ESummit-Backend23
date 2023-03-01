@@ -1479,7 +1479,7 @@ exports.getDetails = catchAsync(async (req, res, next) => {
 });
 
 exports.impetusGetMemberRequest = catchAsync(async (req, res, next) => {
-  if (req.user.impetusTeamId) {
+  if (user.impetusTeamId) {
     return next(
       new AppError(
         "User already part of a Team",
@@ -1509,7 +1509,7 @@ exports.impetusGetMemberRequest = catchAsync(async (req, res, next) => {
 });
 
 exports.eHackGetMemberRequest = catchAsync(async (req, res, next) => {
-  if (req.user.eHackTeamId) {
+  if (user.eHackTeamId) {
     return next(
       new AppError(
         "User already part of a Team",
@@ -1539,7 +1539,7 @@ exports.eHackGetMemberRequest = catchAsync(async (req, res, next) => {
 });
 
 exports.innoventureGetMemberRequest = catchAsync(async (req, res, next) => {
-  if (req.user.innoventureTeamId) {
+  if (user.innoventureTeamId) {
     return next(
       new AppError(
         "User already part of a Team",
@@ -1581,7 +1581,7 @@ exports.impetusUpdateMemberRequest = catchAsync(async (req, res, next) => {
     );
   }
 
-  if (req.user.impetusTeamId) {
+  if (user.impetusTeamId) {
     return next(
       new AppError(
         "User already part of a Team",
@@ -1738,7 +1738,7 @@ exports.eHackUpdateMemberRequest = catchAsync(async (req, res, next) => {
     );
   }
 
-  if (req.user.eHackTeamId) {
+  if (user.eHackTeamId) {
     return next(
       new AppError(
         "User already part of a Team",
@@ -1886,7 +1886,7 @@ exports.innoventureUpdateMemberRequest = catchAsync(async (req, res, next) => {
     );
   }
 
-  if (req.user.innoventureTeamId) {
+  if (user.innoventureTeamId) {
     return next(
       new AppError(
         "User already part of a Team",

@@ -759,7 +759,7 @@ exports.getMemberRequests = catchAsync(async (req, res, next) => {
 
   const requests = await eHackTeamLeaderApprovalsModel
     .find({
-      teamId: req.user.eHackTeamId,
+      teamId: user.eHackTeamId,
       status: requestStatusTypes.PENDING_APPROVAL,
     })
     .populate({
@@ -774,10 +774,15 @@ exports.getMemberRequests = catchAsync(async (req, res, next) => {
 });
 
 exports.addMemberRequest = catchAsync(async (req, res, next) => {
+  console.log("jcjf");
+  console.log(req.user);
   const user = await User.findById({ _id: req.user._id });
+  console.log("ef");
   const leaderTeam = await eHackTeams.findById({
-    _id: req.user.eHackTeamId,
+    _id: user.eHackTeamId,
   });
+
+  console.log("jcjf");
   if (
     user.eHackTeamId === null ||
     user.eHackTeamRole !== teamRole.LEADER
@@ -916,7 +921,7 @@ exports.removeMemberRequest = catchAsync(async (req, res, next) => {
   //checking whether pending request is found
   const request = await eHackTeamLeaderApprovalsModel.findOne({
     userId: req.params.userId,
-    teamId: req.user.eHackTeamId,
+    teamId: user.eHackTeamId,
     status: requestStatusTypes.PENDING_APPROVAL,
   });
 
@@ -933,7 +938,7 @@ exports.removeMemberRequest = catchAsync(async (req, res, next) => {
   await eHackTeamLeaderApprovalsModel.findOneAndDelete(
     {
       userId: req.params.userId,
-      teamId: req.user.eHackTeamId,
+      teamId: user.eHackTeamId,
       status: requestStatusTypes.PENDING_APPROVAL,
     }
     // { $set: { status: requestStatusTypes.REQUEST_TAKEN_BACK } }
@@ -941,7 +946,7 @@ exports.removeMemberRequest = catchAsync(async (req, res, next) => {
 
   await eHackTeams.findByIdAndUpdate(
     {
-      _id: req.user.eHackTeamId,
+      _id: user.eHackTeamId,
     },
     {
       $inc: { noOfPendingRequests: -1 },

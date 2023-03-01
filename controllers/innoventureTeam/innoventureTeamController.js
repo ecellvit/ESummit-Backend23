@@ -777,7 +777,7 @@ exports.getMemberRequests = catchAsync(async (req, res, next) => {
 
   const requests = await innoventureTeamLeaderApprovalsModel
     .find({
-      teamId: req.user.innoventureTeamId,
+      teamId: user.innoventureTeamId,
       status: requestStatusTypes.PENDING_APPROVAL,
     })
     .populate({
@@ -794,7 +794,7 @@ exports.getMemberRequests = catchAsync(async (req, res, next) => {
 exports.addMemberRequest = catchAsync(async (req, res, next) => {
   const user = await User.findById({ _id: req.user._id });
   const leaderTeam = await innoventureTeams.findById({
-    _id: req.user.innoventureTeamId,
+    _id: user.innoventureTeamId,
   });
   if (
     user.innoventureTeamId === null ||
@@ -934,7 +934,7 @@ exports.removeMemberRequest = catchAsync(async (req, res, next) => {
   //checking whether pending request is found
   const request = await innoventureTeamLeaderApprovalsModel.findOne({
     userId: req.params.userId,
-    teamId: req.user.innoventureTeamId,
+    teamId: user.innoventureTeamId,
     status: requestStatusTypes.PENDING_APPROVAL,
   });
 
@@ -951,7 +951,7 @@ exports.removeMemberRequest = catchAsync(async (req, res, next) => {
   await innoventureTeamLeaderApprovalsModel.findOneAndDelete(
     {
       userId: req.params.userId,
-      teamId: req.user.innoventureTeamId,
+      teamId: user.innoventureTeamId,
       status: requestStatusTypes.PENDING_APPROVAL,
     }
     // { $set: { status: requestStatusTypes.REQUEST_TAKEN_BACK } }
@@ -959,7 +959,7 @@ exports.removeMemberRequest = catchAsync(async (req, res, next) => {
 
   await innoventureTeams.findByIdAndUpdate(
     {
-      _id: req.user.innoventureTeamId,
+      _id: user.innoventureTeamId,
     },
     {
       $inc: { noOfPendingRequests: -1 },
