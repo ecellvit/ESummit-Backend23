@@ -259,7 +259,7 @@ exports.impetusSendRequest = catchAsync(async (req, res, next) => {
     );
   }
 
-  const newRequest = await new PendingApprovalsModel({
+  const newRequest = await new impetusPendingApprovals({
     teamId: req.params.teamId,
     userId: req.user._id,
     status: requestStatusTypes.PENDING_APPROVAL,
@@ -363,7 +363,7 @@ exports.eHackSendRequest = catchAsync(async (req, res, next) => {
     );
   }
 
-  const newRequest = await new PendingApprovalsModel({
+  const newRequest = await new eHackPendingApprovals({
     teamId: req.params.teamId,
     userId: req.user._id,
     status: requestStatusTypes.PENDING_APPROVAL,
@@ -453,7 +453,7 @@ exports.innoventureSendRequest = catchAsync(async (req, res, next) => {
   }
 
   //checking whether request is already sent and is pending
-  const request = await impetusPendingApprovals.findOne({
+  const request = await innoventurePendingApprovals.findOne({
     userId: req.user._id,
     teamId: req.params.teamId,
     status: requestStatusTypes.PENDING_APPROVAL,
@@ -469,7 +469,7 @@ exports.innoventureSendRequest = catchAsync(async (req, res, next) => {
     );
   }
 
-  const newRequest = await new PendingApprovalsModel({
+  const newRequest = await new innoventurePendingApprovals({
     teamId: req.params.teamId,
     userId: req.user._id,
     status: requestStatusTypes.PENDING_APPROVAL,

@@ -856,7 +856,7 @@ exports.addMemberRequest = catchAsync(async (req, res, next) => {
     );
   }
 
-  const newRequest = await new PendingApprovalsModel({
+  const newRequest = await new impetusTeamLeaderApprovalsModel({
     teamId: leaderTeam._id,
     userId: req.params.userId,
     teamLeaderId: req.user._id,
