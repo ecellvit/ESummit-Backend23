@@ -2,7 +2,7 @@ const Joi = require("joi");
 
 module.exports = {
   fillUserDetailsBodyValidation: (body) => {
-    const Schema = Joi.object({
+    const schema = Joi.object({
       firstName: Joi.string().required(),
       lastName: Joi.string().required(),
       mobileNumber: Joi.string()
@@ -10,7 +10,7 @@ module.exports = {
         .pattern(/^[0-9]+$/)
         .required(),
     });
-    return Schema.validate(body);
+    return schema.validate(body);
   },
 
   hasFilledDetailsBodyValidation: (body) => {
@@ -22,32 +22,24 @@ module.exports = {
   },
 
   joinTeamViaTokenBodyValidation: (body) => {
-    const Schema = Joi.object({
+    const schema = Joi.object({
       token: Joi.string().required(),
     });
-    return Schema.validate(body);
-  },
-
-  joinTeamViaTokenBodyValidation: (body) => {
-    const Schema = Joi.object({
-      eventCode: Joi.number().min(0).max(1),
-      op: Joi.number().min(0).max(1),
-    });
-    return Schema.validate(body);
+    return schema.validate(body);
   },
 
   updateRequestBodyValidation: (body) => {
-    const Schema = Joi.object({
-      status: Joi.number().min(0).max(1),
+    const schema = Joi.object({
+      status: Joi.number().min(0).max(1).required(),
     });
-    return Schema.validate(body);
+    return schema.validate(body);
   },
 
   registerEventBodyValidation: (body) => {
-    const Schema = Joi.object({
-      op: Joi.number().min(0).max(1),
-      eventCode: Joi.number().min(0).max(5),
+    const schema = Joi.object({
+      op: Joi.number().min(0).max(1).required(),
+      eventCode: Joi.number().min(0).max(5).required(),
     });
-    return Schema.validate(body);
+    return schema.validate(body);
   },
 };

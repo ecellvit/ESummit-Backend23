@@ -18,15 +18,15 @@ module.exports = {
 
   updateRequestBodyValidation: (body) => {
     const Schema = Joi.object({
-      userId: Joi.string().required().length(objectIdLength),
-      status: Joi.number().min(0).max(1),
+      userId: Joi.string().required().length(objectIdLength).required(),
+      status: Joi.number().min(0).max(1).required(),
     });
     return Schema.validate(body);
   },
 
   removeMemberBodyValidation: (body) => {
     const Schema = Joi.object({
-      userId: Joi.string().required().length(objectIdLength),
+      userId: Joi.string().required().length(objectIdLength).required(),
     });
     return Schema.validate(body);
   },
