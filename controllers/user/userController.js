@@ -22,6 +22,7 @@ const {
   objectIdLength,
   registerTypes,
   eventCodes,
+  approvalStatusTypes,
 } = require("../../utils/constants");
 
 const {
