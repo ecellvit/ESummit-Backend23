@@ -1493,18 +1493,18 @@ exports.impetusGetMemberRequest = catchAsync(async (req, res, next) => {
   }
 
   const requests = await impetusTeamLeaderApprovalsModel
-  .find({
-    userId: req.user._id,
-    status: requestStatusTypes.PENDING_APPROVAL,
-  })
-  .populate({
-    path: "teamId",
-    select: "teamName teamLeaderId members",
-    populate: {
-      path: "teamName teamLeaderId",
-      select: "email firstName lastName mobileNumber",
-    },
-  });
+    .find({
+      userId: req.user._id,
+      status: requestStatusTypes.PENDING_APPROVAL,
+    })
+    .populate({
+      path: "teamId",
+      select: "teamName teamLeaderId members",
+      populate: {
+        path: "teamName teamLeaderId",
+        select: "email firstName lastName mobileNumber",
+      },
+    });
 
   res.status(200).json({
     message: "Get impetus add members Requests Successfull",
@@ -1526,18 +1526,18 @@ exports.eHackGetMemberRequest = catchAsync(async (req, res, next) => {
   }
 
   const requests = await eHackTeamLeaderApprovalsModel
-  .find({
-    userId: req.user._id,
-    status: requestStatusTypes.PENDING_APPROVAL,
-  })
- .populate({
-    path: "teamId",
-    select: "teamName teamLeaderId members",
-    populate: {
-      path: "teamName teamLeaderId",
-      select: "email firstName lastName mobileNumber",
-    },
-  });
+    .find({
+      userId: req.user._id,
+      status: requestStatusTypes.PENDING_APPROVAL,
+    })
+    .populate({
+      path: "teamId",
+      select: "teamName teamLeaderId members",
+      populate: {
+        path: "teamName teamLeaderId",
+        select: "email firstName lastName mobileNumber",
+      },
+    });
 
   res.status(200).json({
     message: "Get EHack add members Requests Successfull",
@@ -1559,18 +1559,18 @@ exports.innoventureGetMemberRequest = catchAsync(async (req, res, next) => {
   }
 
   const requests = await innoventureTeamLeaderApprovalsModel
-  .find({
-    userId: req.user._id,
-    status: requestStatusTypes.PENDING_APPROVAL,
-  })
-  .populate({
-    path: "teamId",
-    select: "teamName teamLeaderId members",
-    populate: {
-      path: "teamName teamLeaderId",
-      select: "email firstName lastName mobileNumber",
-    },
-  });
+    .find({
+      userId: req.user._id,
+      status: requestStatusTypes.PENDING_APPROVAL,
+    })
+    .populate({
+      path: "teamId",
+      select: "teamName teamLeaderId members",
+      populate: {
+        path: "teamName teamLeaderId",
+        select: "email firstName lastName mobileNumber",
+      },
+    });
 
   res.status(200).json({
     message: "Get Innoventure add members Requests Successfull",
