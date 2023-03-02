@@ -1491,11 +1491,12 @@ exports.impetusGetMemberRequest = catchAsync(async (req, res, next) => {
     );
   }
 
-  const requests = await impetusTeamLeaderApprovalsModel.find({
+  const requests = await impetusTeamLeaderApprovalsModel
+  .find({
     userId: req.user._id,
     status: requestStatusTypes.PENDING_APPROVAL,
-  });
-  populate({
+  })
+  .populate({
     path: "teamId",
     select: "teamName teamLeaderId members",
     populate: {
@@ -1523,11 +1524,12 @@ exports.eHackGetMemberRequest = catchAsync(async (req, res, next) => {
     );
   }
 
-  const requests = await eHackTeamLeaderApprovalsModel.find({
+  const requests = await eHackTeamLeaderApprovalsModel
+  .find({
     userId: req.user._id,
     status: requestStatusTypes.PENDING_APPROVAL,
-  });
-  populate({
+  })
+ .populate({
     path: "teamId",
     select: "teamName teamLeaderId members",
     populate: {
@@ -1555,11 +1557,12 @@ exports.innoventureGetMemberRequest = catchAsync(async (req, res, next) => {
     );
   }
 
-  const requests = await innoventureTeamLeaderApprovalsModel.find({
+  const requests = await innoventureTeamLeaderApprovalsModel
+  .find({
     userId: req.user._id,
     status: requestStatusTypes.PENDING_APPROVAL,
-  });
-  populate({
+  })
+  .populate({
     path: "teamId",
     select: "teamName teamLeaderId members",
     populate: {
