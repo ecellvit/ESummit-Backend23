@@ -29,6 +29,7 @@ const {
   fillUserDetailsBodyValidation,
   hasFilledDetailsBodyValidation,
   registerEventBodyValidation,
+  updateRequestBodyValidation,
 } = require("./validationSchema");
 const { verifyTeamToken } = require("./utils");
 const client = new OAuth2Client(process.env.CLIENT_ID);
