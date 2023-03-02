@@ -10,7 +10,7 @@ const {
   teamRole,
   approvalStatusTypes,
   objectIdLength,
-  eventCodes
+  eventCodes,
 } = require("../../utils/constants");
 const {
   createTeamBodyValidation,
@@ -35,7 +35,7 @@ exports.createTeam = catchAsync(async (req, res, next) => {
       )
     );
   }
-  
+
   const user = await User.findById({ _id: req.user._id });
 
   if (user.registeredEvents[eventCodes.INNOVENTURE] === 0) {
@@ -47,7 +47,6 @@ exports.createTeam = catchAsync(async (req, res, next) => {
       )
     );
   }
-
 
   //check whether teamname already taken
   const innoventureTeam = await innoventureTeams.findOne({
@@ -793,9 +792,7 @@ exports.getMemberRequests = catchAsync(async (req, res, next) => {
 
 exports.addMemberRequest = catchAsync(async (req, res, next) => {
   const user = await User.findById({ _id: req.user._id });
-  const leaderTeam = await innoventureTeams.findById({
-    _id: user.innoventureTeamId,
-  });
+
   if (
     user.innoventureTeamId === null ||
     user.innoventureTeamRole !== teamRole.LEADER
@@ -808,6 +805,10 @@ exports.addMemberRequest = catchAsync(async (req, res, next) => {
       )
     );
   }
+
+  const leaderTeam = await innoventureTeams.findById({
+    _id: user.innoventureTeamId,
+  });
 
   const toAddMember = await User.findById({
     _id: req.params.userId,

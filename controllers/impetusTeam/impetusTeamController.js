@@ -36,10 +36,9 @@ exports.createTeam = catchAsync(async (req, res, next) => {
       )
     );
   }
-  
-  
+
   const user = await User.findById({ _id: req.user._id });
-  
+
   if (user.registeredEvents[eventCodes.IMPETUS] === 0) {
     return next(
       new AppError(
@@ -49,8 +48,6 @@ exports.createTeam = catchAsync(async (req, res, next) => {
       )
     );
   }
-
- 
 
   //check whether teamname already taken
   const impetusTeam = await impetusTeams.findOne({
@@ -720,10 +717,7 @@ exports.getTeamToken = catchAsync(async (req, res, next) => {
 exports.getAllMembers = catchAsync(async (req, res, next) => {
   const user = await User.findById({ _id: req.user._id });
 
-  if (
-    user.impetusTeamId === null ||
-    user.impetusTeamRole !== teamRole.LEADER
-  ) {
+  if (user.impetusTeamId === null || user.impetusTeamRole !== teamRole.LEADER) {
     return next(
       new AppError(
         "User not part of any team or user not a leader",
@@ -746,10 +740,7 @@ exports.getAllMembers = catchAsync(async (req, res, next) => {
 exports.getMemberRequests = catchAsync(async (req, res, next) => {
   const user = await User.findById({ _id: req.user._id });
 
-  if (
-    user.impetusTeamId === null ||
-    user.impetusTeamRole !== teamRole.LEADER
-  ) {
+  if (user.impetusTeamId === null || user.impetusTeamRole !== teamRole.LEADER) {
     return next(
       new AppError(
         "User not part of any team or user not a leader",
@@ -777,13 +768,8 @@ exports.getMemberRequests = catchAsync(async (req, res, next) => {
 
 exports.addMemberRequest = catchAsync(async (req, res, next) => {
   const user = await User.findById({ _id: req.user._id });
-  const leaderTeam = await impetusTeams.findById({
-    _id: user.impetusTeamId,
-  });
-  if (
-    user.impetusTeamId === null ||
-    user.impetusTeamRole !== teamRole.LEADER
-  ) {
+
+  if (user.impetusTeamId === null || user.impetusTeamRole !== teamRole.LEADER) {
     return next(
       new AppError(
         "User not part of any team or user not a leader",
@@ -792,6 +778,10 @@ exports.addMemberRequest = catchAsync(async (req, res, next) => {
       )
     );
   }
+  
+  const leaderTeam = await impetusTeams.findById({
+    _id: user.impetusTeamId,
+  });
 
   const toAddMember = await User.findById({
     _id: req.params.userId,
@@ -881,10 +871,7 @@ exports.addMemberRequest = catchAsync(async (req, res, next) => {
 exports.removeMemberRequest = catchAsync(async (req, res, next) => {
   const user = await User.findById({ _id: req.user._id });
 
-  if (
-    user.impetusTeamId === null ||
-    user.impetusTeamRole !== teamRole.LEADER
-  ) {
+  if (user.impetusTeamId === null || user.impetusTeamRole !== teamRole.LEADER) {
     return next(
       new AppError(
         "User not part of any team or user not a leader",

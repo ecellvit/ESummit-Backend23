@@ -770,11 +770,6 @@ exports.getMemberRequests = catchAsync(async (req, res, next) => {
 exports.addMemberRequest = catchAsync(async (req, res, next) => {
   const user = await User.findById({ _id: req.user._id });
 
-  const leaderTeam = await eHackTeams.findById({
-    _id: user.eHackTeamId,
-  });
-
-  console.log("jcjf");
   if (user.eHackTeamId === null || user.eHackTeamRole !== teamRole.LEADER) {
     return next(
       new AppError(
@@ -784,6 +779,10 @@ exports.addMemberRequest = catchAsync(async (req, res, next) => {
       )
     );
   }
+
+  const leaderTeam = await eHackTeams.findById({
+    _id: user.eHackTeamId,
+  });
 
   const toAddMember = await User.findById({
     _id: req.params.userId,
