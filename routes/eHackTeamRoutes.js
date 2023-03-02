@@ -7,7 +7,7 @@ const { pagination } = require("../controllers/eHackTeam/pagination");
 eHackTeamRouter
   .route("/")
   .get(auth, pagination(), eHackTeamController.getAllTeams);
-eHackTeamRouter.route("/team/").post(auth, eHackTeamController.createTeam);
+eHackTeamRouter.route("/team").post(auth, eHackTeamController.createTeam);
 eHackTeamRouter
   .route("/team/:teamId")
   .get(auth, eHackTeamController.getTeamDetails);
