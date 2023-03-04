@@ -9,7 +9,7 @@ mongoose.connect(
   process.env.DB_CONNECTION,
   { useNewUrlParser: true, maxPoolSize: 100, minPoolSize: 2 },
   () => {
-    console.log("Connected to DataBase");
+    console.log("Connected to DataBase...");
   }
 );
 
