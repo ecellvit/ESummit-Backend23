@@ -30,4 +30,11 @@ module.exports = {
     });
     return Schema.validate(body);
   },
+
+  fileUploadBodyValidation: (body) => {
+    const Schema = Joi.object({
+      file: Joi.string().required(),
+    });
+    return Schema.validate(body);
+  },
 };
