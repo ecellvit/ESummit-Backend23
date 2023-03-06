@@ -17,6 +17,7 @@ const {
   updateTeamBodyValidation,
   updateRequestBodyValidation,
   removeMemberBodyValidation,
+  fileUploadBodyValidation,
 } = require("./validationSchema");
 const { generateTeamToken } = require("./utils");
 const path = require("path");
@@ -940,5 +941,66 @@ exports.removeMemberRequest = catchAsync(async (req, res, next) => {
 
   res.status(201).json({
     message: "Removed Request Successfully",
+  });
+});
+
+exports.eHackUploadFile = catchAsync(async (req, res, next) => {
+  const { error } = fileUploadBodyValidation(req.body);
+  if (error) {
+    return next(
+      new AppError(
+        error.details[0].message,
+        400,
+        errorCodes.INPUT_PARAMS_INVALID
+      )
+    );
+  }
+
+  const user = await User.findById({ _id: req.user._id });
+
+  if (user.eHackTeamId === null || user.eHackTeamRole !== teamRole.LEADER) {
+    return next(
+      new AppError(
+        "User not part of any team or user not a leader",
+        412,
+        errorCodes.INVALID_USERID_FOR_TEAMID_OR_USER_NOT_LEADER
+      )
+    );
+  }
+
+  await eHackTeams.findByIdAndUpdate(
+    {
+      _id: user.eHackTeamId,
+    },
+    {
+      file: req.body.file,
+    }
+  );
+
+  res.status(201).json({
+    message: "Uploaded file successfully",
+  });
+});
+
+exports.eHackGetFile = catchAsync(async (req, res, next) => {
+  const user = await User.findById({ _id: req.user._id });
+
+  if (user.eHackTeamId === null || user.eHackTeamRole !== teamRole.LEADER) {
+    return next(
+      new AppError(
+        "User not part of any team or user not a leader",
+        412,
+        errorCodes.INVALID_USERID_FOR_TEAMID_OR_USER_NOT_LEADER
+      )
+    );
+  }
+
+  const team = await eHackTeams.findById({
+    _id: user.eHackTeamId,
+  });
+
+  res.status(201).json({
+    message: "File fetched successfully",
+    file: team.file,
   });
 });
