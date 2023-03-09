@@ -95,7 +95,7 @@ module.exports = {
           .exec();
         res.paginatedResults = results;
         // console.log(res.paginatedResults);
-        next();
+        return next();
       } catch (e) {
         return next(
           new AppError("Internal Server Error", 500, errorCodes.UNKNOWN_ERROR)
