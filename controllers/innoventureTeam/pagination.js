@@ -17,7 +17,22 @@ module.exports = {
                 $lt: [{ $size: { $ifNull: ["$members", []] } }, 4],
               },
             },
-            { teamName: 1 }
+            {
+              email: 1,
+              firstName: 1,
+              lastName: 1,
+              mobileNumber: 1,
+              registeredEvents: 1,
+              eHackTeamId: 1,
+              impetusTeamId: 1,
+              innoventureTeamId: 1,
+              eHackTeamRole: 1,
+              impetusTeamRole: 1,
+              innoventureTeamRole: 1,
+              eHackPendingRequests: 1,
+              impetusPendingRequests: 1,
+              innoventurePendingRequests: 1,
+            }
           );
 
           res.paginatedResults = results;
@@ -65,9 +80,16 @@ module.exports = {
             firstName: 1,
             lastName: 1,
             mobileNumber: 1,
-            impetusTeamRole: 1,
+            registeredEvents: 1,
+            eHackTeamId: 1,
+            impetusTeamId: 1,
+            innoventureTeamId: 1,
             eHackTeamRole: 1,
+            impetusTeamRole: 1,
             innoventureTeamRole: 1,
+            eHackPendingRequests: 1,
+            impetusPendingRequests: 1,
+            innoventurePendingRequests: 1,
           })
           .limit(limit)
           .skip(startIndex)
