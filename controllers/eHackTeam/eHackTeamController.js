@@ -973,7 +973,9 @@ exports.eHackUploadFile = catchAsync(async (req, res, next) => {
       _id: user.eHackTeamId,
     },
     {
-      file: req.body.file,
+      desc: req.body.desc,
+      fileUrl: req.body.fileUrl,
+      fileId: req.body.fileId,
     }
   );
 
@@ -1001,6 +1003,8 @@ exports.eHackGetFile = catchAsync(async (req, res, next) => {
 
   res.status(201).json({
     message: "File fetched successfully",
-    file: team.file,
+    desc: team.desc,
+    fileUrl: team.fileUrl,
+    fileId: team.fileId
   });
 });

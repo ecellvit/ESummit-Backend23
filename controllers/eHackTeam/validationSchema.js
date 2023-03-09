@@ -33,7 +33,9 @@ module.exports = {
 
   fileUploadBodyValidation: (body) => {
     const Schema = Joi.object({
-      file: Joi.string().required(),
+      desc: Joi.string().required(),
+      fileUrl: Joi.string().required(),
+      fileId: Joi.string().required(),
     });
     return Schema.validate(body);
   },
