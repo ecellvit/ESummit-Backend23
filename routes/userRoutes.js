@@ -9,6 +9,16 @@ userRouter.route("/register").patch(auth, userController.registerEvent);
 userRouter.route("/").get(auth, userController.getDetails);
 
 userRouter
+  .route("/impetus/join")
+  .patch(auth, userController.impetusJoinTeamViaToken);
+userRouter
+  .route("/ehack/join")
+  .patch(auth, userController.eHackJoinTeamViaToken);
+userRouter
+  .route("/innoventure/join")
+  .patch(auth, userController.innoventureJoinTeamViaToken);
+
+userRouter
   .route("/impetus/:teamId")
   .patch(auth, userController.impetusLeaveTeam);
 userRouter.route("/ehack/:teamId").patch(auth, userController.eHackLeaveTeam);
@@ -16,7 +26,7 @@ userRouter
   .route("/innoventure/:teamId")
   .patch(auth, userController.innoventureLeaveTeam);
 
-userRouter
+userRouter  
   .route("/impetus/requests")
   .get(auth, userController.impetusGetRequest);
 userRouter.route("/ehack/requests").get(auth, userController.eHackGetRequest);
@@ -43,16 +53,6 @@ userRouter
 userRouter
   .route("/innoventure/requests/:teamId")
   .delete(auth, userController.innoventureRemoveRequest);
-
-userRouter
-  .route("/impetus/join")
-  .patch(auth, userController.impetusJoinTeamViaToken);
-userRouter
-  .route("/ehack/join")
-  .patch(auth, userController.eHackJoinTeamViaToken);
-userRouter
-  .route("/innoventure/join")
-  .patch(auth, userController.innoventureJoinTeamViaToken);
 
 userRouter
   .route("/impetus/addMember")
