@@ -42,7 +42,7 @@ userRouter
   .post(auth, userController.eHackSendRequest);
 userRouter
   .route("/innoventure/requests/:teamId")
-  .post(auth, userController.impetusSendRequest);
+  .post(auth, userController.innoventureSendRequest);
 
 userRouter
   .route("/impetus/requests/:teamId")
