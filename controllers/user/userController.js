@@ -512,7 +512,7 @@ exports.impetusGetRequest = catchAsync(async (req, res, next) => {
       status: requestStatusTypes.PENDING_APPROVAL,
     })
     .populate({
-      path: "impetusTeamId",
+      path: "teamId",
       select: "teamName teamLeaderId members",
       populate: {
         path: "teamName teamLeaderId",
@@ -547,7 +547,7 @@ exports.eHackGetRequest = catchAsync(async (req, res, next) => {
       status: requestStatusTypes.PENDING_APPROVAL,
     })
     .populate({
-      path: "eHackTeamId",
+      path: "teamId",
       select: "teamName teamLeaderId members",
       populate: {
         path: "teamName teamLeaderId",
@@ -582,7 +582,7 @@ exports.innoventureGetRequest = catchAsync(async (req, res, next) => {
       status: requestStatusTypes.PENDING_APPROVAL,
     })
     .populate({
-      path: "innoventureTeamId",
+      path: "teamId",
       select: "teamName teamLeaderId members",
       populate: {
         path: "teamName teamLeaderId",
