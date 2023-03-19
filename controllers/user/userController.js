@@ -6,8 +6,8 @@ const eHackTeams = require("../../models/eHackTeamModel");
 const innoventureTeams = require("../../models/innoventureTeamModel");
 
 const impetusPendingApprovals = require("../../models/impetusPendingAprrovalsModel");
-const eHackPendingApprovals = require("../../models/impetusPendingAprrovalsModel");
-const innoventurePendingApprovals = require("../../models/impetusPendingAprrovalsModel");
+const eHackPendingApprovals = require("../../models/eHackPendingApprovalsModel");
+const innoventurePendingApprovals = require("../../models/innoventurePendingApprovalsModel");
 
 const innoventureTeamLeaderApprovalsModel = require("../../models/innoventureTeamLeaderPendingApprovalsModel");
 const eHackTeamLeaderApprovalsModel = require("../../models/eHackTeamLeaderPendingApprovalsModel");
