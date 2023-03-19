@@ -122,6 +122,7 @@ exports.getTeamDetails = catchAsync(async (req, res, next) => {
       eHackTeamRole: 1,
       eHackTeamRole: 1,
       innoventureTeamRole: 1,
+      registeredEvents:1,
     });
 
   //validate eHackTeam id
