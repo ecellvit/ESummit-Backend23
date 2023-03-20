@@ -75,7 +75,7 @@ exports.createTeam = catchAsync(async (req, res, next) => {
     status: requestStatusTypes.PENDING_APPROVAL,
   });
 
-  const requestByLeader = await impetusTeamLeaderApprovalsModel.findOne({
+  const requestByLeader = await eHackTeamLeaderApprovalsModel.findOne({
     userId: req.params.userId,
     status: requestStatusTypes.PENDING_APPROVAL,
   });
