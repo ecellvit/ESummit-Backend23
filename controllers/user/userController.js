@@ -81,9 +81,8 @@ exports.registerEvent = catchAsync(async (req, res, next) => {
   else {
     //for non team events
     if (
-      req.body.eventCode === eventCodes.EVENT_4 ||
-      req.body.eventCode === eventCodes.EVENT_5 ||
-      req.body.eventCode === eventCodes.EVENT_6
+      req.body.eventCode === eventCodes.ETALK ||
+      req.body.eventCode === eventCodes.TRADING_WORKSHOP
     ) {
       if (
         user.registeredEvents[req.body.eventCode] ===
