@@ -1717,6 +1717,8 @@ exports.impetusUpdateMemberRequest = catchAsync(async (req, res, next) => {
     _id: req.params.teamId,
   });
 
+  const teamLeaderId = impetusTeam.teamLeaderId;
+
   if (!impetusTeam) {
     return next(
       new AppError("Invalid TeamId", 412, errorCodes.INVALID_TEAM_ID)
@@ -1833,6 +1835,31 @@ exports.impetusUpdateMemberRequest = catchAsync(async (req, res, next) => {
         }
       );
     }
+
+    const teamLeader = await User.findById({ _id: teamLeaderId });
+    transporter.sendMail({
+      from: process.env.NODEMAILER_EMAIL,
+      to: teamLeader.email,
+      subject:
+        "ESUMMIT'23 ECELL-VIT. Request Approved By the Impetus Participant",
+      html:
+        teamLeader.firstName +
+        " " +
+        teamLeader.lastName +
+        " " +
+        "your request is approved by the Impetus Participant " +
+        user.firstName +
+        " " +
+        user.lastName +
+        ".<br>" +
+        "Click on the link to view the team details https://esummit23.vercel.app/.<br>",
+      auth: {
+        user: process.env.NODEMAILER_EMAIL,
+        refreshToken: process.env.NODEMAILER_REFRESH_TOKEN,
+        accessToken: process.env.NODEMAILER_ACCESS_TOKEN,
+        expires: 3599,
+      },
+    });
   }
 
   res.status(201).json({
@@ -1875,6 +1902,8 @@ exports.eHackUpdateMemberRequest = catchAsync(async (req, res, next) => {
   const eHackTeam = await eHackTeams.findById({
     _id: req.params.teamId,
   });
+
+  const teamLeaderId = eHackTeam.teamLeader;
 
   if (!eHackTeam) {
     return next(
@@ -1983,6 +2012,31 @@ exports.eHackUpdateMemberRequest = catchAsync(async (req, res, next) => {
         }
       );
     }
+
+    const teamLeader = await User.findById({ _id: teamLeaderId });
+    transporter.sendMail({
+      from: process.env.NODEMAILER_EMAIL,
+      to: teamLeader.email,
+      subject:
+        "ESUMMIT'23 ECELL-VIT. Request Approved By the E-Hack Participant",
+      html:
+        teamLeader.firstName +
+        " " +
+        teamLeader.lastName +
+        " " +
+        "your request is approved by the E-Hack Participant " +
+        user.firstName +
+        " " +
+        user.lastName +
+        ".<br>" +
+        "Click on the link to view the team details https://esummit23.vercel.app/.<br>",
+      auth: {
+        user: process.env.NODEMAILER_EMAIL,
+        refreshToken: process.env.NODEMAILER_REFRESH_TOKEN,
+        accessToken: process.env.NODEMAILER_ACCESS_TOKEN,
+        expires: 3599,
+      },
+    });
   }
 
   res.status(201).json({
@@ -2025,6 +2079,8 @@ exports.innoventureUpdateMemberRequest = catchAsync(async (req, res, next) => {
   const innoventureTeam = await innoventureTeams.findById({
     _id: req.params.teamId,
   });
+
+  const teamLeaderId = innoventureTeam.teamLeader;
 
   if (!innoventureTeam) {
     return next(
@@ -2133,6 +2189,31 @@ exports.innoventureUpdateMemberRequest = catchAsync(async (req, res, next) => {
         }
       );
     }
+
+    const teamLeader = await User.findById({ _id: teamLeaderId });
+    transporter.sendMail({
+      from: process.env.NODEMAILER_EMAIL,
+      to: teamLeader.email,
+      subject:
+        "ESUMMIT'23 ECELL-VIT. Request Approved By the Innoventure Participant",
+      html:
+        teamLeader.firstName +
+        " " +
+        teamLeader.lastName +
+        " " +
+        "your request is approved by the Innoventure Participant " +
+        user.firstName +
+        " " +
+        user.lastName +
+        ".<br>" +
+        "Click on the link to view the team details https://esummit23.vercel.app/.<br>",
+      auth: {
+        user: process.env.NODEMAILER_EMAIL,
+        refreshToken: process.env.NODEMAILER_REFRESH_TOKEN,
+        accessToken: process.env.NODEMAILER_ACCESS_TOKEN,
+        expires: 3599,
+      },
+    });
   }
 
   res.status(201).json({
