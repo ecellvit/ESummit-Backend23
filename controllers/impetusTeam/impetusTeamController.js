@@ -22,6 +22,7 @@ const { generateTeamToken } = require("./utils");
 const path = require("path");
 require("dotenv").config({ path: path.resolve(__dirname, "../.env") });
 
+const { transporter } = require("../../utils/nodemailer");
 // const AWS = require("aws-sdk");
 
 exports.createTeam = catchAsync(async (req, res, next) => {
