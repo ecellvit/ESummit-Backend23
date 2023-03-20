@@ -74,11 +74,28 @@ exports.createTeam = catchAsync(async (req, res, next) => {
     status: requestStatusTypes.PENDING_APPROVAL,
   });
 
+  const requestByLeader = await innoventureTeamLeaderApprovalsModel.findOne({
+    userId: req.params.userId,
+    status: requestStatusTypes.PENDING_APPROVAL,
+  });
+
+
   //user shouldnt have pending requests
   if (request) {
     return next(
       new AppError(
         "Remove Requests Sent to other Teams to Create a NewTeam",
+        412,
+        errorCodes.USER_HAS_PENDING_REQUESTS
+      )
+    );
+  }
+
+  //user shouldnt have pending requests sent by other team leader
+  if (requestByLeader) {
+    return next(
+      new AppError(
+        "Remove Requests by other Leaders to Create a NewTeam",
         412,
         errorCodes.USER_HAS_PENDING_REQUESTS
       )
