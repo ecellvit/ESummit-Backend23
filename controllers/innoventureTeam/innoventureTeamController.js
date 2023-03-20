@@ -76,7 +76,7 @@ exports.createTeam = catchAsync(async (req, res, next) => {
   });
 
   const requestByLeader = await innoventureTeamLeaderApprovalsModel.findOne({
-    userId: req.params.userId,
+    userId: req.user._id,
     status: requestStatusTypes.PENDING_APPROVAL,
   });
 
