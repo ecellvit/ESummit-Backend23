@@ -13,6 +13,7 @@ const innoventureTeamLeaderApprovalsModel = require("../../models/innoventureTea
 const eHackTeamLeaderApprovalsModel = require("../../models/eHackTeamLeaderPendingApprovalsModel");
 const impetusTeamLeaderApprovalsModel = require("../../models/impetusTeamLeaderPendingApprovalsModel");
 
+var mongoose = require('mongoose');
 const AppError = require("../../utils/appError");
 const catchAsync = require("../../utils/catchAsync");
 const {
@@ -1718,7 +1719,6 @@ exports.impetusUpdateMemberRequest = catchAsync(async (req, res, next) => {
   });
 
   const teamLeaderId = impetusTeam.teamLeaderId;
-
   if (!impetusTeam) {
     return next(
       new AppError("Invalid TeamId", 412, errorCodes.INVALID_TEAM_ID)
@@ -1834,6 +1834,15 @@ exports.impetusUpdateMemberRequest = catchAsync(async (req, res, next) => {
           $set: { noOfPendingRequests: 0 },
         }
       );
+    } else {
+      await impetusTeams.findOneAndUpdate(
+        {
+          _id: req.params.teamId,
+        },
+        {
+          $inc: { noOfPendingRequests: -1 },
+        }
+      );
     }
 
     const teamLeader = await User.findById({ _id: teamLeaderId });
@@ -1903,8 +1912,8 @@ exports.eHackUpdateMemberRequest = catchAsync(async (req, res, next) => {
     _id: req.params.teamId,
   });
 
-  const teamLeaderId = eHackTeam.teamLeader;
-
+  const teamLeaderId = eHackTeam.teamLeaderId;
+  
   if (!eHackTeam) {
     return next(
       new AppError("Invalid TeamId", 412, errorCodes.INVALID_TEAM_ID)
@@ -2011,6 +2020,15 @@ exports.eHackUpdateMemberRequest = catchAsync(async (req, res, next) => {
           $set: { noOfPendingRequests: 0 },
         }
       );
+    } else {
+      await eHackTeams.findOneAndUpdate(
+        {
+          _id: req.params.teamId,
+        },
+        {
+          $inc: { noOfPendingRequests: -1 },
+        }
+      );
     }
 
     const teamLeader = await User.findById({ _id: teamLeaderId });
@@ -2080,7 +2098,7 @@ exports.innoventureUpdateMemberRequest = catchAsync(async (req, res, next) => {
     _id: req.params.teamId,
   });
 
-  const teamLeaderId = innoventureTeam.teamLeader;
+  const teamLeaderId = innoventureTeam.teamLeaderId;
 
   if (!innoventureTeam) {
     return next(
@@ -2186,6 +2204,15 @@ exports.innoventureUpdateMemberRequest = catchAsync(async (req, res, next) => {
         },
         {
           $set: { noOfPendingRequests: 0 },
+        }
+      );
+    } else {
+      await innoventureTeams.findOneAndUpdate(
+        {
+          _id: req.params.teamId,
+        },
+        {
+          $inc: { noOfPendingRequests: -1 },
         }
       );
     }
