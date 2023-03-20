@@ -290,7 +290,7 @@ exports.impetusSendRequest = catchAsync(async (req, res, next) => {
       "has sent a request to join your Impetus team " +
       impetusTeam.teamName +
       ".<br>" +
-      "To Approve or reject the request click on the link https://fp.ecellvit.com/.<br>" +
+      "To Approve or reject the request click on the link https://esummit23.vercel.app/.<br>" +
       user.firstName +
       " " +
       user.lastName +
@@ -428,7 +428,7 @@ exports.eHackSendRequest = catchAsync(async (req, res, next) => {
       "has sent a request to join your E-Hack team " +
       eHackTeam.teamName +
       ".<br>" +
-      "To Approve or reject the request click on the link https://fp.ecellvit.com/.<br>" +
+      "To Approve or reject the request click on the link https://esummit23.vercel.app/.<br>" +
       user.firstName +
       " " +
       user.lastName +
@@ -568,7 +568,7 @@ exports.innoventureSendRequest = catchAsync(async (req, res, next) => {
       "has sent a request to join your Innoventure team " +
       innoventureTeam.teamName +
       ".<br>" +
-      "To Approve or reject the request click on the link https://fp.ecellvit.com/.<br>" +
+      "To Approve or reject the request click on the link https://esummit23.vercel.app/.<br>" +
       user.firstName +
       " " +
       user.lastName +
