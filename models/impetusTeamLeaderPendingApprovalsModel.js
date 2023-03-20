@@ -7,8 +7,8 @@ const pendingApprovalsSchema = mongoose.Schema(
       ref: "ImpetusTeams",
     },
     teamLeaderId: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: "Users",
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "Users",
     },
     userId: {
       type: mongoose.Schema.Types.ObjectId,

@@ -26,7 +26,7 @@ userRouter
   .route("/innoventure/:teamId")
   .patch(auth, userController.innoventureLeaveTeam);
 
-userRouter  
+userRouter
   .route("/impetus/requests")
   .get(auth, userController.impetusGetRequest);
 userRouter.route("/ehack/requests").get(auth, userController.eHackGetRequest);

@@ -13,7 +13,7 @@ const innoventureTeamLeaderApprovalsModel = require("../../models/innoventureTea
 const eHackTeamLeaderApprovalsModel = require("../../models/eHackTeamLeaderPendingApprovalsModel");
 const impetusTeamLeaderApprovalsModel = require("../../models/impetusTeamLeaderPendingApprovalsModel");
 
-var mongoose = require('mongoose');
+var mongoose = require("mongoose");
 const AppError = require("../../utils/appError");
 const catchAsync = require("../../utils/catchAsync");
 const {
@@ -1913,7 +1913,7 @@ exports.eHackUpdateMemberRequest = catchAsync(async (req, res, next) => {
   });
 
   const teamLeaderId = eHackTeam.teamLeaderId;
-  
+
   if (!eHackTeam) {
     return next(
       new AppError("Invalid TeamId", 412, errorCodes.INVALID_TEAM_ID)

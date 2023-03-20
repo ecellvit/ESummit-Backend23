@@ -31,8 +31,7 @@ const teamSchema = mongoose.Schema(
     },
     fileId: {
       type: String,
-    }
-
+    },
   },
   { collection: "EHackTeams" }
 );

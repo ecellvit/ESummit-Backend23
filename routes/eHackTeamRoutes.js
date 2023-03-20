@@ -44,7 +44,9 @@ eHackTeamRouter
   .route("/addMember/:userId")
   .delete(auth, eHackTeamController.removeMemberRequest);
 
-eHackTeamRouter.route("/roundOne").post(auth, eHackTeamController.eHackUploadFile);
+eHackTeamRouter
+  .route("/roundOne")
+  .post(auth, eHackTeamController.eHackUploadFile);
 eHackTeamRouter.route("/roundOne").get(auth, eHackTeamController.eHackGetFile);
 
 module.exports = eHackTeamRouter;
