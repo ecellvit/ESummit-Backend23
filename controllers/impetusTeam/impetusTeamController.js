@@ -578,6 +578,28 @@ exports.updateRequest = catchAsync(async (req, res, next) => {
         }
       );
     }
+
+    const user = await User.findById({ _id: req.body.userId });
+    transporter.sendMail({
+      from: process.env.NODEMAILER_EMAIL,
+      to: user.email,
+      subject: "ESUMMIT'23 ECELL-VIT. Request Approved By Impetus Team",
+      html:
+        user.firstName +
+        " " +
+        user.lastName +
+        " " +
+        "your request is approved by Impetus team " +
+        impetusTeam.teamName +
+        ".<br>" +
+        "Click on the link to view the team details https://esummit23.vercel.app/.<br>",
+      auth: {
+        user: process.env.NODEMAILER_EMAIL,
+        refreshToken: process.env.NODEMAILER_REFRESH_TOKEN,
+        accessToken: process.env.NODEMAILER_ACCESS_TOKEN,
+        expires: 3599,
+      },
+    });
   }
   res.status(201).json({
     message: "Updated Request Successfully",
@@ -794,7 +816,7 @@ exports.addMemberRequest = catchAsync(async (req, res, next) => {
       )
     );
   }
-  
+
   const leaderTeam = await impetusTeams.findById({
     _id: user.impetusTeamId,
   });

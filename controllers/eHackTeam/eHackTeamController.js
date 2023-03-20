@@ -138,7 +138,7 @@ exports.getTeamDetails = catchAsync(async (req, res, next) => {
       eHackTeamRole: 1,
       eHackTeamRole: 1,
       innoventureTeamRole: 1,
-      registeredEvents:1,
+      registeredEvents: 1,
     });
 
   //validate eHackTeam id
@@ -580,6 +580,28 @@ exports.updateRequest = catchAsync(async (req, res, next) => {
         }
       );
     }
+
+    const user = await User.findById({ _id: req.body.userId });
+    transporter.sendMail({
+      from: process.env.NODEMAILER_EMAIL,
+      to: user.email,
+      subject: "ESUMMIT'23 ECELL-VIT. Request Approved By E-Hack Team",
+      html:
+        user.firstName +
+        " " +
+        user.lastName +
+        " " +
+        "your request is approved by E-Hack team " +
+        eHackTeam.teamName +
+        ".<br>" +
+        "Click on the link to view the team details https://esummit23.vercel.app/.<br>",
+      auth: {
+        user: process.env.NODEMAILER_EMAIL,
+        refreshToken: process.env.NODEMAILER_REFRESH_TOKEN,
+        accessToken: process.env.NODEMAILER_ACCESS_TOKEN,
+        expires: 3599,
+      },
+    });
   }
 
   res.status(201).json({
@@ -1022,6 +1044,6 @@ exports.eHackGetFile = catchAsync(async (req, res, next) => {
     message: "File fetched successfully",
     desc: team.desc,
     fileUrl: team.fileUrl,
-    fileId: team.fileId
+    fileId: team.fileId,
   });
 });
