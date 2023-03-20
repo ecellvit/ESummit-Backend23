@@ -933,6 +933,16 @@ exports.addMemberRequest = catchAsync(async (req, res, next) => {
     );
   }
 
+  if (leaderTeam.noOfPendingRequests >= 5) {
+    return next(
+      new AppError(
+        "Can't send more than 5 requests",
+        412,
+        errorCodes.PENDING_REQUESTS_LIMIT_REACHED
+      )
+    );
+  }
+
   const newRequest = await new innoventureTeamLeaderApprovalsModel({
     teamId: leaderTeam._id,
     userId: req.params.userId,
