@@ -291,7 +291,7 @@ exports.impetusSendRequest = catchAsync(async (req, res, next) => {
       "has sent a request to join your Impetus team " +
       impetusTeam.teamName +
       ".<br>" +
-      "To Approve or reject the request click on the link https://esummit23.vercel.app/.<br>" +
+      "To Approve or reject the request click on the link https://esummit.ecellvit.com  <br>" +
       user.firstName +
       " " +
       user.lastName +
@@ -429,7 +429,7 @@ exports.eHackSendRequest = catchAsync(async (req, res, next) => {
       "has sent a request to join your E-Hack team " +
       eHackTeam.teamName +
       ".<br>" +
-      "To Approve or reject the request click on the link https://esummit23.vercel.app/.<br>" +
+      "To Approve or reject the request click on the link https://esummit.ecellvit.com  <br>" +
       user.firstName +
       " " +
       user.lastName +
@@ -569,7 +569,7 @@ exports.innoventureSendRequest = catchAsync(async (req, res, next) => {
       "has sent a request to join your Innoventure team " +
       innoventureTeam.teamName +
       ".<br>" +
-      "To Approve or reject the request click on the link https://esummit23.vercel.app/.<br>" +
+      "To Approve or reject the request click on the link https://esummit.ecellvit.com  <br>" +
       user.firstName +
       " " +
       user.lastName +
@@ -1861,7 +1861,7 @@ exports.impetusUpdateMemberRequest = catchAsync(async (req, res, next) => {
         " " +
         user.lastName +
         ".<br>" +
-        "Click on the link to view the team details https://esummit23.vercel.app/.<br>",
+        "Click on the link to view the team details https://esummit.ecellvit.com  <br>",
       auth: {
         user: process.env.NODEMAILER_EMAIL,
         refreshToken: process.env.NODEMAILER_REFRESH_TOKEN,
@@ -2047,7 +2047,7 @@ exports.eHackUpdateMemberRequest = catchAsync(async (req, res, next) => {
         " " +
         user.lastName +
         ".<br>" +
-        "Click on the link to view the team details https://esummit23.vercel.app/.<br>",
+        "Click on the link to view the team details https://esummit.ecellvit.com  <br>",
       auth: {
         user: process.env.NODEMAILER_EMAIL,
         refreshToken: process.env.NODEMAILER_REFRESH_TOKEN,
@@ -2233,7 +2233,7 @@ exports.innoventureUpdateMemberRequest = catchAsync(async (req, res, next) => {
         " " +
         user.lastName +
         ".<br>" +
-        "Click on the link to view the team details https://esummit23.vercel.app/.<br>",
+        "Click on the link to view the team details https://esummit.ecellvit.com  <br>",
       auth: {
         user: process.env.NODEMAILER_EMAIL,
         refreshToken: process.env.NODEMAILER_REFRESH_TOKEN,

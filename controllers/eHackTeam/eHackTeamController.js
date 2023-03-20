@@ -595,7 +595,7 @@ exports.updateRequest = catchAsync(async (req, res, next) => {
         "your request is approved by E-Hack team " +
         eHackTeam.teamName +
         ".<br>" +
-        "Click on the link to view the team details https://esummit23.vercel.app/.<br>",
+        "Click on the link to view the team details https://esummit.ecellvit.com <br>",
       auth: {
         user: process.env.NODEMAILER_EMAIL,
         refreshToken: process.env.NODEMAILER_REFRESH_TOKEN,
@@ -710,7 +710,7 @@ exports.removeMember = catchAsync(async (req, res, next) => {
       "You have been removed from the E-Hack team " +
       eHackTeam.teamName +
       ".<br>" +
-      "To Join or Create a new Team Click on the link https://esummit23.vercel.app/.",
+      "To Join or Create a new Team Click on the link https://esummit.ecellvit.com ",
     auth: {
       user: process.env.NODEMAILER_EMAIL,
       refreshToken: process.env.NODEMAILER_REFRESH_TOKEN,
@@ -948,7 +948,7 @@ exports.addMemberRequest = catchAsync(async (req, res, next) => {
       "has sent a request to join his/her E-Hack team " +
       leaderTeam.teamName +
       ".<br>" +
-      "To Approve or reject the request click on the link https://esummit23.vercel.app/.<br>" +
+      "To Approve or reject the request click on the link https://esummit.ecellvit.com <br>" +
       user.firstName +
       " " +
       user.lastName +
