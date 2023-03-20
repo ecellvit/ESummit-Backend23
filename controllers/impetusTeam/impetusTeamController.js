@@ -694,6 +694,27 @@ exports.removeMember = catchAsync(async (req, res, next) => {
   //   }
   // );
 
+  transporter.sendMail({
+    from: process.env.NODEMAILER_EMAIL,
+    to: userToRemove.email,
+    subject: "ESUMMIT'23 ECELL-VIT. Removed From Impetus Team",
+    html:
+      userToRemove.firstName +
+      " " +
+      userToRemove.lastName +
+      " " +
+      "You have been removed from the Impetus team " +
+      impetusTeam.teamName +
+      ".<br>" +
+      "To Join or Create a new Team Click on the link https://esummit23.vercel.app/.",
+    auth: {
+      user: process.env.NODEMAILER_EMAIL,
+      refreshToken: process.env.NODEMAILER_REFRESH_TOKEN,
+      accessToken: process.env.NODEMAILER_ACCESS_TOKEN,
+      expires: 3599,
+    },
+  });
+
   res.status(201).json({
     message: "User Removed Successfully",
   });
