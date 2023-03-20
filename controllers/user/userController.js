@@ -36,6 +36,7 @@ const { verifyTeamToken } = require("./utils");
 const client = new OAuth2Client(process.env.CLIENT_ID);
 const path = require("path");
 require("dotenv").config({ path: path.resolve(__dirname, "../.env") });
+const { transporter } = require("../../utils/nodemailer");
 
 exports.registerEvent = catchAsync(async (req, res, next) => {
   const { error } = registerEventBodyValidation(req.body);
@@ -275,6 +276,40 @@ exports.impetusSendRequest = catchAsync(async (req, res, next) => {
     }
   );
 
+  const teamLeader = await User.findById({ _id: impetusTeam.teamLeaderId });
+  transporter.sendMail({
+    from: process.env.NODEMAILER_EMAIL,
+    to: teamLeader.email,
+    subject:
+      "ESUMMIT'23-ECELL-VIT. Pending Approval From a Participant for Impetus Event",
+    html:
+      user.firstName +
+      " " +
+      user.lastName +
+      " " +
+      "has sent a request to join your Impetus team " +
+      impetusTeam.teamName +
+      ".<br>" +
+      "To Approve or reject the request click on the link https://fp.ecellvit.com/.<br>" +
+      user.firstName +
+      " " +
+      user.lastName +
+      "'s Mobile Number: " +
+      user.mobileNumber +
+      "<br>" +
+      user.firstName +
+      " " +
+      user.lastName +
+      "'s Email: " +
+      user.email,
+    auth: {
+      user: process.env.NODEMAILER_EMAIL,
+      refreshToken: process.env.NODEMAILER_REFRESH_TOKEN,
+      accessToken: process.env.NODEMAILER_ACCESS_TOKEN,
+      expires: 3599,
+    },
+  });
+
   res.status(201).json({
     message: "Sent request successfully",
     requestId: newRequest._id,
@@ -378,6 +413,40 @@ exports.eHackSendRequest = catchAsync(async (req, res, next) => {
       $inc: { eHackPendingRequests: 1 },
     }
   );
+
+  const teamLeader = await User.findById({ _id: eHackTeam.teamLeaderId });
+  transporter.sendMail({
+    from: process.env.NODEMAILER_EMAIL,
+    to: teamLeader.email,
+    subject:
+      "ESUMMIT'23-ECELL-VIT. Pending Approval From a Participant for E-Hack Event",
+    html:
+      user.firstName +
+      " " +
+      user.lastName +
+      " " +
+      "has sent a request to join your E-Hack team " +
+      eHackTeam.teamName +
+      ".<br>" +
+      "To Approve or reject the request click on the link https://fp.ecellvit.com/.<br>" +
+      user.firstName +
+      " " +
+      user.lastName +
+      "'s Mobile Number: " +
+      user.mobileNumber +
+      "<br>" +
+      user.firstName +
+      " " +
+      user.lastName +
+      "'s Email: " +
+      user.email,
+    auth: {
+      user: process.env.NODEMAILER_EMAIL,
+      refreshToken: process.env.NODEMAILER_REFRESH_TOKEN,
+      accessToken: process.env.NODEMAILER_ACCESS_TOKEN,
+      expires: 3599,
+    },
+  });
 
   res.status(201).json({
     message: "Sent request successfully",
@@ -484,6 +553,40 @@ exports.innoventureSendRequest = catchAsync(async (req, res, next) => {
       $inc: { innoventurePendingRequests: 1 },
     }
   );
+
+  const teamLeader = await User.findById({ _id: innoventureTeam.teamLeaderId });
+  transporter.sendMail({
+    from: process.env.NODEMAILER_EMAIL,
+    to: teamLeader.email,
+    subject:
+      "ESUMMIT'23-ECELL-VIT. Pending Approval From a Participant for Innoventure Event",
+    html:
+      user.firstName +
+      " " +
+      user.lastName +
+      " " +
+      "has sent a request to join your Innoventure team " +
+      innoventureTeam.teamName +
+      ".<br>" +
+      "To Approve or reject the request click on the link https://fp.ecellvit.com/.<br>" +
+      user.firstName +
+      " " +
+      user.lastName +
+      "'s Mobile Number: " +
+      user.mobileNumber +
+      "<br>" +
+      user.firstName +
+      " " +
+      user.lastName +
+      "'s Email: " +
+      user.email,
+    auth: {
+      user: process.env.NODEMAILER_EMAIL,
+      refreshToken: process.env.NODEMAILER_REFRESH_TOKEN,
+      accessToken: process.env.NODEMAILER_ACCESS_TOKEN,
+      expires: 3599,
+    },
+  });
 
   res.status(201).json({
     message: "Sent request successfully",
