@@ -2174,13 +2174,13 @@ exports.innoventureUpdateMemberRequest = catchAsync(async (req, res, next) => {
       }
     );
 
-    if (impetusTeam.members.length === 3) {
-      await impetusTeamLeaderApprovalsModel.deleteMany({
+    if (innoventureTeam.members.length === 3) {
+      await innoventureTeamLeaderApprovalsModel.deleteMany({
         teamId: req.params.teamId,
         status: requestStatusTypes.PENDING_APPROVAL,
       });
 
-      await impetusTeams.findOneAndUpdate(
+      await innoventureTeams.findOneAndUpdate(
         {
           _id: req.params.teamId,
         },
