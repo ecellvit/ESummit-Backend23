@@ -924,6 +924,39 @@ exports.addMemberRequest = catchAsync(async (req, res, next) => {
     }
   );
 
+  transporter.sendMail({
+    from: process.env.NODEMAILER_EMAIL,
+    to: toAddMember.email,
+    subject:
+      "ESUMMIT'23-ECELL-VIT. Pending Approval From a Team Leader for E-Hack Event",
+    html:
+      user.firstName +
+      " " +
+      user.lastName +
+      " " +
+      "has sent a request to join his/her E-Hack team " +
+      leaderTeam.teamName +
+      ".<br>" +
+      "To Approve or reject the request click on the link https://esummit23.vercel.app/.<br>" +
+      user.firstName +
+      " " +
+      user.lastName +
+      "'s Mobile Number: " +
+      user.mobileNumber +
+      "<br>" +
+      user.firstName +
+      " " +
+      user.lastName +
+      "'s Email: " +
+      user.email,
+    auth: {
+      user: process.env.NODEMAILER_EMAIL,
+      refreshToken: process.env.NODEMAILER_REFRESH_TOKEN,
+      accessToken: process.env.NODEMAILER_ACCESS_TOKEN,
+      expires: 3599,
+    },
+  });
+
   res.status(201).json({
     message: "Sent request successfully",
     requestId: newRequest._id,
