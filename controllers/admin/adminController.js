@@ -401,3 +401,10 @@ exports.getInnoventureDetails = catchAsync(async (req, res, next) => {
     Innoventure_Teams_With_4_Members: innoventureTeamsWith4Members,
   });
 });
+
+exports.myFunction = catchAsync(async (req, res, next) => {
+  await User.updateMany({}, { $set: { hasFilledDetails: false } });
+  return res.status(200).json({
+    status: "success",
+  });
+});
