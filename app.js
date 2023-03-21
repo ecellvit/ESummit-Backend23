@@ -49,6 +49,7 @@ app.use("/api/impetus", require("./routes/impetusTeamRoutes"));
 app.use("/api/ehack", require("./routes/eHackTeamRoutes"));
 app.use("/api/innoventure", require("./routes/innoventureTeamRoutes"));
 app.use("/api/events", require("./routes/eventRoutes"));
+app.use("/api/ecelltech/admin", require("./routes/adminRoutes"));
 
 //all invalid urls handled here
 app.all("*", (req, res, next) => {
