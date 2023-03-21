@@ -932,6 +932,7 @@ exports.fillUserDetails = catchAsync(async (req, res, next) => {
         firstName: req.body.firstName,
         lastName: req.body.lastName,
         mobileNumber: req.body.mobileNumber,
+        regNo: req.body.regNo,
         hasFilledDetails: true,
       },
     }

@@ -27,6 +27,9 @@ const userSchema = new mongoose.Schema(
     mobileNumber: {
       type: String,
     },
+    regNo: {
+      type: String,
+    },
     registeredEvents: [
       {
         type: Number,
