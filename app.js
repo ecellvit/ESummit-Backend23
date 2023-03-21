@@ -43,13 +43,14 @@ app.get("/heartbeat", function (req, res) {
   });
 });
 
+const string = "/api/admin/" + process.env.ADMIN_SECRET;
 app.use("/api/auth", require("./routes/authRoutes"));
 app.use("/api/user", require("./routes/userRoutes"));
 app.use("/api/impetus", require("./routes/impetusTeamRoutes"));
 app.use("/api/ehack", require("./routes/eHackTeamRoutes"));
 app.use("/api/innoventure", require("./routes/innoventureTeamRoutes"));
 app.use("/api/events", require("./routes/eventRoutes"));
-app.use("/api/ecelltech/admin", require("./routes/adminRoutes"));
+app.use(string, require("./routes/adminRoutes"));
 
 //all invalid urls handled here
 app.all("*", (req, res, next) => {
