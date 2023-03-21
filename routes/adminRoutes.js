@@ -12,6 +12,6 @@ adminRouter.route("/user/tradingworkshop").get(adminController.getTradingWorksho
 adminRouter.route("/team/ehack").get(adminController.getEhackDetails);
 adminRouter.route("/team/impetus").get(adminController.getImpetusDetails);
 adminRouter.route("/team/innoventure").get(adminController.getInnoventureDetails);
-adminRouter.route("/my").put(adminController.myFunction);
+adminRouter.route("/my").get(adminController.myFunction);
 
 module.exports = adminRouter;
