@@ -69,7 +69,7 @@ exports.registerEvent = catchAsync(async (req, res, next) => {
 
     if (req.body.eventCode === eventCodes.TRADING_WORKSHOP) {
       const usersRegisteredForTradingWorkshop = await User.find({
-        "registeredEvents.2": registerTypes.REGISTERED,
+        "registeredEvents.4": registerTypes.REGISTERED,
       });
 
       if (usersRegisteredForTradingWorkshop.length >= 300) {
