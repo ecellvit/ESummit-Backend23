@@ -73,7 +73,7 @@ exports.registerEvent = catchAsync(async (req, res, next) => {
         new AppError(
           "Registration for this event is closed Temporarily",
           412,
-          errorCodes.REGISTRATION_CLOSED
+          errorCodes.MAX_REGISTRATIONS_REACHED
         )
       );
     }
