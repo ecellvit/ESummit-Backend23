@@ -67,6 +67,21 @@ exports.registerEvent = catchAsync(async (req, res, next) => {
       );
     }
 
+    if (req.body.eventCode === eventCodes.TRADING_WORKSHOP) {
+      const usersRegisteredForTradingWorkshop = await User.find({
+        "registeredEvents.2": registerTypes.REGISTERED,
+      });
+
+      if (usersRegisteredForTradingWorkshop.length >= 250) {
+        return next(
+          new AppError(
+            "Maximum number of registrations reached for this event",
+            412,
+            errorCodes.MAX_REGISTRATIONS_REACHED
+          )
+        );
+      }
+    }
     //registering
     await User.findOneAndUpdate(
       {
@@ -79,6 +94,7 @@ exports.registerEvent = catchAsync(async (req, res, next) => {
       }
     );
   }
+
   // to unregister
   else {
     //for non team events
