@@ -402,9 +402,9 @@ exports.getInnoventureDetails = catchAsync(async (req, res, next) => {
   });
 });
 
-exports.myFunction = catchAsync(async (req, res, next) => {
-  await User.updateMany({}, { $set: { hasFilledDetails: false } });
-  return res.status(200).json({
-    status: "success",
-  });
-});
+// exports.myFunction = catchAsync(async (req, res, next) => {
+//   await User.updateMany({}, { $set: { hasFilledDetails: false } });
+//   return res.status(200).json({
+//     status: "success",
+//   });
+// });
