@@ -72,7 +72,7 @@ exports.registerEvent = catchAsync(async (req, res, next) => {
         "registeredEvents.2": registerTypes.REGISTERED,
       });
 
-      if (usersRegisteredForTradingWorkshop.length >= 250) {
+      if (usersRegisteredForTradingWorkshop.length >= 350) {
         return next(
           new AppError(
             "Maximum number of registrations reached for this event",
