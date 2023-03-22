@@ -67,6 +67,17 @@ exports.registerEvent = catchAsync(async (req, res, next) => {
       );
     }
 
+    if (req.body.eventCode === eventCodes.ETALK) {
+      console.log("object");
+      return next(
+        new AppError(
+          "Registration for this event is closed Temporarily",
+          412,
+          errorCodes.REGISTRATION_CLOSED
+        )
+      );
+    }
+
     if (req.body.eventCode === eventCodes.TRADING_WORKSHOP) {
       const usersRegisteredForTradingWorkshop = await User.find({
         "registeredEvents.4": registerTypes.REGISTERED,
