@@ -117,6 +117,22 @@ exports.registerEvent = catchAsync(async (req, res, next) => {
       }
     }
 
+    if (req.body.eventCode == eventCodes.IMPETUS) {
+      const usersRegisteredForImpetus = await User.find({
+        "registeredEvents.0": registerTypes.REGISTERED,
+      });
+
+      if (usersRegisteredForImpetus.length >= 300) {
+        return next(
+          new AppError(
+            "Maximum number of registrations reached for this event",
+            412,
+            errorCodes.MAX_REGISTRATIONS_REACHED
+          )
+        );
+      }
+    }
+
     if (req.body.eventCode == eventCodes.TRADING_WORKSHOP) {
       const usersRegisteredForTradingWorkshop = await User.find({
         "registeredEvents.4": registerTypes.REGISTERED,
