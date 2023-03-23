@@ -177,13 +177,10 @@ exports.getAllCounts = catchAsync(async (req, res, next) => {
   res.status(200).json({
     message: "Data Fetched Successfully",
     Number_Of_Users_LoggedIn: users.length,
-    Number_Of_Users_Registered_For_Ehack: eHackRegisteredUsers.length,
-    Number_Of_Users_Registered_For_Impetus: impetusRegisteredUsers.length,
-    Number_Of_Users_Registered_For_Innoventure:
-      innoventureRegisteredUsers.length,
     Number_Of_Users_Registered_For_ETalk: eTalkRegisteredUsers.length,
     Number_Of_Users_Registered_For_Trading_Workshop:
       tradingWorkshopRegisteredUsers.length,
+    Number_Of_Users_Registered_For_Ehack: eHackRegisteredUsers.length,
     No_of_EHack_Teams: eHackTeams.length,
     No_of_EHack_Registrants_who_are_part_of_a_Team: noOfEHackUsersPartOfATeam,
     No_of_EHack_Registrants_who_are_not_part_of_a_Team:
@@ -192,6 +189,7 @@ exports.getAllCounts = catchAsync(async (req, res, next) => {
     No_of_EHack_Teams_With_2_Members: ehackTeamsWith2Members.length,
     No_of_EHack_Teams_With_3_Members: ehackTeamsWith3Members.length,
     No_of_EHack_Teams_With_4_Members: ehackTeamsWith4Members.length,
+    Number_Of_Users_Registered_For_Impetus: impetusRegisteredUsers.length,
     No_of_Impetus_Teams: impetusTeams.length,
     No_of_Impetus_Registrants_who_are_part_of_a_Team:
       noOfImpetusUsersPartOfATeam,
@@ -201,6 +199,8 @@ exports.getAllCounts = catchAsync(async (req, res, next) => {
     No_of_Impetus_Teams_With_2_Members: impetusTeamsWith2Members.length,
     No_of_Impetus_Teams_With_3_Members: impetusTeamsWith3Members.length,
     No_of_Impetus_Teams_With_4_Members: impetusTeamsWith4Members.length,
+    Number_Of_Users_Registered_For_Innoventure:
+      innoventureRegisteredUsers.length,
     No_of_Innoventure_Teams: innoventureTeams.length,
     No_Of_Innoventure_Registrants_who_are_part_of_a_Team:
       noOfInnoventureUsersPartOfATeam,
