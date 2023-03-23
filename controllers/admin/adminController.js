@@ -152,6 +152,7 @@ exports.getAllCounts = catchAsync(async (req, res, next) => {
   }
 
   res.status(200).json({
+    message: "Data Fetched Successfully",
     Number_Of_Users_LoggedIn: users.length,
     Number_Of_Users_Registered_For_Ehack: eHackRegisteredUsers.length,
     Number_Of_Users_Registered_For_Impetus: impetusRegisteredUsers.length,
@@ -216,6 +217,7 @@ exports.getLoggedInUsers = catchAsync(async (req, res, next) => {
   );
 
   res.status(200).json({
+    message: "Data Fetched Successfully",
     Number_Of_Users_LoggedIn: users.length,
     users,
   });
@@ -249,6 +251,7 @@ exports.getEhackUsers = catchAsync(async (req, res, next) => {
   }
 
   res.status(200).json({
+    message: "Data Fetched Successfully",
     No_Of_Users_Registered_For_EHack: eHackRegisteredUsers.length,
     eHackRegisteredUsers,
   });
@@ -282,6 +285,7 @@ exports.getImpetusUsers = catchAsync(async (req, res, next) => {
   }
 
   res.status(200).json({
+    message: "Data Fetched Successfully",
     No_Of_Users_Registered_For_Impetus: impetusRegisteredUsers.length,
     impetusRegisteredUsers,
   });
@@ -316,6 +320,7 @@ exports.getInnoventureUsers = catchAsync(async (req, res, next) => {
   }
 
   res.status(200).json({
+    message: "Data Fetched Successfully",
     No_Of_Users_Registered_For_Innoventure: innoventureRegisteredUsers.length,
     innoventureRegisteredUsers,
   });
@@ -350,6 +355,7 @@ exports.getEtalkUsers = catchAsync(async (req, res, next) => {
   }
 
   res.status(200).json({
+    message: "Data Fetched Successfully",
     No_Of_Users_Registered_For_ETalk: eTalkRegisteredUsers.length,
     eTalkRegisteredUsers,
   });
@@ -384,6 +390,7 @@ exports.getTradingWorkshopUsers = catchAsync(async (req, res, next) => {
   }
 
   res.status(200).json({
+    message: "Data Fetched Successfully",
     No_Of_Users_Registered_For_Tading_Workshop:
       tradingWorkshopRegisteredUsers.length,
     tradingWorkshopRegisteredUsers,
@@ -410,24 +417,25 @@ exports.getEhackDetails = catchAsync(async (req, res, next) => {
       _id: 0,
     });
 
-  const ehackTeamsWith1Member = [];
-  const ehackTeamsWith2Members = [];
-  const ehackTeamsWith3Members = [];
-  const ehackTeamsWith4Members = [];
+  // const ehackTeamsWith1Member = [];
+  // const ehackTeamsWith2Members = [];
+  // const ehackTeamsWith3Members = [];
+  // const ehackTeamsWith4Members = [];
 
-  for (let i = 0; i < eHackTeams.length; i++) {
-    if (eHackTeams[i].members.length === 1) {
-      ehackTeamsWith1Member.push(eHackTeams[i]);
-    } else if (eHackTeams[i].members.length === 2) {
-      ehackTeamsWith2Members.push(eHackTeams[i]);
-    } else if (eHackTeams[i].members.length === 3) {
-      ehackTeamsWith3Members.push(eHackTeams[i]);
-    } else if (eHackTeams[i].members.length === 4) {
-      ehackTeamsWith4Members.push(eHackTeams[i]);
-    }
-  }
+  // for (let i = 0; i < eHackTeams.length; i++) {
+  //   if (eHackTeams[i].members.length === 1) {
+  //     ehackTeamsWith1Member.push(eHackTeams[i]);
+  //   } else if (eHackTeams[i].members.length === 2) {
+  //     ehackTeamsWith2Members.push(eHackTeams[i]);
+  //   } else if (eHackTeams[i].members.length === 3) {
+  //     ehackTeamsWith3Members.push(eHackTeams[i]);
+  //   } else if (eHackTeams[i].members.length === 4) {
+  //     ehackTeamsWith4Members.push(eHackTeams[i]);
+  //   }
+  // }
 
   return res.status(200).json({
+    message: "Data Fetched Successfully",
     No_of_EHack_Teams: eHackTeams.length,
     eHackTeams,
     // No_of_EHack_Teams_With_1_Member: ehackTeamsWith1Member.length,
@@ -461,24 +469,25 @@ exports.getImpetusDetails = catchAsync(async (req, res, next) => {
       _id: 0,
     });
 
-  const impetusTeamsWith1Member = [];
-  const impetusTeamsWith2Members = [];
-  const impetusTeamsWith3Members = [];
-  const impetusTeamsWith4Members = [];
+  // const impetusTeamsWith1Member = [];
+  // const impetusTeamsWith2Members = [];
+  // const impetusTeamsWith3Members = [];
+  // const impetusTeamsWith4Members = [];
 
-  for (let i = 0; i < impetusTeams.length; i++) {
-    if (impetusTeams[i].members.length === 1) {
-      impetusTeamsWith1Member.push(impetusTeams[i]);
-    } else if (impetusTeams[i].members.length === 2) {
-      impetusTeamsWith2Members.push(impetusTeams[i]);
-    } else if (impetusTeams[i].members.length === 3) {
-      impetusTeamsWith3Members.push(impetusTeams[i]);
-    } else if (impetusTeams[i].members.length === 4) {
-      impetusTeamsWith4Members.push(impetusTeams[i]);
-    }
-  }
+  // for (let i = 0; i < impetusTeams.length; i++) {
+  //   if (impetusTeams[i].members.length === 1) {
+  //     impetusTeamsWith1Member.push(impetusTeams[i]);
+  //   } else if (impetusTeams[i].members.length === 2) {
+  //     impetusTeamsWith2Members.push(impetusTeams[i]);
+  //   } else if (impetusTeams[i].members.length === 3) {
+  //     impetusTeamsWith3Members.push(impetusTeams[i]);
+  //   } else if (impetusTeams[i].members.length === 4) {
+  //     impetusTeamsWith4Members.push(impetusTeams[i]);
+  //   }
+  // }
 
   return res.status(200).json({
+    message: "Data Fetched Successfully",
     No_of_Impetus_Teams: impetusTeams.length,
     impetusTeams,
     // No_of_Impetus_Teams_With_1_Member: impetusTeamsWith1Member.length,
@@ -512,24 +521,25 @@ exports.getInnoventureDetails = catchAsync(async (req, res, next) => {
       _id: 0,
     });
 
-  const innoventureTeamsWith1Member = [];
-  const innoventureTeamsWith2Members = [];
-  const innoventureTeamsWith3Members = [];
-  const innoventureTeamsWith4Members = [];
+  // const innoventureTeamsWith1Member = [];
+  // const innoventureTeamsWith2Members = [];
+  // const innoventureTeamsWith3Members = [];
+  // const innoventureTeamsWith4Members = [];
 
-  for (let i = 0; i < innoventureTeams.length; i++) {
-    if (innoventureTeams[i].members.length === 1) {
-      innoventureTeamsWith1Member.push(innoventureTeams[i]);
-    } else if (innoventureTeams[i].members.length === 2) {
-      innoventureTeamsWith2Members.push(innoventureTeams[i]);
-    } else if (innoventureTeams[i].members.length === 3) {
-      innoventureTeamsWith3Members.push(innoventureTeams[i]);
-    } else if (innoventureTeams[i].members.length === 4) {
-      innoventureTeamsWith4Members.push(innoventureTeams[i]);
-    }
-  }
+  // for (let i = 0; i < innoventureTeams.length; i++) {
+  //   if (innoventureTeams[i].members.length === 1) {
+  //     innoventureTeamsWith1Member.push(innoventureTeams[i]);
+  //   } else if (innoventureTeams[i].members.length === 2) {
+  //     innoventureTeamsWith2Members.push(innoventureTeams[i]);
+  //   } else if (innoventureTeams[i].members.length === 3) {
+  //     innoventureTeamsWith3Members.push(innoventureTeams[i]);
+  //   } else if (innoventureTeams[i].members.length === 4) {
+  //     innoventureTeamsWith4Members.push(innoventureTeams[i]);
+  //   }
+  // }
 
   return res.status(200).json({
+    message: "Data Fetched Successfully",
     No_of_Innoventure_Teams: innoventureTeams.length,
     innoventureTeams,
     // No_of_Innoventure_Teams_With_1_Member: innoventureTeamsWith1Member.length,
