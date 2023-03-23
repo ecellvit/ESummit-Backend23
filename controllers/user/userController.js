@@ -106,6 +106,17 @@ exports.registerEvent = catchAsync(async (req, res, next) => {
         );
       }
     }
+
+    if (req.body.eventCode == eventCodes.INNOVENTURE) {
+      return next(
+        new AppError(
+          "Registration for this event is closed Temporarily",
+          412,
+          errorCodes.MAX_REGISTRATIONS_REACHED
+        )
+      );
+    }
+
     //registering
     await User.findOneAndUpdate(
       {
