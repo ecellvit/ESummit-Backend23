@@ -180,12 +180,12 @@ exports.getAllCounts = catchAsync(async (req, res, next) => {
     No_of_Impetus_Teams_With_2_Members: impetusTeamsWith2Members.length,
     No_of_Impetus_Teams_With_3_Members: impetusTeamsWith3Members.length,
     No_of_Impetus_Teams_With_4_Members: impetusTeamsWith4Members.length,
+    No_of_Innoventure_Teams: innoventureTeams.length,
     No_Of_Innoventure_Registrants_who_are_part_of_a_Team:
       innoventureTeamsWith1Member.length * 1 +
       innoventureTeamsWith2Members.length * 2 +
       innoventureTeamsWith3Members.length * 3 +
       innoventureTeamsWith4Members.length * 4,
-    No_of_Innoventure_Teams: innoventureTeams.length,
     No_of_Innoventure_Teams_With_1_Member: innoventureTeamsWith1Member.length,
     No_of_Innoventure_Teams_With_2_Members: innoventureTeamsWith2Members.length,
     No_of_Innoventure_Teams_With_3_Members: innoventureTeamsWith3Members.length,
