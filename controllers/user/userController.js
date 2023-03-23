@@ -68,14 +68,27 @@ exports.registerEvent = catchAsync(async (req, res, next) => {
     }
 
     if (req.body.eventCode == eventCodes.ETALK) {
-      console.log("object");
-      return next(
-        new AppError(
-          "Registration for this event is closed Temporarily",
-          412,
-          errorCodes.MAX_REGISTRATIONS_REACHED
-        )
-      );
+      // return next(
+      //   new AppError(
+      //     "Registration for this event is closed Temporarily",
+      //     412,
+      //     errorCodes.MAX_REGISTRATIONS_REACHED
+      //   )
+      // );
+      
+      const usersRegisteredForETalk = await User.find({
+        "registeredEvents.3": registerTypes.REGISTERED,
+      });
+
+      if (usersRegisteredForETalk.length >= 1000) {
+        return next(
+          new AppError(
+            "Maximum number of registrations reached for this event",
+            412,
+            errorCodes.MAX_REGISTRATIONS_REACHED
+          )
+        );
+      }
     }
 
     if (req.body.eventCode == eventCodes.TRADING_WORKSHOP) {
