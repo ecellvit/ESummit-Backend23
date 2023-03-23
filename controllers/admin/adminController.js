@@ -62,23 +62,6 @@ exports.getAllCounts = catchAsync(async (req, res, next) => {
       _id: 0,
     });
 
-  const ehackTeamsWith1Member = [];
-  const ehackTeamsWith2Members = [];
-  const ehackTeamsWith3Members = [];
-  const ehackTeamsWith4Members = [];
-
-  for (let i = 0; i < eHackTeams.length; i++) {
-    if (eHackTeams[i].members.length === 1) {
-      ehackTeamsWith1Member.push(eHackTeams[i]);
-    } else if (eHackTeams[i].members.length === 2) {
-      ehackTeamsWith2Members.push(eHackTeams[i]);
-    } else if (eHackTeams[i].members.length === 3) {
-      ehackTeamsWith3Members.push(eHackTeams[i]);
-    } else if (eHackTeams[i].members.length === 4) {
-      ehackTeamsWith4Members.push(eHackTeams[i]);
-    }
-  }
-
   const impetusTeams = await impetusTeamModel
     .find(
       {},
@@ -97,23 +80,6 @@ exports.getAllCounts = catchAsync(async (req, res, next) => {
       mobileNumber: 1,
       _id: 0,
     });
-
-  const impetusTeamsWith1Member = [];
-  const impetusTeamsWith2Members = [];
-  const impetusTeamsWith3Members = [];
-  const impetusTeamsWith4Members = [];
-
-  for (let i = 0; i < impetusTeams.length; i++) {
-    if (impetusTeams[i].members.length === 1) {
-      impetusTeamsWith1Member.push(impetusTeams[i]);
-    } else if (impetusTeams[i].members.length === 2) {
-      impetusTeamsWith2Members.push(impetusTeams[i]);
-    } else if (impetusTeams[i].members.length === 3) {
-      impetusTeamsWith3Members.push(impetusTeams[i]);
-    } else if (impetusTeams[i].members.length === 4) {
-      impetusTeamsWith4Members.push(impetusTeams[i]);
-    }
-  }
 
   const innoventureTeams = await innoventureTeamModel
     .find(
@@ -134,6 +100,40 @@ exports.getAllCounts = catchAsync(async (req, res, next) => {
       _id: 0,
     });
 
+  const ehackTeamsWith1Member = [];
+  const ehackTeamsWith2Members = [];
+  const ehackTeamsWith3Members = [];
+  const ehackTeamsWith4Members = [];
+
+  for (let i = 0; i < eHackTeams.length; i++) {
+    if (eHackTeams[i].members.length === 1) {
+      ehackTeamsWith1Member.push(eHackTeams[i]);
+    } else if (eHackTeams[i].members.length === 2) {
+      ehackTeamsWith2Members.push(eHackTeams[i]);
+    } else if (eHackTeams[i].members.length === 3) {
+      ehackTeamsWith3Members.push(eHackTeams[i]);
+    } else if (eHackTeams[i].members.length === 4) {
+      ehackTeamsWith4Members.push(eHackTeams[i]);
+    }
+  }
+
+  const impetusTeamsWith1Member = [];
+  const impetusTeamsWith2Members = [];
+  const impetusTeamsWith3Members = [];
+  const impetusTeamsWith4Members = [];
+
+  for (let i = 0; i < impetusTeams.length; i++) {
+    if (impetusTeams[i].members.length === 1) {
+      impetusTeamsWith1Member.push(impetusTeams[i]);
+    } else if (impetusTeams[i].members.length === 2) {
+      impetusTeamsWith2Members.push(impetusTeams[i]);
+    } else if (impetusTeams[i].members.length === 3) {
+      impetusTeamsWith3Members.push(impetusTeams[i]);
+    } else if (impetusTeams[i].members.length === 4) {
+      impetusTeamsWith4Members.push(impetusTeams[i]);
+    }
+  }
+
   const innoventureTeamsWith1Member = [];
   const innoventureTeamsWith2Members = [];
   const innoventureTeamsWith3Members = [];
@@ -151,6 +151,29 @@ exports.getAllCounts = catchAsync(async (req, res, next) => {
     }
   }
 
+  const noOfEHackUsersPartOfATeam =
+    ehackTeamsWith1Member.length * 1 +
+    ehackTeamsWith2Members.length * 2 +
+    ehackTeamsWith3Members.length * 3 +
+    ehackTeamsWith4Members.length * 4;
+  const noOfImpetusUsersPartOfATeam =
+    impetusTeamsWith1Member.length * 1 +
+    impetusTeamsWith2Members.length * 2 +
+    impetusTeamsWith3Members.length * 3 +
+    impetusTeamsWith4Members.length * 4;
+  const noOfInnoventureUsersPartOfATeam =
+    innoventureTeamsWith1Member.length * 1 +
+    innoventureTeamsWith2Members.length * 2 +
+    innoventureTeamsWith3Members.length * 3 +
+    innoventureTeamsWith4Members.length * 4;
+
+  const noOfEHackUsersNotPartOfATeam =
+    eHackRegisteredUsers.length - noOfEHackUsersPartOfATeam;
+  const noOfImpetusUsersNotPartOfATeam =
+    impetusRegisteredUsers.length - noOfImpetusUsersPartOfATeam;
+  const noOfInnoventureUsersNotPartOfATeam =
+    innoventureRegisteredUsers.length - noOfInnoventureUsersPartOfATeam;
+
   res.status(200).json({
     message: "Data Fetched Successfully",
     Number_Of_Users_LoggedIn: users.length,
@@ -162,31 +185,27 @@ exports.getAllCounts = catchAsync(async (req, res, next) => {
     Number_Of_Users_Registered_For_Trading_Workshop:
       tradingWorkshopRegisteredUsers.length,
     No_of_EHack_Teams: eHackTeams.length,
-    No_of_EHack_Registrants_who_are_part_of_a_Team:
-      ehackTeamsWith1Member.length * 1 +
-      ehackTeamsWith2Members.length * 2 +
-      ehackTeamsWith3Members.length * 3 +
-      ehackTeamsWith4Members.length * 4,
+    No_of_EHack_Registrants_who_are_part_of_a_Team: noOfEHackUsersPartOfATeam,
+    No_of_EHack_Registrants_who_are_not_part_of_a_Team:
+      noOfEHackUsersNotPartOfATeam,
     No_of_EHack_Teams_With_1_Member: ehackTeamsWith1Member.length,
     No_of_EHack_Teams_With_2_Members: ehackTeamsWith2Members.length,
     No_of_EHack_Teams_With_3_Members: ehackTeamsWith3Members.length,
     No_of_EHack_Teams_With_4_Members: ehackTeamsWith4Members.length,
     No_of_Impetus_Teams: impetusTeams.length,
     No_of_Impetus_Registrants_who_are_part_of_a_Team:
-      impetusTeamsWith1Member.length * 1 +
-      impetusTeamsWith2Members.length * 2 +
-      impetusTeamsWith3Members.length * 3 +
-      impetusTeamsWith4Members.length * 4,
+      noOfImpetusUsersPartOfATeam,
+    No_of_Impetus_Registrants_who_are_not_part_of_a_Team:
+      noOfImpetusUsersNotPartOfATeam,
     No_of_Impetus_Teams_With_1_Member: impetusTeamsWith1Member.length,
     No_of_Impetus_Teams_With_2_Members: impetusTeamsWith2Members.length,
     No_of_Impetus_Teams_With_3_Members: impetusTeamsWith3Members.length,
     No_of_Impetus_Teams_With_4_Members: impetusTeamsWith4Members.length,
     No_of_Innoventure_Teams: innoventureTeams.length,
     No_Of_Innoventure_Registrants_who_are_part_of_a_Team:
-      innoventureTeamsWith1Member.length * 1 +
-      innoventureTeamsWith2Members.length * 2 +
-      innoventureTeamsWith3Members.length * 3 +
-      innoventureTeamsWith4Members.length * 4,
+      noOfInnoventureUsersPartOfATeam,
+    No_Of_Innoventure_Registrants_who_are_not_part_of_a_Team:
+      noOfInnoventureUsersNotPartOfATeam,
     No_of_Innoventure_Teams_With_1_Member: innoventureTeamsWith1Member.length,
     No_of_Innoventure_Teams_With_2_Members: innoventureTeamsWith2Members.length,
     No_of_Innoventure_Teams_With_3_Members: innoventureTeamsWith3Members.length,
