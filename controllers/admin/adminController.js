@@ -429,14 +429,15 @@ exports.getEhackDetails = catchAsync(async (req, res, next) => {
 
   return res.status(200).json({
     No_of_EHack_Teams: eHackTeams.length,
-    No_of_EHack_Teams_With_1_Member: ehackTeamsWith1Member.length,
-    No_of_EHack_Teams_With_2_Members: ehackTeamsWith2Members.length,
-    No_of_EHack_Teams_With_3_Members: ehackTeamsWith3Members.length,
-    No_of_EHack_Teams_With_4_Members: ehackTeamsWith4Members.length,
-    E_Hack_Teams_With_1_Member: ehackTeamsWith1Member,
-    E_Hack_Teams_With_2_Members: ehackTeamsWith2Members,
-    E_Hack_Teams_With_3_Members: ehackTeamsWith3Members,
-    E_Hack_Teams_With_4_Members: ehackTeamsWith4Members,
+    eHackTeams,
+    // No_of_EHack_Teams_With_1_Member: ehackTeamsWith1Member.length,
+    // No_of_EHack_Teams_With_2_Members: ehackTeamsWith2Members.length,
+    // No_of_EHack_Teams_With_3_Members: ehackTeamsWith3Members.length,
+    // No_of_EHack_Teams_With_4_Members: ehackTeamsWith4Members.length,
+    // E_Hack_Teams_With_1_Member: ehackTeamsWith1Member,
+    // E_Hack_Teams_With_2_Members: ehackTeamsWith2Members,
+    // E_Hack_Teams_With_3_Members: ehackTeamsWith3Members,
+    // E_Hack_Teams_With_4_Members: ehackTeamsWith4Members,
   });
 });
 
@@ -479,14 +480,15 @@ exports.getImpetusDetails = catchAsync(async (req, res, next) => {
 
   return res.status(200).json({
     No_of_Impetus_Teams: impetusTeams.length,
-    No_of_Impetus_Teams_With_1_Member: impetusTeamsWith1Member.length,
-    No_of_Impetus_Teams_With_2_Members: impetusTeamsWith2Members.length,
-    No_of_Impetus_Teams_With_3_Members: impetusTeamsWith3Members.length,
-    No_of_Impetus_Teams_With_4_Members: impetusTeamsWith4Members.length,
-    Impetus_Teams_With_1_Member: impetusTeamsWith1Member,
-    Impetus_Teams_With_2_Members: impetusTeamsWith2Members,
-    Impetus_Teams_With_3_Members: impetusTeamsWith3Members,
-    Impetus_Teams_With_4_Members: impetusTeamsWith4Members,
+    impetusTeams,
+    // No_of_Impetus_Teams_With_1_Member: impetusTeamsWith1Member.length,
+    // No_of_Impetus_Teams_With_2_Members: impetusTeamsWith2Members.length,
+    // No_of_Impetus_Teams_With_3_Members: impetusTeamsWith3Members.length,
+    // No_of_Impetus_Teams_With_4_Members: impetusTeamsWith4Members.length,
+    // Impetus_Teams_With_1_Member: impetusTeamsWith1Member,
+    // Impetus_Teams_With_2_Members: impetusTeamsWith2Members,
+    // Impetus_Teams_With_3_Members: impetusTeamsWith3Members,
+    // Impetus_Teams_With_4_Members: impetusTeamsWith4Members,
   });
 });
 
@@ -529,14 +531,15 @@ exports.getInnoventureDetails = catchAsync(async (req, res, next) => {
 
   return res.status(200).json({
     No_of_Innoventure_Teams: innoventureTeams.length,
-    No_of_Innoventure_Teams_With_1_Member: innoventureTeamsWith1Member.length,
-    No_of_Innoventure_Teams_With_2_Members: innoventureTeamsWith2Members.length,
-    No_of_Innoventure_Teams_With_3_Members: innoventureTeamsWith3Members.length,
-    No_of_Innoventure_Teams_With_4_Members: innoventureTeamsWith4Members.length,
-    Innoventure_Teams_With_1_Member: innoventureTeamsWith1Member,
-    Innoventure_Teams_With_2_Members: innoventureTeamsWith2Members,
-    Innoventure_Teams_With_3_Members: innoventureTeamsWith3Members,
-    Innoventure_Teams_With_4_Members: innoventureTeamsWith4Members,
+    innoventureTeams,
+    // No_of_Innoventure_Teams_With_1_Member: innoventureTeamsWith1Member.length,
+    // No_of_Innoventure_Teams_With_2_Members: innoventureTeamsWith2Members.length,
+    // No_of_Innoventure_Teams_With_3_Members: innoventureTeamsWith3Members.length,
+    // No_of_Innoventure_Teams_With_4_Members: innoventureTeamsWith4Members.length,
+    // Innoventure_Teams_With_1_Member: innoventureTeamsWith1Member,
+    // Innoventure_Teams_With_2_Members: innoventureTeamsWith2Members,
+    // Innoventure_Teams_With_3_Members: innoventureTeamsWith3Members,
+    // Innoventure_Teams_With_4_Members: innoventureTeamsWith4Members,
   });
 });
 
