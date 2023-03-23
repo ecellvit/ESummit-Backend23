@@ -67,7 +67,7 @@ exports.registerEvent = catchAsync(async (req, res, next) => {
       );
     }
 
-    if (req.body.eventCode === eventCodes.ETALK) {
+    if (req.body.eventCode == eventCodes.ETALK) {
       console.log("object");
       return next(
         new AppError(
