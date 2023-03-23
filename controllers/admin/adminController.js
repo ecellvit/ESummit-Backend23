@@ -43,6 +43,114 @@ exports.getAllCounts = catchAsync(async (req, res, next) => {
     }
   }
 
+  const eHackTeams = await eHackTeamModel
+    .find(
+      {},
+      {
+        _id: 0,
+        noOfTimesTeamNameChanged: 0,
+        noOfPendingRequests: 0,
+        __v: 0,
+        teamLeaderId: 0,
+      }
+    )
+    .populate("members", {
+      email: 1,
+      firstName: 1,
+      lastName: 1,
+      mobileNumber: 1,
+      _id: 0,
+    });
+
+  const ehackTeamsWith1Member = [];
+  const ehackTeamsWith2Members = [];
+  const ehackTeamsWith3Members = [];
+  const ehackTeamsWith4Members = [];
+
+  for (let i = 0; i < eHackTeams.length; i++) {
+    if (eHackTeams[i].members.length === 1) {
+      ehackTeamsWith1Member.push(eHackTeams[i]);
+    } else if (eHackTeams[i].members.length === 2) {
+      ehackTeamsWith2Members.push(eHackTeams[i]);
+    } else if (eHackTeams[i].members.length === 3) {
+      ehackTeamsWith3Members.push(eHackTeams[i]);
+    } else if (eHackTeams[i].members.length === 4) {
+      ehackTeamsWith4Members.push(eHackTeams[i]);
+    }
+  }
+
+  const impetusTeams = await impetusTeamModel
+    .find(
+      {},
+      {
+        _id: 0,
+        noOfTimesTeamNameChanged: 0,
+        noOfPendingRequests: 0,
+        __v: 0,
+        teamLeaderId: 0,
+      }
+    )
+    .populate("members", {
+      email: 1,
+      firstName: 1,
+      lastName: 1,
+      mobileNumber: 1,
+      _id: 0,
+    });
+
+  const impetusTeamsWith1Member = [];
+  const impetusTeamsWith2Members = [];
+  const impetusTeamsWith3Members = [];
+  const impetusTeamsWith4Members = [];
+
+  for (let i = 0; i < impetusTeams.length; i++) {
+    if (impetusTeams[i].members.length === 1) {
+      impetusTeamsWith1Member.push(impetusTeams[i]);
+    } else if (impetusTeams[i].members.length === 2) {
+      impetusTeamsWith2Members.push(impetusTeams[i]);
+    } else if (impetusTeams[i].members.length === 3) {
+      impetusTeamsWith3Members.push(impetusTeams[i]);
+    } else if (impetusTeams[i].members.length === 4) {
+      impetusTeamsWith4Members.push(impetusTeams[i]);
+    }
+  }
+
+  const innoventureTeams = await innoventureTeamModel
+    .find(
+      {},
+      {
+        _id: 0,
+        noOfTimesTeamNameChanged: 0,
+        noOfPendingRequests: 0,
+        __v: 0,
+        teamLeaderId: 0,
+      }
+    )
+    .populate("members", {
+      email: 1,
+      firstName: 1,
+      lastName: 1,
+      mobileNumber: 1,
+      _id: 0,
+    });
+
+  const innoventureTeamsWith1Member = [];
+  const innoventureTeamsWith2Members = [];
+  const innoventureTeamsWith3Members = [];
+  const innoventureTeamsWith4Members = [];
+
+  for (let i = 0; i < innoventureTeams.length; i++) {
+    if (innoventureTeams[i].members.length === 1) {
+      innoventureTeamsWith1Member.push(innoventureTeams[i]);
+    } else if (innoventureTeams[i].members.length === 2) {
+      innoventureTeamsWith2Members.push(innoventureTeams[i]);
+    } else if (innoventureTeams[i].members.length === 3) {
+      innoventureTeamsWith3Members.push(innoventureTeams[i]);
+    } else if (innoventureTeams[i].members.length === 4) {
+      innoventureTeamsWith4Members.push(innoventureTeams[i]);
+    }
+  }
+
   res.status(200).json({
     Number_Of_Users_LoggedIn: users.length,
     Number_Of_Users_Registered_For_Ehack: eHackRegisteredUsers.length,
@@ -52,6 +160,21 @@ exports.getAllCounts = catchAsync(async (req, res, next) => {
     Number_Of_Users_Registered_For_ETalk: eTalkRegisteredUsers.length,
     Number_Of_Users_Registered_For_Trading_Workshop:
       tradingWorkshopRegisteredUsers.length,
+    No_of_EHack_Teams: eHackTeams.length,
+    No_of_EHack_Teams_With_1_Member: ehackTeamsWith1Member.length,
+    No_of_EHack_Teams_With_2_Members: ehackTeamsWith2Members.length,
+    No_of_EHack_Teams_With_3_Members: ehackTeamsWith3Members.length,
+    No_of_EHack_Teams_With_4_Members: ehackTeamsWith4Members.length,
+    No_of_Impetus_Teams: impetusTeams.length,
+    No_of_Impetus_Teams_With_1_Member: impetusTeamsWith1Member.length,
+    No_of_Impetus_Teams_With_2_Members: impetusTeamsWith2Members.length,
+    No_of_Impetus_Teams_With_3_Members: impetusTeamsWith3Members.length,
+    No_of_Impetus_Teams_With_4_Members: impetusTeamsWith4Members.length,
+    No_of_Innoventure_Teams: innoventureTeams.length,
+    No_of_Innoventure_Teams_With_1_Member: innoventureTeamsWith1Member.length,
+    No_of_Innoventure_Teams_With_2_Members: innoventureTeamsWith2Members.length,
+    No_of_Innoventure_Teams_With_3_Members: innoventureTeamsWith3Members.length,
+    No_of_Innoventure_Teams_With_4_Members: innoventureTeamsWith4Members.length,
   });
 });
 
