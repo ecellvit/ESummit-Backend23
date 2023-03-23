@@ -75,12 +75,12 @@ exports.registerEvent = catchAsync(async (req, res, next) => {
       //     errorCodes.MAX_REGISTRATIONS_REACHED
       //   )
       // );
-      
+
       const usersRegisteredForETalk = await User.find({
         "registeredEvents.3": registerTypes.REGISTERED,
       });
 
-      if (usersRegisteredForETalk.length >= 1000) {
+      if (usersRegisteredForETalk.length >= 1500) {
         return next(
           new AppError(
             "Maximum number of registrations reached for this event",
