@@ -78,7 +78,7 @@ exports.registerEvent = catchAsync(async (req, res, next) => {
       );
     }
 
-    if (req.body.eventCode === eventCodes.TRADING_WORKSHOP) {
+    if (req.body.eventCode == eventCodes.TRADING_WORKSHOP) {
       const usersRegisteredForTradingWorkshop = await User.find({
         "registeredEvents.4": registerTypes.REGISTERED,
       });
