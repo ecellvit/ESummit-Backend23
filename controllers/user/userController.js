@@ -68,91 +68,119 @@ exports.registerEvent = catchAsync(async (req, res, next) => {
     }
 
     if (req.body.eventCode == eventCodes.ETALK) {
-      // return next(
-      //   new AppError(
-      //     "Registration for this event is closed Temporarily",
-      //     412,
-      //     errorCodes.MAX_REGISTRATIONS_REACHED
-      //   )
-      // );
+      return next(
+        new AppError(
+          "Registration for this event is closed Temporarily",
+          412,
+          errorCodes.MAX_REGISTRATIONS_REACHED
+        )
+      );
 
-      const usersRegisteredForETalk = await User.find({
-        "registeredEvents.3": registerTypes.REGISTERED,
-      });
+      // const usersRegisteredForETalk = await User.find({
+      //   "registeredEvents.3": registerTypes.REGISTERED,
+      // });
 
-      if (usersRegisteredForETalk.length >= 2200) {
-        return next(
-          new AppError(
-            "Maximum number of registrations reached for this event",
-            412,
-            errorCodes.MAX_REGISTRATIONS_REACHED
-          )
-        );
-      }
+      // if (usersRegisteredForETalk.length >= 2200) {
+      //   return next(
+      //     new AppError(
+      //       "Maximum number of registrations reached for this event",
+      //       412,
+      //       errorCodes.MAX_REGISTRATIONS_REACHED
+      //     )
+      //   );
+      // }
     }
 
-    // if (req.body.eventCode == eventCodes.INNOVENTURE) {
-    //   const usersRegisteredForInnoventure = await User.find({
-    //     "registeredEvents.2": registerTypes.REGISTERED,
-    //   });
+    if (req.body.eventCode == eventCodes.INNOVENTURE) {
+      return next(
+        new AppError(
+          "Registration for this event is closed Temporarily",
+          412,
+          errorCodes.MAX_REGISTRATIONS_REACHED
+        )
+      );
+      // const usersRegisteredForInnoventure = await User.find({
+      //   "registeredEvents.2": registerTypes.REGISTERED,
+      // });
 
-    //   if (usersRegisteredForInnoventure.length >= 265) {
-    //     return next(
-    //       new AppError(
-    //         "Maximum number of registrations reached for this event",
-    //         412,
-    //         errorCodes.MAX_REGISTRATIONS_REACHED
-    //       )
-    //     );
-    //   }
-    // }
+      // if (usersRegisteredForInnoventure.length >= 265) {
+      //   return next(
+      //     new AppError(
+      //       "Maximum number of registrations reached for this event",
+      //       412,
+      //       errorCodes.MAX_REGISTRATIONS_REACHED
+      //     )
+      //   );
+      // }
+    }
 
     if (req.body.eventCode == eventCodes.EHACK) {
-      const usersRegisteredForEHack = await User.find({
-        "registeredEvents.1": registerTypes.REGISTERED,
-      });
+      return next(
+        new AppError(
+          "Registration for this event is closed Temporarily",
+          412,
+          errorCodes.MAX_REGISTRATIONS_REACHED
+        )
+      );
+      // const usersRegisteredForEHack = await User.find({
+      //   "registeredEvents.1": registerTypes.REGISTERED,
+      // });
 
-      if (usersRegisteredForEHack.length >= 500) {
-        return next(
-          new AppError(
-            "Maximum number of registrations reached for this event",
-            412,
-            errorCodes.MAX_REGISTRATIONS_REACHED
-          )
-        );
-      }
+      // if (usersRegisteredForEHack.length >= 500) {
+      //   return next(
+      //     new AppError(
+      //       "Maximum number of registrations reached for this event",
+      //       412,
+      //       errorCodes.MAX_REGISTRATIONS_REACHED
+      //     )
+      //   );
+      // }
     }
 
     if (req.body.eventCode == eventCodes.IMPETUS) {
-      const usersRegisteredForImpetus = await User.find({
-        "registeredEvents.0": registerTypes.REGISTERED,
-      });
+      return next(
+        new AppError(
+          "Registration for this event is closed Temporarily",
+          412,
+          errorCodes.MAX_REGISTRATIONS_REACHED
+        )
+      );
+      // const usersRegisteredForImpetus = await User.find({
+      //   "registeredEvents.0": registerTypes.REGISTERED,
+      // });
 
-      if (usersRegisteredForImpetus.length >= 350) {
-        return next(
-          new AppError(
-            "Maximum number of registrations reached for this event",
-            412,
-            errorCodes.MAX_REGISTRATIONS_REACHED
-          )
-        );
-      }
+      // if (usersRegisteredForImpetus.length >= 350) {
+      //   return next(
+      //     new AppError(
+      //       "Maximum number of registrations reached for this event",
+      //       412,
+      //       errorCodes.MAX_REGISTRATIONS_REACHED
+      //     )
+      //   );
+      // }
     }
 
     if (req.body.eventCode == eventCodes.TRADING_WORKSHOP) {
-      const usersRegisteredForTradingWorkshop = await User.find({
-        "registeredEvents.4": registerTypes.REGISTERED,
-      });
+      return next(
+        new AppError(
+          "Registration for this event is closed Temporarily",
+          412,
+          errorCodes.MAX_REGISTRATIONS_REACHED
+        )
+      );
+      // const usersRegisteredForTradingWorkshop = await User.find({
+      //   "registeredEvents.4": registerTypes.REGISTERED,
+      // });
 
-      if (usersRegisteredForTradingWorkshop.length >= 300) {
-        return next(
-          new AppError(
-            "Maximum number of registrations reached for this event",
-            412,
-            errorCodes.MAX_REGISTRATIONS_REACHED
-          )
-        );
-      }
+      // if (usersRegisteredForTradingWorkshop.length >= 300) {
+      //   return next(
+      //     new AppError(
+      //       "Maximum number of registrations reached for this event",
+      //       412,
+      //       errorCodes.MAX_REGISTRATIONS_REACHED
+      //     )
+      //   );
+      // }
     }
 
     //registering
