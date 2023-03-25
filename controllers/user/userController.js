@@ -105,6 +105,7 @@ exports.registerEvent = catchAsync(async (req, res, next) => {
           )
         );
       }
+    }
 
     if (req.body.eventCode == eventCodes.EHACK) {
       const usersRegisteredForEHack = await User.find({
