@@ -92,14 +92,19 @@ exports.registerEvent = catchAsync(async (req, res, next) => {
     }
 
     if (req.body.eventCode == eventCodes.INNOVENTURE) {
-      return next(
-        new AppError(
-          "Registration for this event is closed Temporarily",
-          412,
-          errorCodes.MAX_REGISTRATIONS_REACHED
-        )
-      );
-    }
+      const usersRegisteredForInnoventure = await User.find({
+        "registeredEvents.2": registerTypes.REGISTERED,
+      });
+
+      if (usersRegisteredForInnoventure.length >= 265) {
+        return next(
+          new AppError(
+            "Maximum number of registrations reached for this event",
+            412,
+            errorCodes.MAX_REGISTRATIONS_REACHED
+          )
+        );
+      }
 
     if (req.body.eventCode == eventCodes.EHACK) {
       const usersRegisteredForEHack = await User.find({
