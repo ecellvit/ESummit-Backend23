@@ -80,7 +80,7 @@ exports.registerEvent = catchAsync(async (req, res, next) => {
         "registeredEvents.3": registerTypes.REGISTERED,
       });
 
-      if (usersRegisteredForETalk.length >= 2000) {
+      if (usersRegisteredForETalk.length >= 2200) {
         return next(
           new AppError(
             "Maximum number of registrations reached for this event",
@@ -91,28 +91,28 @@ exports.registerEvent = catchAsync(async (req, res, next) => {
       }
     }
 
-    if (req.body.eventCode == eventCodes.INNOVENTURE) {
-      const usersRegisteredForInnoventure = await User.find({
-        "registeredEvents.2": registerTypes.REGISTERED,
-      });
+    // if (req.body.eventCode == eventCodes.INNOVENTURE) {
+    //   const usersRegisteredForInnoventure = await User.find({
+    //     "registeredEvents.2": registerTypes.REGISTERED,
+    //   });
 
-      if (usersRegisteredForInnoventure.length >= 265) {
-        return next(
-          new AppError(
-            "Maximum number of registrations reached for this event",
-            412,
-            errorCodes.MAX_REGISTRATIONS_REACHED
-          )
-        );
-      }
-    }
+    //   if (usersRegisteredForInnoventure.length >= 265) {
+    //     return next(
+    //       new AppError(
+    //         "Maximum number of registrations reached for this event",
+    //         412,
+    //         errorCodes.MAX_REGISTRATIONS_REACHED
+    //       )
+    //     );
+    //   }
+    // }
 
     if (req.body.eventCode == eventCodes.EHACK) {
       const usersRegisteredForEHack = await User.find({
         "registeredEvents.1": registerTypes.REGISTERED,
       });
 
-      if (usersRegisteredForEHack.length >= 400) {
+      if (usersRegisteredForEHack.length >= 500) {
         return next(
           new AppError(
             "Maximum number of registrations reached for this event",
@@ -128,7 +128,7 @@ exports.registerEvent = catchAsync(async (req, res, next) => {
         "registeredEvents.0": registerTypes.REGISTERED,
       });
 
-      if (usersRegisteredForImpetus.length >= 300) {
+      if (usersRegisteredForImpetus.length >= 350) {
         return next(
           new AppError(
             "Maximum number of registrations reached for this event",
