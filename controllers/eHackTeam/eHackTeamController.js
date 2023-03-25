@@ -791,6 +791,7 @@ exports.getAllMembers = catchAsync(async (req, res, next) => {
   }
 
   const eHackMembers = await User.find({
+    "registeredEvents.1": 1,
     eHackTeamId: null,
   });
 

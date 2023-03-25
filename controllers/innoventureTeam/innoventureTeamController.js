@@ -809,6 +809,7 @@ exports.getAllMembers = catchAsync(async (req, res, next) => {
   }
 
   const innoventureMembers = await User.find({
+    "registeredEvents.2": 1,
     innoventureTeamId: null,
   });
 

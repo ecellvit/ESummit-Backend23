@@ -788,6 +788,7 @@ exports.getAllMembers = catchAsync(async (req, res, next) => {
   }
 
   const impetusMembers = await User.find({
+    "registeredEvents.0": 1,
     impetusTeamId: null,
   });
 
