@@ -32,7 +32,7 @@ impetusTeamRouter
 impetusTeamRouter
   .route("/remove/:teamId")
   .patch(auth, impetusTeamController.removeMember);
-impetusTeamRouter.route("/user").get(auth, paginateAddMembers(),impetusTeamController.getAllMembers);
+impetusTeamRouter.route("/user").get(auth,impetusTeamController.getAllMembers);
 
 impetusTeamRouter
   .route("/addMember")
