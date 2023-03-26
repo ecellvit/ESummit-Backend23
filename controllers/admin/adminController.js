@@ -60,6 +60,7 @@ exports.getAllCounts = catchAsync(async (req, res, next) => {
       firstName: 1,
       lastName: 1,
       mobileNumber: 1,
+      regNo: 1,
       _id: 0,
     });
 
@@ -79,6 +80,7 @@ exports.getAllCounts = catchAsync(async (req, res, next) => {
       firstName: 1,
       lastName: 1,
       mobileNumber: 1,
+      regNo: 1,
       _id: 0,
     });
 
@@ -98,6 +100,7 @@ exports.getAllCounts = catchAsync(async (req, res, next) => {
       firstName: 1,
       lastName: 1,
       mobileNumber: 1,
+      regNo: 1,
       _id: 0,
     });
 
@@ -400,9 +403,62 @@ exports.getTradingWorkshopUsers = catchAsync(async (req, res, next) => {
 });
 
 exports.getEhackDetails = catchAsync(async (req, res, next) => {
+  const sz = req.query.size;
+  if (sz === undefined) {
+    const eHackTeams = await eHackTeamModel
+      .find(
+        {},
+        {
+          _id: 0,
+          noOfTimesTeamNameChanged: 0,
+          noOfPendingRequests: 0,
+          __v: 0,
+          teamLeaderId: 0,
+        }
+      )
+      .populate("members", {
+        email: 1,
+        firstName: 1,
+        lastName: 1,
+        mobileNumber: 1,
+        regNo: 1,
+        _id: 0,
+      });
+
+    return res.status(200).json({
+      message: "Data Fetched Successfully",
+      No_of_EHack_Teams: eHackTeams.length,
+      eHackTeams,
+    });
+  }
+
+  if (sz === "0") {
+    const eHackUsersWithNoTeam = await User.find(
+      {
+        eHackTeamId: null,
+        "registeredEvents.1": registerTypes.REGISTERED,
+      },
+      {
+        _id: 0,
+        email: 1,
+        firstName: 1,
+        lastName: 1,
+        mobileNumber: 1,
+        regNo: 1,
+      }
+    );
+    return res.status(200).json({
+      message: "Data Fetched Successfully",
+      No_Of_Ehack_Users_No_Team: eHackUsersWithNoTeam.length,
+      eHackUsersWithNoTeam,
+    });
+  }
+
   const eHackTeams = await eHackTeamModel
     .find(
-      {},
+      {
+        members: { $size: sz },
+      },
       {
         _id: 0,
         noOfTimesTeamNameChanged: 0,
@@ -416,20 +472,75 @@ exports.getEhackDetails = catchAsync(async (req, res, next) => {
       firstName: 1,
       lastName: 1,
       mobileNumber: 1,
+      regNo: 1,
       _id: 0,
     });
 
   return res.status(200).json({
     message: "Data Fetched Successfully",
-    No_of_EHack_Teams: eHackTeams.length,
+    No_Of_Ehack_Teams: eHackTeams.length,
     eHackTeams,
   });
 });
 
 exports.getImpetusDetails = catchAsync(async (req, res, next) => {
+  const sz = req.query.size;
+
+  if (sz === undefined) {
+    const impetusTeams = await impetusTeamModel
+      .find(
+        {},
+        {
+          _id: 0,
+          noOfTimesTeamNameChanged: 0,
+          noOfPendingRequests: 0,
+          __v: 0,
+          teamLeaderId: 0,
+        }
+      )
+      .populate("members", {
+        email: 1,
+        firstName: 1,
+        lastName: 1,
+        mobileNumber: 1,
+        regNo: 1,
+        _id: 0,
+      });
+
+    return res.status(200).json({
+      message: "Data Fetched Successfully",
+      No_of_Impetus_Teams: impetusTeams.length,
+      impetusTeams,
+    });
+  }
+
+  if (sz === "0") {
+    const impetusUsersWithNoTeam = await User.find(
+      {
+        impetusTeamId: null,
+        "registeredEvents.0": 1,
+      },
+      {
+        _id: 0,
+        email: 1,
+        firstName: 1,
+        lastName: 1,
+        mobileNumber: 1,
+        regNo: 1,
+      }
+    );
+    return res.status(200).json({
+      message: "Data Fetched Successfully",
+      No_Of_Ehack_Users_No_Team: impetusUsersWithNoTeam.length,
+      impetusUsersWithNoTeam,
+    });
+  }
+
   const impetusTeams = await impetusTeamModel
     .find(
-      {},
+      {
+        members: { $size: sz },
+      },
       {
         _id: 0,
         noOfTimesTeamNameChanged: 0,
@@ -443,6 +554,7 @@ exports.getImpetusDetails = catchAsync(async (req, res, next) => {
       firstName: 1,
       lastName: 1,
       mobileNumber: 1,
+      regNo: 1,
       _id: 0,
     });
 
@@ -454,9 +566,63 @@ exports.getImpetusDetails = catchAsync(async (req, res, next) => {
 });
 
 exports.getInnoventureDetails = catchAsync(async (req, res, next) => {
+  const sz = req.query.size;
+
+  if (sz === undefined) {
+    const innoventureTeams = await innoventureTeamModel
+      .find(
+        {},
+        {
+          _id: 0,
+          noOfTimesTeamNameChanged: 0,
+          noOfPendingRequests: 0,
+          __v: 0,
+          teamLeaderId: 0,
+        }
+      )
+      .populate("members", {
+        email: 1,
+        firstName: 1,
+        lastName: 1,
+        mobileNumber: 1,
+        regNo: 1,
+        _id: 0,
+      });
+
+    return res.status(200).json({
+      message: "Data Fetched Successfully",
+      No_of_Innoventure_Teams: innoventureTeams.length,
+      innoventureTeams,
+    });
+  }
+
+  if (sz === "0") {
+    const innoventureUsersWithNoTeam = await User.find(
+      {
+        innoventureTeamId: null,
+        "registeredEvents.2": 1,
+      },
+      {
+        _id: 0,
+        email: 1,
+        firstName: 1,
+        lastName: 1,
+        mobileNumber: 1,
+        regNo: 1,
+      }
+    );
+    return res.status(200).json({
+      message: "Data Fetched Successfully",
+      No_Of_Innoventure_Users_No_Team: innoventureUsersWithNoTeam.length,
+      innoventureUsersWithNoTeam,
+    });
+  }
+
   const innoventureTeams = await innoventureTeamModel
     .find(
-      {},
+      {
+        members: { $size: sz },
+      },
       {
         _id: 0,
         noOfTimesTeamNameChanged: 0,
@@ -470,6 +636,7 @@ exports.getInnoventureDetails = catchAsync(async (req, res, next) => {
       firstName: 1,
       lastName: 1,
       mobileNumber: 1,
+      regNo: 1,
       _id: 0,
     });
 
