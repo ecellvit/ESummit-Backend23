@@ -834,7 +834,7 @@ exports.getAllTeams = catchAsync(async (req, res, next) => {
     },
   });
 
-  if (noOfEHackTeams.length >= 120) {
+  if (noOfEHackTeams.length >= 50) {
     return next(
       new AppError(
         "Functionality has been disabled, because max amount of teams has been reached",
