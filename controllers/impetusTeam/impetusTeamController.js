@@ -936,7 +936,7 @@ exports.getAllMembers = catchAsync(async (req, res, next) => {
 
   res.status(201).json({
     message: "Get All Members Successfull",
-    impetusTeams,
+    impetusMembers,
     // paginatedResult: res.paginatedResults,
   });
 });
