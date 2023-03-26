@@ -531,7 +531,7 @@ exports.getImpetusDetails = catchAsync(async (req, res, next) => {
     );
     return res.status(200).json({
       message: "Data Fetched Successfully",
-      No_Of_Ehack_Users_No_Team: impetusUsersWithNoTeam.length,
+      No_Of_Impetus_Users_No_Team: impetusUsersWithNoTeam.length,
       impetusUsersWithNoTeam,
     });
   }
