@@ -37,6 +37,22 @@ exports.createTeam = catchAsync(async (req, res, next) => {
     );
   }
 
+  const noOfInnoventureTeams = await innoventureTeams.find({
+    $expr: {
+      $gte: [{ $size: { $ifNull: ["$members", []] } }, 4],
+    },
+  });
+
+  if (noOfInnoventureTeams.length >= 70) {
+    return next(
+      new AppError(
+        "Functionality has been disabled, because Maximum number of teams have been reached",
+        412,
+        errorCodes.MAXIMUM_NUMBER_OF_TEAMS_REACHED
+      )
+    );
+  }
+
   const user = await User.findById({ _id: req.user._id });
 
   if (user.registeredEvents[eventCodes.INNOVENTURE] === 0) {
@@ -170,6 +186,22 @@ exports.getTeamDetails = catchAsync(async (req, res, next) => {
 });
 
 exports.updateTeam = catchAsync(async (req, res, next) => {
+  const noOfInnoventureTeams = await innoventureTeams.find({
+    $expr: {
+      $gte: [{ $size: { $ifNull: ["$members", []] } }, 4],
+    },
+  });
+
+  if (noOfInnoventureTeams.length >= 70) {
+    return next(
+      new AppError(
+        "Functionality has been disabled, because Maximum number of teams have been reached",
+        412,
+        errorCodes.MAXIMUM_NUMBER_OF_TEAMS_REACHED
+      )
+    );
+  }
+
   //body validation
   const { error } = updateTeamBodyValidation(req.body);
   if (error) {
@@ -264,6 +296,22 @@ exports.updateTeam = catchAsync(async (req, res, next) => {
 });
 
 exports.deleteTeam = catchAsync(async (req, res, next) => {
+  const noOfInnoventureTeams = await innoventureTeams.find({
+    $expr: {
+      $gte: [{ $size: { $ifNull: ["$members", []] } }, 4],
+    },
+  });
+
+  if (noOfInnoventureTeams.length >= 70) {
+    return next(
+      new AppError(
+        "Functionality has been disabled, because Maximum number of teams have been reached",
+        412,
+        errorCodes.MAXIMUM_NUMBER_OF_TEAMS_REACHED
+      )
+    );
+  }
+
   if (req.params.teamId.length !== objectIdLength) {
     return next(
       new AppError("Invalid TeamId", 412, errorCodes.INVALID_TEAM_ID)
@@ -368,6 +416,22 @@ exports.deleteTeam = catchAsync(async (req, res, next) => {
 });
 
 exports.getTeamRequests = catchAsync(async (req, res, next) => {
+  const noOfInnoventureTeams = await innoventureTeams.find({
+    $expr: {
+      $gte: [{ $size: { $ifNull: ["$members", []] } }, 4],
+    },
+  });
+
+  if (noOfInnoventureTeams.length >= 70) {
+    return next(
+      new AppError(
+        "Functionality has been disabled, because Maximum number of teams have been reached",
+        412,
+        errorCodes.MAXIMUM_NUMBER_OF_TEAMS_REACHED
+      )
+    );
+  }
+
   //validate innoventureTeam id
   if (req.params.teamId.length !== objectIdLength) {
     return next(
@@ -416,6 +480,22 @@ exports.getTeamRequests = catchAsync(async (req, res, next) => {
 });
 
 exports.updateRequest = catchAsync(async (req, res, next) => {
+  const noOfInnoventureTeams = await innoventureTeams.find({
+    $expr: {
+      $gte: [{ $size: { $ifNull: ["$members", []] } }, 4],
+    },
+  });
+
+  if (noOfInnoventureTeams.length >= 70) {
+    return next(
+      new AppError(
+        "Functionality has been disabled, because Maximum number of teams have been reached",
+        412,
+        errorCodes.MAXIMUM_NUMBER_OF_TEAMS_REACHED
+      )
+    );
+  }
+
   //body validation
   const { error } = updateRequestBodyValidation(req.body);
   if (error) {
@@ -622,6 +702,22 @@ exports.updateRequest = catchAsync(async (req, res, next) => {
 });
 
 exports.removeMember = catchAsync(async (req, res, next) => {
+  const noOfInnoventureTeams = await innoventureTeams.find({
+    $expr: {
+      $gte: [{ $size: { $ifNull: ["$members", []] } }, 4],
+    },
+  });
+
+  if (noOfInnoventureTeams.length >= 70) {
+    return next(
+      new AppError(
+        "Functionality has been disabled, because Maximum number of teams have been reached",
+        412,
+        errorCodes.MAXIMUM_NUMBER_OF_TEAMS_REACHED
+      )
+    );
+  }
+
   //body validation
   const { error } = removeMemberBodyValidation(req.body);
   if (error) {
@@ -738,6 +834,21 @@ exports.removeMember = catchAsync(async (req, res, next) => {
 });
 
 exports.getAllTeams = catchAsync(async (req, res, next) => {
+  const noOfInnoventureTeams = await innoventureTeams.find({
+    $expr: {
+      $gte: [{ $size: { $ifNull: ["$members", []] } }, 4],
+    },
+  });
+
+  if (noOfInnoventureTeams.length >= 70) {
+    return next(
+      new AppError(
+        "Functionality has been disabled, because Maximum number of teams have been reached",
+        412,
+        errorCodes.MAXIMUM_NUMBER_OF_TEAMS_REACHED
+      )
+    );
+  }
   // const startTime = Date.now();
   // const teams = await innoventureTeams.find().populate("members", {
   //   name: 1,
@@ -755,6 +866,21 @@ exports.getAllTeams = catchAsync(async (req, res, next) => {
 });
 
 exports.getTeamToken = catchAsync(async (req, res, next) => {
+  const noOfInnoventureTeams = await innoventureTeams.find({
+    $expr: {
+      $gte: [{ $size: { $ifNull: ["$members", []] } }, 4],
+    },
+  });
+
+  if (noOfInnoventureTeams.length >= 70) {
+    return next(
+      new AppError(
+        "Functionality has been disabled, because Maximum number of teams have been reached",
+        412,
+        errorCodes.MAXIMUM_NUMBER_OF_TEAMS_REACHED
+      )
+    );
+  }
   //validate innoventureTeam id
   if (req.params.teamId.length !== objectIdLength) {
     return next(
@@ -793,6 +919,22 @@ exports.getTeamToken = catchAsync(async (req, res, next) => {
 });
 
 exports.getAllMembers = catchAsync(async (req, res, next) => {
+  const noOfInnoventureTeams = await innoventureTeams.find({
+    $expr: {
+      $gte: [{ $size: { $ifNull: ["$members", []] } }, 4],
+    },
+  });
+
+  if (noOfInnoventureTeams.length >= 70) {
+    return next(
+      new AppError(
+        "Functionality has been disabled, because Maximum number of teams have been reached",
+        412,
+        errorCodes.MAXIMUM_NUMBER_OF_TEAMS_REACHED
+      )
+    );
+  }
+
   const user = await User.findById({ _id: req.user._id });
 
   if (
@@ -808,10 +950,18 @@ exports.getAllMembers = catchAsync(async (req, res, next) => {
     );
   }
 
-  const innoventureMembers = await User.find({
-    "registeredEvents.2": 1,
-    innoventureTeamId: null,
-  });
+  const innoventureMembers = await User.find(
+    {
+      "registeredEvents.2": 1,
+      innoventureTeamId: null,
+    },
+    {
+      _id: 1,
+      firstName: 1,
+      lastName: 1,
+      email: 1,
+    }
+  );
 
   res.status(201).json({
     message: "Get All Members Successfull",
@@ -820,6 +970,22 @@ exports.getAllMembers = catchAsync(async (req, res, next) => {
 });
 
 exports.getMemberRequests = catchAsync(async (req, res, next) => {
+  const noOfInnoventureTeams = await innoventureTeams.find({
+    $expr: {
+      $gte: [{ $size: { $ifNull: ["$members", []] } }, 4],
+    },
+  });
+
+  if (noOfInnoventureTeams.length >= 70) {
+    return next(
+      new AppError(
+        "Functionality has been disabled, because Maximum number of teams have been reached",
+        412,
+        errorCodes.MAXIMUM_NUMBER_OF_TEAMS_REACHED
+      )
+    );
+  }
+
   const user = await User.findById({ _id: req.user._id });
 
   if (
@@ -852,6 +1018,22 @@ exports.getMemberRequests = catchAsync(async (req, res, next) => {
 });
 
 exports.addMemberRequest = catchAsync(async (req, res, next) => {
+  const noOfInnoventureTeams = await innoventureTeams.find({
+    $expr: {
+      $gte: [{ $size: { $ifNull: ["$members", []] } }, 4],
+    },
+  });
+
+  if (noOfInnoventureTeams.length >= 70) {
+    return next(
+      new AppError(
+        "Functionality has been disabled, because Maximum number of teams have been reached",
+        412,
+        errorCodes.MAXIMUM_NUMBER_OF_TEAMS_REACHED
+      )
+    );
+  }
+
   const user = await User.findById({ _id: req.user._id });
 
   if (
@@ -1000,6 +1182,22 @@ exports.addMemberRequest = catchAsync(async (req, res, next) => {
 });
 
 exports.removeMemberRequest = catchAsync(async (req, res, next) => {
+  const noOfInnoventureTeams = await innoventureTeams.find({
+    $expr: {
+      $gte: [{ $size: { $ifNull: ["$members", []] } }, 4],
+    },
+  });
+
+  if (noOfInnoventureTeams.length >= 70) {
+    return next(
+      new AppError(
+        "Functionality has been disabled, because Maximum number of teams have been reached",
+        412,
+        errorCodes.MAXIMUM_NUMBER_OF_TEAMS_REACHED
+      )
+    );
+  }
+
   const user = await User.findById({ _id: req.user._id });
 
   if (

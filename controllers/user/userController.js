@@ -91,28 +91,43 @@ exports.registerEvent = catchAsync(async (req, res, next) => {
       }
     }
 
-    // if (req.body.eventCode == eventCodes.INNOVENTURE) {
-    //   // return next(
-    //   //   new AppError(
-    //   //     "Registration for this event is closed Temporarily",
-    //   //     412,
-    //   //     errorCodes.MAX_REGISTRATIONS_REACHED
-    //   //   )
-    //   // );
-    //   const usersRegisteredForInnoventure = await User.find({
-    //     "registeredEvents.2": registerTypes.REGISTERED,
-    //   });
+    if (req.body.eventCode == eventCodes.INNOVENTURE) {
+      // return next(
+      //   new AppError(
+      //     "Registration for this event is closed Temporarily",
+      //     412,
+      //     errorCodes.MAX_REGISTRATIONS_REACHED
+      //   )
+      // );
+      // const usersRegisteredForInnoventure = await User.find({
+      //   "registeredEvents.2": registerTypes.REGISTERED,
+      // });
 
-    //   if (usersRegisteredForInnoventure.length >= 265) {
-    //     return next(
-    //       new AppError(
-    //         "Maximum number of registrations reached for this event",
-    //         412,
-    //         errorCodes.MAX_REGISTRATIONS_REACHED
-    //       )
-    //     );
-    //   }
-    // }
+      // if (usersRegisteredForInnoventure.length >= 265) {
+      //   return next(
+      //     new AppError(
+      //       "Maximum number of registrations reached for this event",
+      //       412,
+      //       errorCodes.MAX_REGISTRATIONS_REACHED
+      //     )
+      //   );
+      // }
+      const noOfInnoventureTeams = await innoventureTeams.find({
+        $expr: {
+          $gte: [{ $size: { $ifNull: ["$members", []] } }, 4],
+        },
+      });
+
+      if (noOfInnoventureTeams.length >= 70) {
+        return next(
+          new AppError(
+            "Functionality has been disabled, because Maximum number of teams have been reached",
+            412,
+            errorCodes.MAXIMUM_NUMBER_OF_TEAMS_REACHED
+          )
+        );
+      }
+    }
 
     if (req.body.eventCode == eventCodes.EHACK) {
       // return next(
@@ -122,6 +137,23 @@ exports.registerEvent = catchAsync(async (req, res, next) => {
       //     errorCodes.MAX_REGISTRATIONS_REACHED
       //   )
       // );
+
+      const noOfEHackTeams = await eHackTeams.find({
+        $expr: {
+          $gte: [{ $size: { $ifNull: ["$members", []] } }, 3],
+        },
+      });
+
+      if (noOfEHackTeams.length >= 120) {
+        return next(
+          new AppError(
+            "Functionality has been disabled, because max amount of teams has been reached",
+            412,
+            errorCodes.MAXIMUM_NUMBER_OF_TEAMS_REACHED
+          )
+        );
+      }
+
       const usersRegisteredForEHack = await User.find({
         "registeredEvents.1": registerTypes.REGISTERED,
       });
@@ -145,6 +177,23 @@ exports.registerEvent = catchAsync(async (req, res, next) => {
       //     errorCodes.MAX_REGISTRATIONS_REACHED
       //   )
       // );
+
+      const noOfImeptusTeams = await impetusTeams.find({
+        $expr: {
+          $gte: [{ $size: { $ifNull: ["$members", []] } }, 3],
+        },
+      });
+
+      if (noOfImeptusTeams.length >= 60) {
+        return next(
+          new AppError(
+            "Functionality has been disabled, because Maximum number of teams have been reached",
+            412,
+            errorCodes.MAXIMUM_NUMBER_OF_TEAMS_REACHED
+          )
+        );
+      }
+
       const usersRegisteredForImpetus = await User.find({
         "registeredEvents.0": registerTypes.REGISTERED,
       });
@@ -297,6 +346,22 @@ exports.registerEvent = catchAsync(async (req, res, next) => {
 });
 
 exports.impetusSendRequest = catchAsync(async (req, res, next) => {
+  const noOfImeptusTeams = await impetusTeams.find({
+    $expr: {
+      $gte: [{ $size: { $ifNull: ["$members", []] } }, 3],
+    },
+  });
+
+  if (noOfImeptusTeams.length >= 60) {
+    return next(
+      new AppError(
+        "Functionality has been disabled, because Maximum number of teams have been reached",
+        412,
+        errorCodes.MAXIMUM_NUMBER_OF_TEAMS_REACHED
+      )
+    );
+  }
+
   const user = await User.findById({ _id: req.user._id });
 
   //validate team id
@@ -435,6 +500,22 @@ exports.impetusSendRequest = catchAsync(async (req, res, next) => {
 });
 
 exports.eHackSendRequest = catchAsync(async (req, res, next) => {
+  const noOfEHackTeams = await eHackTeams.find({
+    $expr: {
+      $gte: [{ $size: { $ifNull: ["$members", []] } }, 3],
+    },
+  });
+
+  if (noOfEHackTeams.length >= 120) {
+    return next(
+      new AppError(
+        "Functionality has been disabled, because Maximum number of teams have been reached",
+        412,
+        errorCodes.MAXIMUM_NUMBER_OF_TEAMS_REACHED
+      )
+    );
+  }
+
   const user = await User.findById({ _id: req.user._id });
 
   //validate team id
@@ -573,6 +654,22 @@ exports.eHackSendRequest = catchAsync(async (req, res, next) => {
 });
 
 exports.innoventureSendRequest = catchAsync(async (req, res, next) => {
+  const noOfInnoventureTeams = await innoventureTeams.find({
+    $expr: {
+      $gte: [{ $size: { $ifNull: ["$members", []] } }, 4],
+    },
+  });
+
+  if (noOfInnoventureTeams.length >= 70) {
+    return next(
+      new AppError(
+        "Functionality has been disabled, because Maximum number of teams have been reached",
+        412,
+        errorCodes.MAXIMUM_NUMBER_OF_TEAMS_REACHED
+      )
+    );
+  }
+
   const user = await User.findById({ _id: req.user._id });
 
   //validate team id
@@ -713,6 +810,22 @@ exports.innoventureSendRequest = catchAsync(async (req, res, next) => {
 });
 
 exports.impetusGetRequest = catchAsync(async (req, res, next) => {
+  const noOfImeptusTeams = await impetusTeams.find({
+    $expr: {
+      $gte: [{ $size: { $ifNull: ["$members", []] } }, 3],
+    },
+  });
+
+  if (noOfImeptusTeams.length >= 60) {
+    return next(
+      new AppError(
+        "Functionality has been disabled, because Maximum number of teams have been reached",
+        412,
+        errorCodes.MAXIMUM_NUMBER_OF_TEAMS_REACHED
+      )
+    );
+  }
+
   const user = await User.findById({ _id: req.user._id });
 
   //checking whether user is already a part of team
@@ -748,6 +861,22 @@ exports.impetusGetRequest = catchAsync(async (req, res, next) => {
 });
 
 exports.eHackGetRequest = catchAsync(async (req, res, next) => {
+  const noOfEHackTeams = await eHackTeams.find({
+    $expr: {
+      $gte: [{ $size: { $ifNull: ["$members", []] } }, 3],
+    },
+  });
+
+  if (noOfEHackTeams.length >= 120) {
+    return next(
+      new AppError(
+        "Functionality has been disabled, because Maximum number of teams have been reached",
+        412,
+        errorCodes.MAXIMUM_NUMBER_OF_TEAMS_REACHED
+      )
+    );
+  }
+
   const user = await User.findById({ _id: req.user._id });
 
   //checking whether user is already a part of team
@@ -783,6 +912,22 @@ exports.eHackGetRequest = catchAsync(async (req, res, next) => {
 });
 
 exports.innoventureGetRequest = catchAsync(async (req, res, next) => {
+  const noOfInnoventureTeams = await innoventureTeams.find({
+    $expr: {
+      $gte: [{ $size: { $ifNull: ["$members", []] } }, 4],
+    },
+  });
+
+  if (noOfInnoventureTeams.length >= 70) {
+    return next(
+      new AppError(
+        "Functionality has been disabled, because Maximum number of teams have been reached",
+        412,
+        errorCodes.MAXIMUM_NUMBER_OF_TEAMS_REACHED
+      )
+    );
+  }
+
   const user = await User.findById({ _id: req.user._id });
 
   //checking whether user is already a part of team
@@ -818,6 +963,22 @@ exports.innoventureGetRequest = catchAsync(async (req, res, next) => {
 });
 
 exports.impetusRemoveRequest = catchAsync(async (req, res, next) => {
+  const noOfImeptusTeams = await impetusTeams.find({
+    $expr: {
+      $gte: [{ $size: { $ifNull: ["$members", []] } }, 3],
+    },
+  });
+
+  if (noOfImeptusTeams.length >= 60) {
+    return next(
+      new AppError(
+        "Functionality has been disabled, because Maximum number of teams have been reached",
+        412,
+        errorCodes.MAXIMUM_NUMBER_OF_TEAMS_REACHED
+      )
+    );
+  }
+
   const user = await User.findById({ _id: req.user._id });
 
   //validate team id
@@ -888,6 +1049,21 @@ exports.impetusRemoveRequest = catchAsync(async (req, res, next) => {
 });
 
 exports.eHackRemoveRequest = catchAsync(async (req, res, next) => {
+  const noOfEHackTeams = await eHackTeams.find({
+    $expr: {
+      $gte: [{ $size: { $ifNull: ["$members", []] } }, 3],
+    },
+  });
+
+  if (noOfEHackTeams.length >= 120) {
+    return next(
+      new AppError(
+        "Functionality has been disabled, because Maximum number of teams have been reached",
+        412,
+        errorCodes.MAXIMUM_NUMBER_OF_TEAMS_REACHED
+      )
+    );
+  }
   const user = await User.findById({ _id: req.user._id });
 
   //validate team id
@@ -958,6 +1134,22 @@ exports.eHackRemoveRequest = catchAsync(async (req, res, next) => {
 });
 
 exports.innoventureRemoveRequest = catchAsync(async (req, res, next) => {
+  const noOfInnoventureTeams = await innoventureTeams.find({
+    $expr: {
+      $gte: [{ $size: { $ifNull: ["$members", []] } }, 4],
+    },
+  });
+
+  if (noOfInnoventureTeams.length >= 70) {
+    return next(
+      new AppError(
+        "Functionality has been disabled, because Maximum number of teams have been reached",
+        412,
+        errorCodes.MAXIMUM_NUMBER_OF_TEAMS_REACHED
+      )
+    );
+  }
+
   const user = await User.findById({ _id: req.user._id });
 
   //validate team id
@@ -1114,6 +1306,21 @@ exports.hasFilledDetails = catchAsync(async (req, res, next) => {
 });
 
 exports.impetusLeaveTeam = catchAsync(async (req, res, next) => {
+  const noOfImeptusTeams = await impetusTeams.find({
+    $expr: {
+      $gte: [{ $size: { $ifNull: ["$members", []] } }, 3],
+    },
+  });
+
+  if (noOfImeptusTeams.length >= 60) {
+    return next(
+      new AppError(
+        "Functionality has been disabled, because Maximum number of teams have been reached",
+        412,
+        errorCodes.MAXIMUM_NUMBER_OF_TEAMS_REACHED
+      )
+    );
+  }
   //validating teamid
   if (req.params.teamId.length !== objectIdLength) {
     return next(
@@ -1189,6 +1396,22 @@ exports.impetusLeaveTeam = catchAsync(async (req, res, next) => {
 });
 
 exports.eHackLeaveTeam = catchAsync(async (req, res, next) => {
+  const noOfEHackTeams = await eHackTeams.find({
+    $expr: {
+      $gte: [{ $size: { $ifNull: ["$members", []] } }, 3],
+    },
+  });
+
+  if (noOfEHackTeams.length >= 120) {
+    return next(
+      new AppError(
+        "Functionality has been disabled, because Maximum number of teams have been reached",
+        412,
+        errorCodes.MAXIMUM_NUMBER_OF_TEAMS_REACHED
+      )
+    );
+  }
+
   //validating teamid
   if (req.params.teamId.length !== objectIdLength) {
     return next(
@@ -1264,6 +1487,22 @@ exports.eHackLeaveTeam = catchAsync(async (req, res, next) => {
 });
 
 exports.innoventureLeaveTeam = catchAsync(async (req, res, next) => {
+  const noOfInnoventureTeams = await innoventureTeams.find({
+    $expr: {
+      $gte: [{ $size: { $ifNull: ["$members", []] } }, 4],
+    },
+  });
+
+  if (noOfInnoventureTeams.length >= 70) {
+    return next(
+      new AppError(
+        "Functionality has been disabled, because Maximum number of teams have been reached",
+        412,
+        errorCodes.MAXIMUM_NUMBER_OF_TEAMS_REACHED
+      )
+    );
+  }
+
   //validating teamid
   if (req.params.teamId.length !== objectIdLength) {
     return next(
@@ -1339,6 +1578,21 @@ exports.innoventureLeaveTeam = catchAsync(async (req, res, next) => {
 });
 
 exports.impetusJoinTeamViaToken = catchAsync(async (req, res, next) => {
+  const noOfImeptusTeams = await impetusTeams.find({
+    $expr: {
+      $gte: [{ $size: { $ifNull: ["$members", []] } }, 3],
+    },
+  });
+
+  if (noOfImeptusTeams.length >= 60) {
+    return next(
+      new AppError(
+        "Functionality has been disabled, because Maximum number of teams have been reached",
+        412,
+        errorCodes.MAXIMUM_NUMBER_OF_TEAMS_REACHED
+      )
+    );
+  }
   //body validation
   const { error } = joinTeamViaTokenBodyValidation(req.body);
   if (error) {
@@ -1434,6 +1688,22 @@ exports.impetusJoinTeamViaToken = catchAsync(async (req, res, next) => {
 });
 
 exports.eHackJoinTeamViaToken = catchAsync(async (req, res, next) => {
+  const noOfEHackTeams = await eHackTeams.find({
+    $expr: {
+      $gte: [{ $size: { $ifNull: ["$members", []] } }, 3],
+    },
+  });
+
+  if (noOfEHackTeams.length >= 120) {
+    return next(
+      new AppError(
+        "Functionality has been disabled, because Maximum number of teams have been reached",
+        412,
+        errorCodes.MAXIMUM_NUMBER_OF_TEAMS_REACHED
+      )
+    );
+  }
+
   //body validation
   const { error } = joinTeamViaTokenBodyValidation(req.body);
   if (error) {
@@ -1530,6 +1800,22 @@ exports.eHackJoinTeamViaToken = catchAsync(async (req, res, next) => {
 });
 
 exports.innoventureJoinTeamViaToken = catchAsync(async (req, res, next) => {
+  const noOfInnoventureTeams = await innoventureTeams.find({
+    $expr: {
+      $gte: [{ $size: { $ifNull: ["$members", []] } }, 4],
+    },
+  });
+
+  if (noOfInnoventureTeams.length >= 70) {
+    return next(
+      new AppError(
+        "Functionality has been disabled, because Maximum number of teams have been reached",
+        412,
+        errorCodes.MAXIMUM_NUMBER_OF_TEAMS_REACHED
+      )
+    );
+  }
+
   //body validation
   const { error } = joinTeamViaTokenBodyValidation(req.body);
   if (error) {
@@ -1702,6 +1988,22 @@ exports.getDetails = catchAsync(async (req, res, next) => {
 });
 
 exports.impetusGetMemberRequest = catchAsync(async (req, res, next) => {
+  const noOfImeptusTeams = await impetusTeams.find({
+    $expr: {
+      $gte: [{ $size: { $ifNull: ["$members", []] } }, 3],
+    },
+  });
+
+  if (noOfImeptusTeams.length >= 60) {
+    return next(
+      new AppError(
+        "Functionality has been disabled, because Maximum number of teams have been reached",
+        412,
+        errorCodes.MAXIMUM_NUMBER_OF_TEAMS_REACHED
+      )
+    );
+  }
+
   const user = await User.findById({ _id: req.user._id });
 
   if (user.impetusTeamId) {
@@ -1735,6 +2037,22 @@ exports.impetusGetMemberRequest = catchAsync(async (req, res, next) => {
 });
 
 exports.eHackGetMemberRequest = catchAsync(async (req, res, next) => {
+  const noOfEHackTeams = await eHackTeams.find({
+    $expr: {
+      $gte: [{ $size: { $ifNull: ["$members", []] } }, 3],
+    },
+  });
+
+  if (noOfEHackTeams.length >= 120) {
+    return next(
+      new AppError(
+        "Functionality has been disabled, because Maximum number of teams have been reached",
+        412,
+        errorCodes.MAXIMUM_NUMBER_OF_TEAMS_REACHED
+      )
+    );
+  }
+
   const user = await User.findById({ _id: req.user._id });
 
   if (user.eHackTeamId) {
@@ -1768,6 +2086,21 @@ exports.eHackGetMemberRequest = catchAsync(async (req, res, next) => {
 });
 
 exports.innoventureGetMemberRequest = catchAsync(async (req, res, next) => {
+  const noOfInnoventureTeams = await innoventureTeams.find({
+    $expr: {
+      $gte: [{ $size: { $ifNull: ["$members", []] } }, 4],
+    },
+  });
+
+  if (noOfInnoventureTeams.length >= 70) {
+    return next(
+      new AppError(
+        "Functionality has been disabled, because Maximum number of teams have been reached",
+        412,
+        errorCodes.MAXIMUM_NUMBER_OF_TEAMS_REACHED
+      )
+    );
+  }
   const user = await User.findById({ _id: req.user._id });
 
   if (user.innoventureTeamId) {
@@ -1801,6 +2134,22 @@ exports.innoventureGetMemberRequest = catchAsync(async (req, res, next) => {
 });
 
 exports.impetusUpdateMemberRequest = catchAsync(async (req, res, next) => {
+  const noOfImeptusTeams = await impetusTeams.find({
+    $expr: {
+      $gte: [{ $size: { $ifNull: ["$members", []] } }, 3],
+    },
+  });
+
+  if (noOfImeptusTeams.length >= 60) {
+    return next(
+      new AppError(
+        "Functionality has been disabled, because Maximum number of teams have been reached",
+        412,
+        errorCodes.MAXIMUM_NUMBER_OF_TEAMS_REACHED
+      )
+    );
+  }
+
   //body validation
   const { error } = updateRequestBodyValidation(req.body);
   if (error) {
@@ -1995,6 +2344,21 @@ exports.impetusUpdateMemberRequest = catchAsync(async (req, res, next) => {
 });
 
 exports.eHackUpdateMemberRequest = catchAsync(async (req, res, next) => {
+  const noOfEHackTeams = await eHackTeams.find({
+    $expr: {
+      $gte: [{ $size: { $ifNull: ["$members", []] } }, 3],
+    },
+  });
+
+  if (noOfEHackTeams.length >= 120) {
+    return next(
+      new AppError(
+        "Functionality has been disabled, because Maximum number of teams have been reached",
+        412,
+        errorCodes.MAXIMUM_NUMBER_OF_TEAMS_REACHED
+      )
+    );
+  }
   //body validation
   const { error } = updateRequestBodyValidation(req.body);
   if (error) {
@@ -2181,6 +2545,21 @@ exports.eHackUpdateMemberRequest = catchAsync(async (req, res, next) => {
 });
 
 exports.innoventureUpdateMemberRequest = catchAsync(async (req, res, next) => {
+  const noOfInnoventureTeams = await innoventureTeams.find({
+    $expr: {
+      $gte: [{ $size: { $ifNull: ["$members", []] } }, 4],
+    },
+  });
+
+  if (noOfInnoventureTeams.length >= 70) {
+    return next(
+      new AppError(
+        "Functionality has been disabled, because Maximum number of teams have been reached",
+        412,
+        errorCodes.MAXIMUM_NUMBER_OF_TEAMS_REACHED
+      )
+    );
+  }
   //body validation
   const { error } = updateRequestBodyValidation(req.body);
   if (error) {
