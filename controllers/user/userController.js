@@ -154,19 +154,19 @@ exports.registerEvent = catchAsync(async (req, res, next) => {
         );
       }
 
-      const usersRegisteredForEHack = await User.find({
-        "registeredEvents.1": registerTypes.REGISTERED,
-      });
+      // const usersRegisteredForEHack = await User.find({
+      //   "registeredEvents.1": registerTypes.REGISTERED,
+      // });
 
-      if (usersRegisteredForEHack.length >= 500) {
-        return next(
-          new AppError(
-            "Maximum number of registrations reached for this event",
-            412,
-            errorCodes.MAX_REGISTRATIONS_REACHED
-          )
-        );
-      }
+      // if (usersRegisteredForEHack.length >= 500) {
+      //   return next(
+      //     new AppError(
+      //       "Maximum number of registrations reached for this event",
+      //       412,
+      //       errorCodes.MAX_REGISTRATIONS_REACHED
+      //     )
+      //   );
+      // }
     }
 
     if (req.body.eventCode == eventCodes.IMPETUS) {
@@ -194,19 +194,19 @@ exports.registerEvent = catchAsync(async (req, res, next) => {
         );
       }
 
-      const usersRegisteredForImpetus = await User.find({
-        "registeredEvents.0": registerTypes.REGISTERED,
-      });
+      // const usersRegisteredForImpetus = await User.find({
+      //   "registeredEvents.0": registerTypes.REGISTERED,
+      // });
 
-      if (usersRegisteredForImpetus.length >= 350) {
-        return next(
-          new AppError(
-            "Maximum number of registrations reached for this event",
-            412,
-            errorCodes.MAX_REGISTRATIONS_REACHED
-          )
-        );
-      }
+      // if (usersRegisteredForImpetus.length >= 350) {
+      //   return next(
+      //     new AppError(
+      //       "Maximum number of registrations reached for this event",
+      //       412,
+      //       errorCodes.MAX_REGISTRATIONS_REACHED
+      //     )
+      //   );
+      // }
     }
 
     if (req.body.eventCode == eventCodes.TRADING_WORKSHOP) {
