@@ -2,7 +2,7 @@ const express = require("express");
 const innoventureTeamController = require("../controllers/innoventureTeam/innoventureTeamController");
 const innoventureTeamRouter = express.Router();
 const auth = require("../middleware/authMiddleware");
-const { pagination } = require("../controllers/innoventureTeam/pagination");
+const { pagination, paginateAddMembers } = require("../controllers/innoventureTeam/pagination");
 
 innoventureTeamRouter
   .route("/")
@@ -36,7 +36,7 @@ innoventureTeamRouter
   .patch(auth, innoventureTeamController.removeMember);
 innoventureTeamRouter
   .route("/user")
-  .get(auth, innoventureTeamController.getAllMembers);
+  .get(auth,paginateAddMembers(), innoventureTeamController.getAllMembers);
 
 innoventureTeamRouter
   .route("/addMember")

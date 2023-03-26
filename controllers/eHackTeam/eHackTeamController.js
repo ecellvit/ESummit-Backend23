@@ -930,16 +930,14 @@ exports.getAllMembers = catchAsync(async (req, res, next) => {
     );
   }
 
-  const eHackMembers = await User.find(
-    {
-      "registeredEvents.1": 1,
-      eHackTeamId: null,
-    }
-  );
+  // const eHackMembers = await User.find({
+  //   "registeredEvents.1": 1,
+  //   eHackTeamId: null,
+  // });
 
   res.status(201).json({
     message: "Get All Members Successfull",
-    eHackMembers,
+    paginatedResult: res.paginatedResults
   });
 });
 
