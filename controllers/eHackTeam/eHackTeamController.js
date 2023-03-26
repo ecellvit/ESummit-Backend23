@@ -934,12 +934,6 @@ exports.getAllMembers = catchAsync(async (req, res, next) => {
     {
       "registeredEvents.1": 1,
       eHackTeamId: null,
-    },
-    {
-      _id: 1,
-      firstName: 1,
-      lastName: 1,
-      email: 1,
     }
   );
 
