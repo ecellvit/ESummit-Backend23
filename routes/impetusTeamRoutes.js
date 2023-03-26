@@ -2,7 +2,7 @@ const express = require("express");
 const impetusTeamController = require("../controllers/impetusTeam/impetusTeamController");
 const impetusTeamRouter = express.Router();
 const auth = require("../middleware/authMiddleware");
-const { pagination } = require("../controllers/impetusTeam/pagination");
+const { pagination, paginateAddMembers } = require("../controllers/impetusTeam/pagination");
 
 impetusTeamRouter
   .route("/")
@@ -32,7 +32,7 @@ impetusTeamRouter
 impetusTeamRouter
   .route("/remove/:teamId")
   .patch(auth, impetusTeamController.removeMember);
-impetusTeamRouter.route("/user").get(auth, impetusTeamController.getAllMembers);
+impetusTeamRouter.route("/user").get(auth, paginateAddMembers(),impetusTeamController.getAllMembers);
 
 impetusTeamRouter
   .route("/addMember")

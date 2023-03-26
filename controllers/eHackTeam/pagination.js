@@ -1,6 +1,11 @@
 const AppError = require("../../utils/appError");
-const { errorCodes } = require("../../utils/constants");
+const {
+  errorCodes,
+  teamRole,
+  requestStatusTypes,
+} = require("../../utils/constants");
 const eHackTeams = require("../../models/eHackTeamModel");
+const userModel = require("../../models/userModel");
 
 module.exports = {
   pagination: function () {
@@ -90,6 +95,90 @@ module.exports = {
             impetusPendingRequests: 1,
             innoventurePendingRequests: 1,
           })
+          .limit(limit)
+          .skip(startIndex)
+          .exec();
+        res.paginatedResults = results;
+        // console.log(res.paginatedResults);
+        return next();
+      } catch (e) {
+        return next(
+          new AppError("Internal Server Error", 500, errorCodes.UNKNOWN_ERROR)
+        );
+      }
+    };
+  },
+
+  paginateAddMembers: function () {
+    return async (req, res, next) => {
+      const page = parseInt(req.query.page);
+      const limit = parseInt(req.query.limit);
+
+      if (!page && !limit) {
+        try {
+          const results = {};
+          results.results = await userModel.find(
+            {
+              "registeredEvents.1": 1,
+              eHackTeamId: null,
+            },
+            {
+              email: 1,
+              firstName: 1,
+              lastName: 1,
+              // mobileNumber: 1,
+            }
+          );
+
+          res.paginatedResults = results;
+          next();
+        } catch (e) {
+          return next(
+            new AppError("Internal Server Error", 500, errorCodes.UNKNOWN_ERROR)
+          );
+        }
+      }
+      const startIndex = (page - 1) * limit;
+      const endIndex = page * limit;
+
+      const results = {};
+      if (
+        endIndex <
+        (await userModel.countDocuments({
+          $expr: {
+            $and: [
+              { $eq: ["$eHackTeamId", null] },
+              { $eq: [{ $arrayElemAt: ["$registeredEvents", 1] }, 1] },
+            ],
+          },
+        }))
+      ) {
+        results.next = {
+          page: page + 1,
+          limit: limit,
+        };
+      }
+      if (startIndex > 0) {
+        results.previous = {
+          page: page - 1,
+          limit: limit,
+        };
+      }
+
+      try {
+        results.results = await userModel
+          .find(
+            {
+              "registeredEvents.1": 1,
+              eHackTeamId: null,
+            },
+            {
+              email: 1,
+              firstName: 1,
+              lastName: 1,
+              // mobileNumber: 1,
+            }
+          )
           .limit(limit)
           .skip(startIndex)
           .exec();

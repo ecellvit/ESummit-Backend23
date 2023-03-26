@@ -808,14 +808,14 @@ exports.getAllMembers = catchAsync(async (req, res, next) => {
     );
   }
 
-  const innoventureMembers = await User.find({
-    "registeredEvents.2": 1,
-    innoventureTeamId: null,
-  });
+  // const innoventureMembers = await User.find({
+  //   "registeredEvents.2": 1,
+  //   innoventureTeamId: null,
+  // });
 
   res.status(201).json({
     message: "Get All Members Successfull",
-    innoventureMembers,
+    paginatedResult: res.paginatedResults,
   });
 });
 

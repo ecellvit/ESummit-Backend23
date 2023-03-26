@@ -787,14 +787,14 @@ exports.getAllMembers = catchAsync(async (req, res, next) => {
     );
   }
 
-  const impetusMembers = await User.find({
-    "registeredEvents.0": 1,
-    impetusTeamId: null,
-  });
+  // const impetusMembers = await User.find({
+  //   "registeredEvents.0": 1,
+  //   impetusTeamId: null,
+  // });
 
   res.status(201).json({
     message: "Get All Members Successfull",
-    impetusMembers,
+    paginatedResult: res.paginatedResults,
   });
 });
 
