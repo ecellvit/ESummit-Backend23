@@ -15,40 +15,21 @@ const eHackTeamLeaderApprovalsModel = require("../../models/eHackTeamLeaderPendi
 exports.getAllCounts = catchAsync(async (req, res, next) => {
   const users = await User.find();
 
-  const eHackRegisteredUsers = [];
-  for (let i = 0; i < users.length; i++) {
-    if (users[i].registeredEvents && users[i].registeredEvents[1] === 1) {
-      eHackRegisteredUsers.push(users[i]);
-    }
-  }
-
-  const impetusRegisteredUsers = [];
-  for (let i = 0; i < users.length; i++) {
-    if (users[i].registeredEvents && users[i].registeredEvents[0] === 1) {
-      impetusRegisteredUsers.push(users[i]);
-    }
-  }
-
-  const innoventureRegisteredUsers = [];
-  for (let i = 0; i < users.length; i++) {
-    if (users[i].registeredEvents && users[i].registeredEvents[2] === 1) {
-      innoventureRegisteredUsers.push(users[i]);
-    }
-  }
-
-  const eTalkRegisteredUsers = [];
-  for (let i = 0; i < users.length; i++) {
-    if (users[i].registeredEvents && users[i].registeredEvents[3] === 1) {
-      eTalkRegisteredUsers.push(users[i]);
-    }
-  }
-
-  const tradingWorkshopRegisteredUsers = [];
-  for (let i = 0; i < users.length; i++) {
-    if (users[i].registeredEvents && users[i].registeredEvents[4] === 1) {
-      tradingWorkshopRegisteredUsers.push(users[i]);
-    }
-  }
+  const eHackRegisteredUsers = await User.find({
+    "registeredEvents.1": registerTypes.REGISTERED,
+  });
+  const impetusRegisteredUsers = await User.find({
+    "registeredEvents.0": registerTypes.REGISTERED,
+  });
+  const innoventureRegisteredUsers = await User.find({
+    "registeredEvents.2": registerTypes.REGISTERED,
+  });
+  const eTalkRegisteredUsers = await User.find({
+    "registeredEvents.3": registerTypes.REGISTERED,
+  });
+  const tradingWorkshopRegisteredUsers = await User.find({
+    "registeredEvents.4": registerTypes.REGISTERED,
+  });
 
   const eHackTeams = await eHackTeamModel
     .find(
@@ -110,72 +91,72 @@ exports.getAllCounts = catchAsync(async (req, res, next) => {
       _id: 0,
     });
 
-  const ehackTeamsWith1Member = [];
-  const ehackTeamsWith2Members = [];
-  const ehackTeamsWith3Members = [];
-  const ehackTeamsWith4Members = [];
+  let ehackTeamsWith1Member = 0;
+  let ehackTeamsWith2Members = 0;
+  let ehackTeamsWith3Members = 0;
+  let ehackTeamsWith4Members = 0;
 
   for (let i = 0; i < eHackTeams.length; i++) {
     if (eHackTeams[i].members.length === 1) {
-      ehackTeamsWith1Member.push(eHackTeams[i]);
+      ehackTeamsWith1Member++;
     } else if (eHackTeams[i].members.length === 2) {
-      ehackTeamsWith2Members.push(eHackTeams[i]);
+      ehackTeamsWith2Members++;
     } else if (eHackTeams[i].members.length === 3) {
-      ehackTeamsWith3Members.push(eHackTeams[i]);
+      ehackTeamsWith3Members++;
     } else if (eHackTeams[i].members.length === 4) {
-      ehackTeamsWith4Members.push(eHackTeams[i]);
+      ehackTeamsWith4Members++;
     }
   }
 
-  const impetusTeamsWith1Member = [];
-  const impetusTeamsWith2Members = [];
-  const impetusTeamsWith3Members = [];
-  const impetusTeamsWith4Members = [];
+  let impetusTeamsWith1Member = 0;
+  let impetusTeamsWith2Members = 0;
+  let impetusTeamsWith3Members = 0;
+  let impetusTeamsWith4Members = 0;
 
   for (let i = 0; i < impetusTeams.length; i++) {
     if (impetusTeams[i].members.length === 1) {
-      impetusTeamsWith1Member.push(impetusTeams[i]);
+      impetusTeamsWith1Member++;
     } else if (impetusTeams[i].members.length === 2) {
-      impetusTeamsWith2Members.push(impetusTeams[i]);
+      impetusTeamsWith2Members++;
     } else if (impetusTeams[i].members.length === 3) {
-      impetusTeamsWith3Members.push(impetusTeams[i]);
+      impetusTeamsWith3Members++;
     } else if (impetusTeams[i].members.length === 4) {
-      impetusTeamsWith4Members.push(impetusTeams[i]);
+      impetusTeamsWith4Members++;
     }
   }
 
-  const innoventureTeamsWith1Member = [];
-  const innoventureTeamsWith2Members = [];
-  const innoventureTeamsWith3Members = [];
-  const innoventureTeamsWith4Members = [];
+  let innoventureTeamsWith1Member = 0;
+  let innoventureTeamsWith2Members = 0;
+  let innoventureTeamsWith3Members = 0;
+  let innoventureTeamsWith4Members = 0;
 
   for (let i = 0; i < innoventureTeams.length; i++) {
     if (innoventureTeams[i].members.length === 1) {
-      innoventureTeamsWith1Member.push(innoventureTeams[i]);
+      innoventureTeamsWith1Member++;
     } else if (innoventureTeams[i].members.length === 2) {
-      innoventureTeamsWith2Members.push(innoventureTeams[i]);
+      innoventureTeamsWith2Members++;
     } else if (innoventureTeams[i].members.length === 3) {
-      innoventureTeamsWith3Members.push(innoventureTeams[i]);
+      innoventureTeamsWith3Members++;
     } else if (innoventureTeams[i].members.length === 4) {
-      innoventureTeamsWith4Members.push(innoventureTeams[i]);
+      innoventureTeamsWith4Members++;
     }
   }
 
   const noOfEHackUsersPartOfATeam =
-    ehackTeamsWith1Member.length * 1 +
-    ehackTeamsWith2Members.length * 2 +
-    ehackTeamsWith3Members.length * 3 +
-    ehackTeamsWith4Members.length * 4;
+    ehackTeamsWith1Member * 1 +
+    ehackTeamsWith2Members * 2 +
+    ehackTeamsWith3Members * 3 +
+    ehackTeamsWith4Members * 4;
   const noOfImpetusUsersPartOfATeam =
-    impetusTeamsWith1Member.length * 1 +
-    impetusTeamsWith2Members.length * 2 +
-    impetusTeamsWith3Members.length * 3 +
-    impetusTeamsWith4Members.length * 4;
+    impetusTeamsWith1Member * 1 +
+    impetusTeamsWith2Members * 2 +
+    impetusTeamsWith3Members * 3 +
+    impetusTeamsWith4Members * 4;
   const noOfInnoventureUsersPartOfATeam =
-    innoventureTeamsWith1Member.length * 1 +
-    innoventureTeamsWith2Members.length * 2 +
-    innoventureTeamsWith3Members.length * 3 +
-    innoventureTeamsWith4Members.length * 4;
+    innoventureTeamsWith1Member * 1 +
+    innoventureTeamsWith2Members * 2 +
+    innoventureTeamsWith3Members * 3 +
+    innoventureTeamsWith4Members * 4;
 
   const noOfEHackUsersNotPartOfATeam =
     eHackRegisteredUsers.length - noOfEHackUsersPartOfATeam;
@@ -195,20 +176,20 @@ exports.getAllCounts = catchAsync(async (req, res, next) => {
     No_of_EHack_Registrants_who_are_part_of_a_Team: noOfEHackUsersPartOfATeam,
     No_of_EHack_Registrants_who_are_not_part_of_a_Team:
       noOfEHackUsersNotPartOfATeam,
-    No_of_EHack_Teams_With_1_Member: ehackTeamsWith1Member.length,
-    No_of_EHack_Teams_With_2_Members: ehackTeamsWith2Members.length,
-    No_of_EHack_Teams_With_3_Members: ehackTeamsWith3Members.length,
-    No_of_EHack_Teams_With_4_Members: ehackTeamsWith4Members.length,
+    No_of_EHack_Teams_With_1_Member: ehackTeamsWith1Member,
+    No_of_EHack_Teams_With_2_Members: ehackTeamsWith2Members,
+    No_of_EHack_Teams_With_3_Members: ehackTeamsWith3Members,
+    No_of_EHack_Teams_With_4_Members: ehackTeamsWith4Members,
     Number_Of_Users_Registered_For_Impetus: impetusRegisteredUsers.length,
     No_of_Impetus_Teams: impetusTeams.length,
     No_of_Impetus_Registrants_who_are_part_of_a_Team:
       noOfImpetusUsersPartOfATeam,
     No_of_Impetus_Registrants_who_are_not_part_of_a_Team:
       noOfImpetusUsersNotPartOfATeam,
-    No_of_Impetus_Teams_With_1_Member: impetusTeamsWith1Member.length,
-    No_of_Impetus_Teams_With_2_Members: impetusTeamsWith2Members.length,
-    No_of_Impetus_Teams_With_3_Members: impetusTeamsWith3Members.length,
-    No_of_Impetus_Teams_With_4_Members: impetusTeamsWith4Members.length,
+    No_of_Impetus_Teams_With_1_Member: impetusTeamsWith1Member,
+    No_of_Impetus_Teams_With_2_Members: impetusTeamsWith2Members,
+    No_of_Impetus_Teams_With_3_Members: impetusTeamsWith3Members,
+    No_of_Impetus_Teams_With_4_Members: impetusTeamsWith4Members,
     Number_Of_Users_Registered_For_Innoventure:
       innoventureRegisteredUsers.length,
     No_of_Innoventure_Teams: innoventureTeams.length,
@@ -216,10 +197,10 @@ exports.getAllCounts = catchAsync(async (req, res, next) => {
       noOfInnoventureUsersPartOfATeam,
     No_Of_Innoventure_Registrants_who_are_not_part_of_a_Team:
       noOfInnoventureUsersNotPartOfATeam,
-    No_of_Innoventure_Teams_With_1_Member: innoventureTeamsWith1Member.length,
-    No_of_Innoventure_Teams_With_2_Members: innoventureTeamsWith2Members.length,
-    No_of_Innoventure_Teams_With_3_Members: innoventureTeamsWith3Members.length,
-    No_of_Innoventure_Teams_With_4_Members: innoventureTeamsWith4Members.length,
+    No_of_Innoventure_Teams_With_1_Member: innoventureTeamsWith1Member,
+    No_of_Innoventure_Teams_With_2_Members: innoventureTeamsWith2Members,
+    No_of_Innoventure_Teams_With_3_Members: innoventureTeamsWith3Members,
+    No_of_Innoventure_Teams_With_4_Members: innoventureTeamsWith4Members,
   });
 });
 
@@ -1186,11 +1167,9 @@ exports.eHackMerge2With1 = catchAsync(async (req, res, next) => {
     }
   );
 
-  const requestsSentToTeamWith2Members = await eHackPendingApprovals.find(
-    {
-      teamId: teamWith2Members._id,
-    }
-  );
+  const requestsSentToTeamWith2Members = await eHackPendingApprovals.find({
+    teamId: teamWith2Members._id,
+  });
 
   console.log("RequestsSentToTeamWith2Members", requestsSentToTeamWith2Members);
 
