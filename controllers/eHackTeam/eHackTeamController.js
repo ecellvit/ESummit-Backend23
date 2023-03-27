@@ -938,7 +938,7 @@ exports.getAllMembers = catchAsync(async (req, res, next) => {
   res.status(201).json({
     message: "Get All Members Successfull",
     // eHackMembers,
-    paginatedResult: res.paginatedResults
+    paginatedResult: res.paginatedResults,
   });
 });
 

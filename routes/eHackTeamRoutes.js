@@ -2,7 +2,10 @@ const express = require("express");
 const eHackTeamController = require("../controllers/eHackTeam/eHackTeamController");
 const eHackTeamRouter = express.Router();
 const auth = require("../middleware/authMiddleware");
-const { pagination, paginateAddMembers } = require("../controllers/eHackTeam/pagination");
+const {
+  pagination,
+  paginateAddMembers,
+} = require("../controllers/eHackTeam/pagination");
 
 eHackTeamRouter
   .route("/")
@@ -32,7 +35,9 @@ eHackTeamRouter
 eHackTeamRouter
   .route("/remove/:teamId")
   .patch(auth, eHackTeamController.removeMember);
-eHackTeamRouter.route("/user").get(auth,paginateAddMembers(),eHackTeamController.getAllMembers);
+eHackTeamRouter
+  .route("/user")
+  .get(auth, paginateAddMembers(), eHackTeamController.getAllMembers);
 
 eHackTeamRouter
   .route("/addMember")
