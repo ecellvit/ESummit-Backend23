@@ -32,7 +32,7 @@ eHackTeamRouter
 eHackTeamRouter
   .route("/remove/:teamId")
   .patch(auth, eHackTeamController.removeMember);
-eHackTeamRouter.route("/user").get(auth,eHackTeamController.getAllMembers);
+eHackTeamRouter.route("/user").get(auth,paginateAddMembers(),eHackTeamController.getAllMembers);
 
 eHackTeamRouter
   .route("/addMember")

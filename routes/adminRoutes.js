@@ -16,6 +16,25 @@ adminRouter.route("/team/impetus").get(adminController.getImpetusDetails);
 adminRouter
   .route("/team/innoventure")
   .get(adminController.getInnoventureDetails);
-// adminRouter.route("/my").get(adminController.myFunction);
+adminRouter
+  .route("/innoventure/merge41")
+  .get(adminController.innoventureMerge4Ones);
+adminRouter
+  .route("/innoventure/merge21")
+  .get(adminController.innoventureMerge2With1);
+
+adminRouter
+  .route("/impetus/merge41")
+  .get(adminController.impetusMerge4Ones);
+adminRouter
+  .route("/impetus/merge21")
+  .get(adminController.impetusMerge2With1);
+
+adminRouter
+  .route("/ehack/merge41")
+  .get(adminController.eHackMerge4Ones);
+adminRouter
+  .route("/ehack/merge21")
+  .get(adminController.eHackMerge2With1);
 
 module.exports = adminRouter;

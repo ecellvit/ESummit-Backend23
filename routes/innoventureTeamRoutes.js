@@ -36,7 +36,7 @@ innoventureTeamRouter
   .patch(auth, innoventureTeamController.removeMember);
 innoventureTeamRouter
   .route("/user")
-  .get(auth, innoventureTeamController.getAllMembers);
+  .get(auth, paginateAddMembers(),innoventureTeamController.getAllMembers);
 
 innoventureTeamRouter
   .route("/addMember")
