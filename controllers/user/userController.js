@@ -118,7 +118,7 @@ exports.registerEvent = catchAsync(async (req, res, next) => {
         },
       });
 
-      if (noOfInnoventureTeams.length >= 37) {
+      if (noOfInnoventureTeams.length >= 22) {
         return next(
           new AppError(
             "Functionality has been disabled, because Maximum number of teams have been reached",
@@ -660,7 +660,7 @@ exports.innoventureSendRequest = catchAsync(async (req, res, next) => {
     },
   });
 
-  if (noOfInnoventureTeams.length >= 37) {
+  if (noOfInnoventureTeams.length >= 22) {
     return next(
       new AppError(
         "Functionality has been disabled, because Maximum number of teams have been reached",
@@ -918,7 +918,7 @@ exports.innoventureGetRequest = catchAsync(async (req, res, next) => {
     },
   });
 
-  if (noOfInnoventureTeams.length >= 37) {
+  if (noOfInnoventureTeams.length >= 22) {
     return next(
       new AppError(
         "Functionality has been disabled, because Maximum number of teams have been reached",
@@ -1140,7 +1140,7 @@ exports.innoventureRemoveRequest = catchAsync(async (req, res, next) => {
     },
   });
 
-  if (noOfInnoventureTeams.length >= 37) {
+  if (noOfInnoventureTeams.length >= 22) {
     return next(
       new AppError(
         "Functionality has been disabled, because Maximum number of teams have been reached",
@@ -1493,7 +1493,7 @@ exports.innoventureLeaveTeam = catchAsync(async (req, res, next) => {
     },
   });
 
-  if (noOfInnoventureTeams.length >= 37) {
+  if (noOfInnoventureTeams.length >= 22) {
     return next(
       new AppError(
         "Functionality has been disabled, because Maximum number of teams have been reached",
@@ -1806,7 +1806,7 @@ exports.innoventureJoinTeamViaToken = catchAsync(async (req, res, next) => {
     },
   });
 
-  if (noOfInnoventureTeams.length >= 37) {
+  if (noOfInnoventureTeams.length >= 22) {
     return next(
       new AppError(
         "Functionality has been disabled, because Maximum number of teams have been reached",
@@ -2092,7 +2092,7 @@ exports.innoventureGetMemberRequest = catchAsync(async (req, res, next) => {
     },
   });
 
-  if (noOfInnoventureTeams.length >= 37) {
+  if (noOfInnoventureTeams.length >= 22) {
     return next(
       new AppError(
         "Functionality has been disabled, because Maximum number of teams have been reached",
@@ -2551,7 +2551,7 @@ exports.innoventureUpdateMemberRequest = catchAsync(async (req, res, next) => {
     },
   });
 
-  if (noOfInnoventureTeams.length >= 37) {
+  if (noOfInnoventureTeams.length >= 22) {
     return next(
       new AppError(
         "Functionality has been disabled, because Maximum number of teams have been reached",
