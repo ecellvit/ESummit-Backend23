@@ -248,6 +248,14 @@ exports.registerEvent = catchAsync(async (req, res, next) => {
   // to unregister
   else {
     //for non team events
+    return next(
+      new AppError(
+        "Functionality has been disabled, because Maximum number of teams have been reached",
+        412,
+        errorCodes.MAXIMUM_NUMBER_OF_TEAMS_REACHED
+      )
+    );
+
     if (
       req.body.eventCode === eventCodes.ETALK ||
       req.body.eventCode === eventCodes.TRADING_WORKSHOP
