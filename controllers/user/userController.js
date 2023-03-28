@@ -1320,15 +1320,16 @@ exports.impetusLeaveTeam = catchAsync(async (req, res, next) => {
     },
   });
 
-  // if (noOfImeptusTeams.length >= 39) {
-  //   return next(
-  //     new AppError(
-  //       "Functionality has been disabled, because Maximum number of teams have been reached",
-  //       412,
-  //       errorCodes.MAXIMUM_NUMBER_OF_TEAMS_REACHED
-  //     )
-  //   );
-  // }
+  if (noOfImeptusTeams.length >= 39) {
+    return next(
+      new AppError(
+        "Functionality has been disabled, because Maximum number of teams have been reached",
+        412,
+        errorCodes.MAXIMUM_NUMBER_OF_TEAMS_REACHED
+      )
+    );
+  }
+  
   //validating teamid
   if (req.params.teamId.length !== objectIdLength) {
     return next(
@@ -1410,15 +1411,15 @@ exports.eHackLeaveTeam = catchAsync(async (req, res, next) => {
     },
   });
 
-  // if (noOfEHackTeams.length >= 68) {
-  //   return next(
-  //     new AppError(
-  //       "Functionality has been disabled, because Maximum number of teams have been reached",
-  //       412,
-  //       errorCodes.MAXIMUM_NUMBER_OF_TEAMS_REACHED
-  //     )
-  //   );
-  // }
+  if (noOfEHackTeams.length >= 68) {
+    return next(
+      new AppError(
+        "Functionality has been disabled, because Maximum number of teams have been reached",
+        412,
+        errorCodes.MAXIMUM_NUMBER_OF_TEAMS_REACHED
+      )
+    );
+  }
 
   //validating teamid
   if (req.params.teamId.length !== objectIdLength) {
