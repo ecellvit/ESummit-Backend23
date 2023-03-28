@@ -144,7 +144,7 @@ exports.registerEvent = catchAsync(async (req, res, next) => {
         },
       });
 
-      if (noOfEHackTeams.length >= 69) {
+      if (noOfEHackTeams.length >= 68) {
         return next(
           new AppError(
             "Functionality has been disabled, because max amount of teams has been reached",
@@ -506,7 +506,7 @@ exports.eHackSendRequest = catchAsync(async (req, res, next) => {
     },
   });
 
-  if (noOfEHackTeams.length >= 69) {
+  if (noOfEHackTeams.length >= 68) {
     return next(
       new AppError(
         "Functionality has been disabled, because Maximum number of teams have been reached",
@@ -867,7 +867,7 @@ exports.eHackGetRequest = catchAsync(async (req, res, next) => {
     },
   });
 
-  if (noOfEHackTeams.length >= 69) {
+  if (noOfEHackTeams.length >= 68) {
     return next(
       new AppError(
         "Functionality has been disabled, because Maximum number of teams have been reached",
@@ -1055,7 +1055,7 @@ exports.eHackRemoveRequest = catchAsync(async (req, res, next) => {
     },
   });
 
-  if (noOfEHackTeams.length >= 69) {
+  if (noOfEHackTeams.length >= 68) {
     return next(
       new AppError(
         "Functionality has been disabled, because Maximum number of teams have been reached",
@@ -1402,7 +1402,7 @@ exports.eHackLeaveTeam = catchAsync(async (req, res, next) => {
     },
   });
 
-  if (noOfEHackTeams.length >= 69) {
+  if (noOfEHackTeams.length >= 68) {
     return next(
       new AppError(
         "Functionality has been disabled, because Maximum number of teams have been reached",
@@ -1694,7 +1694,7 @@ exports.eHackJoinTeamViaToken = catchAsync(async (req, res, next) => {
     },
   });
 
-  if (noOfEHackTeams.length >= 69) {
+  if (noOfEHackTeams.length >= 68) {
     return next(
       new AppError(
         "Functionality has been disabled, because Maximum number of teams have been reached",
@@ -2043,7 +2043,7 @@ exports.eHackGetMemberRequest = catchAsync(async (req, res, next) => {
     },
   });
 
-  if (noOfEHackTeams.length >= 69) {
+  if (noOfEHackTeams.length >= 68) {
     return next(
       new AppError(
         "Functionality has been disabled, because Maximum number of teams have been reached",
@@ -2350,7 +2350,7 @@ exports.eHackUpdateMemberRequest = catchAsync(async (req, res, next) => {
     },
   });
 
-  if (noOfEHackTeams.length >= 69) {
+  if (noOfEHackTeams.length >= 68) {
     return next(
       new AppError(
         "Functionality has been disabled, because Maximum number of teams have been reached",
