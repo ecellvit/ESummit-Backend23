@@ -25,11 +25,16 @@ adminRouter
 adminRouter
   .route("/innoventure/merge21")
   .get(adminController.innoventureMerge2With1);
+adminRouter
+  .route("/innoventure/merge")
+  .get(adminController.innoventureMergeRegistered);
 
 adminRouter.route("/impetus/merge41").get(adminController.impetusMerge4Ones);
 adminRouter.route("/impetus/merge21").get(adminController.impetusMerge2With1);
+adminRouter.route("/impetus/merge").get(adminController.impetusMergeRegistered);
 
 adminRouter.route("/ehack/merge41").get(adminController.eHackMerge4Ones);
 adminRouter.route("/ehack/merge21").get(adminController.eHackMerge2With1);
+adminRouter.route("/ehack/merge").get(adminController.eHackMergeRegistered);
 
 module.exports = adminRouter;

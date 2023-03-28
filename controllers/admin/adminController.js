@@ -1401,3 +1401,321 @@ exports.eHackMerge4Ones = catchAsync(async (req, res, next) => {
     team4: teamsOfSize1[3],
   });
 });
+
+let innoventureCount = 1;
+exports.innoventureMergeRegistered = catchAsync(async (req, res, next) => {
+  const registeredUsers = await User.find({
+    "registeredEvents.2": 1,
+    innoventureTeamId: null,
+  });
+
+  if (registeredUsers.length < 4) {
+    return res.status(200).json({
+      message: "Nothing to merge",
+    });
+  }
+
+  //clearing all requests
+  for (let i = 0; i < 4; i++) {
+    await innoventurePendingApprovals.deleteMany({
+      userId: registeredUsers[i]._id,
+    });
+
+    await User.findOneAndUpdate(
+      {
+        _id: registeredUsers[i]._id,
+      },
+      {
+        $set: {
+          innoventurePendingRequests: 0,
+        },
+      }
+    );
+
+    const requestsSentToUser = await innoventureTeamLeaderApprovalsModel.find({
+      userId: registeredUsers[i]._id,
+    });
+
+    console.log("RequestsSentToUser", requestsSentToUser);
+    for (let j = 0; j < requestsSentToUser.length; j++) {
+      const idOfTeamWhoSentRequest = requestsSentToUser[j].teamId;
+      console.log("Id: ", idOfTeamWhoSentRequest);
+
+      await innoventureTeamLeaderApprovalsModel.deleteOne({
+        userId: registeredUsers[i]._id,
+        teamId: idOfTeamWhoSentRequest,
+      });
+
+      await innoventureTeamModel.findOneAndUpdate(
+        {
+          _id: idOfTeamWhoSentRequest,
+        },
+        {
+          $inc: { noOfPendingRequests: -1 },
+        }
+      );
+    }
+  }
+
+  //creating new team
+  const newTeam = await innoventureTeamModel.create({
+    teamName: `Innoventure Team ${innoventureCount}`,
+    teamLeaderId: registeredUsers[0]._id,
+    members: [
+      registeredUsers[0]._id,
+      registeredUsers[1]._id,
+      registeredUsers[2]._id,
+      registeredUsers[3]._id,
+    ],
+  });
+  innoventureCount++;
+
+  //setting team leader teamid and role
+  await User.findOneAndUpdate(
+    {
+      _id: registeredUsers[0]._id,
+    },
+    {
+      $set: {
+        innoventureTeamId: newTeam._id,
+        innoventureTeamRole: 0,
+      },
+    }
+  );
+
+  //setting members team id and role
+  for (let i = 1; i < 4; i++) {
+    await User.findOneAndUpdate(
+      {
+        _id: registeredUsers[i]._id,
+      },
+      {
+        $set: {
+          innoventureTeamId: newTeam._id,
+          innoventureTeamRole: 1,
+        },
+      }
+    );
+  }
+
+  return res.status(200).json({
+    message: "Merge Successfull",
+    newTeam,
+    user1: registeredUsers[0],
+    user2: registeredUsers[1],
+    user3: registeredUsers[2],
+    user4: registeredUsers[3],
+  });
+});
+
+let eHackCount = 1;
+exports.eHackMergeRegistered = catchAsync(async (req, res, next) => {
+  const registeredUsers = await User.find({
+    "registeredEvents.1": 1,
+    eHackTeamId: null,
+  });
+
+  if (registeredUsers.length < 4) {
+    return res.status(200).json({
+      message: "Nothing to merge",
+    });
+  }
+
+  //clearing all requests
+  for (let i = 0; i < 4; i++) {
+    await eHackPendingApprovals.deleteMany({
+      userId: registeredUsers[i]._id,
+    });
+
+    await User.findOneAndUpdate(
+      {
+        _id: registeredUsers[i]._id,
+      },
+      {
+        $set: {
+          eHackPendingRequests: 0,
+        },
+      }
+    );
+
+    const requestsSentToUser = await eHackTeamLeaderApprovalsModel.find({
+      userId: registeredUsers[i]._id,
+    });
+
+    console.log("RequestsSentToUser", requestsSentToUser);
+    for (let j = 0; j < requestsSentToUser.length; j++) {
+      const idOfTeamWhoSentRequest = requestsSentToUser[j].teamId;
+      console.log("Id: ", idOfTeamWhoSentRequest);
+
+      //removing req sent by user
+      await eHackTeamLeaderApprovalsModel.deleteOne({
+        userId: registeredUsers[i]._id,
+        teamId: idOfTeamWhoSentRequest,
+      });
+
+      await eHackTeamModel.findOneAndUpdate(
+        {
+          _id: idOfTeamWhoSentRequest,
+        },
+        {
+          $inc: { noOfPendingRequests: -1 },
+        }
+      );
+    }
+  }
+
+  //creating new team
+  const newTeam = await eHackTeamModel.create({
+    teamName: `EHack Team ${eHackCount}`,
+    teamLeaderId: registeredUsers[0]._id,
+    members: [
+      registeredUsers[0]._id,
+      registeredUsers[1]._id,
+      registeredUsers[2]._id,
+      registeredUsers[3]._id,
+    ],
+  });
+  eHackCount++;
+
+  //setting team leader teamid and role
+  await User.findOneAndUpdate(
+    {
+      _id: registeredUsers[0]._id,
+    },
+    {
+      $set: {
+        eHackTeamId: newTeam._id,
+        eHackTeamRole: 0,
+      },
+    }
+  );
+
+  //setting members team id and role
+  for (let i = 1; i < 4; i++) {
+    await User.findOneAndUpdate(
+      {
+        _id: registeredUsers[i]._id,
+      },
+      {
+        $set: {
+          eHackTeamId: newTeam._id,
+          eHackTeamRole: 1,
+        },
+      }
+    );
+  }
+
+  return res.status(200).json({
+    message: "Merge Successfull",
+    newTeam,
+    user1: registeredUsers[0],
+    user2: registeredUsers[1],
+    user3: registeredUsers[2],
+    user4: registeredUsers[3],
+  });
+});
+
+let impetusCount = 1;
+exports.impetusMergeRegistered = catchAsync(async (req, res, next) => {
+  const registeredUsers = await User.find({
+    "registeredEvents.0": 1,
+    impetusTeamId: null,
+  });
+
+  if (registeredUsers.length < 3) {
+    return res.status(200).json({
+      message: "Nothing to merge",
+    });
+  }
+
+  //clearing all requests
+  for (let i = 0; i < 3; i++) {
+    await impetusPendingApprovals.deleteMany({
+      userId: registeredUsers[i]._id,
+    });
+
+    await User.findOneAndUpdate(
+      {
+        _id: registeredUsers[i]._id,
+      },
+      {
+        $set: {
+          impetusPendingRequests: 0,
+        },
+      }
+    );
+
+    const requestsSentToUser = await impetusTeamLeaderApprovalsModel.find({
+      userId: registeredUsers[i]._id,
+    });
+
+    console.log("RequestsSentToUser", requestsSentToUser);
+    for (let j = 0; j < requestsSentToUser.length; j++) {
+      const idOfTeamWhoSentRequest = requestsSentToUser[j].teamId;
+      console.log("Id: ", idOfTeamWhoSentRequest);
+
+      //removing req sent by user
+      await impetusTeamLeaderApprovalsModel.deleteOne({
+        userId: registeredUsers[i]._id,
+        teamId: idOfTeamWhoSentRequest,
+      });
+
+      await impetusTeamModel.findOneAndUpdate(
+        {
+          _id: idOfTeamWhoSentRequest,
+        },
+        {
+          $inc: { noOfPendingRequests: -1 },
+        }
+      );
+    }
+  }
+
+  //creating new team
+  const newTeam = await impetusTeamModel.create({
+    teamName: `Impetus Team ${impetusCount}`,
+    teamLeaderId: registeredUsers[0]._id,
+    members: [
+      registeredUsers[0]._id,
+      registeredUsers[1]._id,
+      registeredUsers[2]._id,
+    ],
+  });
+  impetusCount++;
+
+  //setting team leader teamid and role
+  await User.findOneAndUpdate(
+    {
+      _id: registeredUsers[0]._id,
+    },
+    {
+      $set: {
+        impetusTeamId: newTeam._id,
+        impetusTeamRole: 0,
+      },
+    }
+  );
+
+  //setting members team id and role
+  for (let i = 1; i < 3; i++) {
+    await User.findOneAndUpdate(
+      {
+        _id: registeredUsers[i]._id,
+      },
+      {
+        $set: {
+          impetusTeamId: newTeam._id,
+          impetusTeamRole: 1,
+        },
+      }
+    );
+  }
+
+  return res.status(200).json({
+    message: "Merge Successfull",
+    newTeam,
+    user1: registeredUsers[0],
+    user2: registeredUsers[1],
+    user3: registeredUsers[2],
+  });
+});
