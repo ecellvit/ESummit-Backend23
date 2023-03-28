@@ -118,7 +118,7 @@ exports.registerEvent = catchAsync(async (req, res, next) => {
         },
       });
 
-      if (noOfInnoventureTeams.length >= 70) {
+      if (noOfInnoventureTeams.length >= 37) {
         return next(
           new AppError(
             "Functionality has been disabled, because Maximum number of teams have been reached",
@@ -144,7 +144,7 @@ exports.registerEvent = catchAsync(async (req, res, next) => {
         },
       });
 
-      if (noOfEHackTeams.length >= 120) {
+      if (noOfEHackTeams.length >= 69) {
         return next(
           new AppError(
             "Functionality has been disabled, because max amount of teams has been reached",
@@ -184,7 +184,7 @@ exports.registerEvent = catchAsync(async (req, res, next) => {
         },
       });
 
-      if (noOfImeptusTeams.length >= 60) {
+      if (noOfImeptusTeams.length >= 39) {
         return next(
           new AppError(
             "Functionality has been disabled, because Maximum number of teams have been reached",
@@ -352,7 +352,7 @@ exports.impetusSendRequest = catchAsync(async (req, res, next) => {
     },
   });
 
-  if (noOfImeptusTeams.length >= 60) {
+  if (noOfImeptusTeams.length >= 39) {
     return next(
       new AppError(
         "Functionality has been disabled, because Maximum number of teams have been reached",
@@ -506,7 +506,7 @@ exports.eHackSendRequest = catchAsync(async (req, res, next) => {
     },
   });
 
-  if (noOfEHackTeams.length >= 120) {
+  if (noOfEHackTeams.length >= 69) {
     return next(
       new AppError(
         "Functionality has been disabled, because Maximum number of teams have been reached",
@@ -660,7 +660,7 @@ exports.innoventureSendRequest = catchAsync(async (req, res, next) => {
     },
   });
 
-  if (noOfInnoventureTeams.length >= 70) {
+  if (noOfInnoventureTeams.length >= 37) {
     return next(
       new AppError(
         "Functionality has been disabled, because Maximum number of teams have been reached",
@@ -816,7 +816,7 @@ exports.impetusGetRequest = catchAsync(async (req, res, next) => {
     },
   });
 
-  if (noOfImeptusTeams.length >= 60) {
+  if (noOfImeptusTeams.length >= 39) {
     return next(
       new AppError(
         "Functionality has been disabled, because Maximum number of teams have been reached",
@@ -867,7 +867,7 @@ exports.eHackGetRequest = catchAsync(async (req, res, next) => {
     },
   });
 
-  if (noOfEHackTeams.length >= 120) {
+  if (noOfEHackTeams.length >= 69) {
     return next(
       new AppError(
         "Functionality has been disabled, because Maximum number of teams have been reached",
@@ -918,7 +918,7 @@ exports.innoventureGetRequest = catchAsync(async (req, res, next) => {
     },
   });
 
-  if (noOfInnoventureTeams.length >= 70) {
+  if (noOfInnoventureTeams.length >= 37) {
     return next(
       new AppError(
         "Functionality has been disabled, because Maximum number of teams have been reached",
@@ -969,7 +969,7 @@ exports.impetusRemoveRequest = catchAsync(async (req, res, next) => {
     },
   });
 
-  if (noOfImeptusTeams.length >= 60) {
+  if (noOfImeptusTeams.length >= 39) {
     return next(
       new AppError(
         "Functionality has been disabled, because Maximum number of teams have been reached",
@@ -1055,7 +1055,7 @@ exports.eHackRemoveRequest = catchAsync(async (req, res, next) => {
     },
   });
 
-  if (noOfEHackTeams.length >= 120) {
+  if (noOfEHackTeams.length >= 69) {
     return next(
       new AppError(
         "Functionality has been disabled, because Maximum number of teams have been reached",
@@ -1140,7 +1140,7 @@ exports.innoventureRemoveRequest = catchAsync(async (req, res, next) => {
     },
   });
 
-  if (noOfInnoventureTeams.length >= 70) {
+  if (noOfInnoventureTeams.length >= 37) {
     return next(
       new AppError(
         "Functionality has been disabled, because Maximum number of teams have been reached",
@@ -1312,7 +1312,7 @@ exports.impetusLeaveTeam = catchAsync(async (req, res, next) => {
     },
   });
 
-  if (noOfImeptusTeams.length >= 60) {
+  if (noOfImeptusTeams.length >= 39) {
     return next(
       new AppError(
         "Functionality has been disabled, because Maximum number of teams have been reached",
@@ -1402,7 +1402,7 @@ exports.eHackLeaveTeam = catchAsync(async (req, res, next) => {
     },
   });
 
-  if (noOfEHackTeams.length >= 120) {
+  if (noOfEHackTeams.length >= 69) {
     return next(
       new AppError(
         "Functionality has been disabled, because Maximum number of teams have been reached",
@@ -1493,7 +1493,7 @@ exports.innoventureLeaveTeam = catchAsync(async (req, res, next) => {
     },
   });
 
-  if (noOfInnoventureTeams.length >= 70) {
+  if (noOfInnoventureTeams.length >= 37) {
     return next(
       new AppError(
         "Functionality has been disabled, because Maximum number of teams have been reached",
@@ -1584,7 +1584,7 @@ exports.impetusJoinTeamViaToken = catchAsync(async (req, res, next) => {
     },
   });
 
-  if (noOfImeptusTeams.length >= 60) {
+  if (noOfImeptusTeams.length >= 39) {
     return next(
       new AppError(
         "Functionality has been disabled, because Maximum number of teams have been reached",
@@ -1694,7 +1694,7 @@ exports.eHackJoinTeamViaToken = catchAsync(async (req, res, next) => {
     },
   });
 
-  if (noOfEHackTeams.length >= 120) {
+  if (noOfEHackTeams.length >= 69) {
     return next(
       new AppError(
         "Functionality has been disabled, because Maximum number of teams have been reached",
@@ -1806,7 +1806,7 @@ exports.innoventureJoinTeamViaToken = catchAsync(async (req, res, next) => {
     },
   });
 
-  if (noOfInnoventureTeams.length >= 70) {
+  if (noOfInnoventureTeams.length >= 37) {
     return next(
       new AppError(
         "Functionality has been disabled, because Maximum number of teams have been reached",
@@ -1994,7 +1994,7 @@ exports.impetusGetMemberRequest = catchAsync(async (req, res, next) => {
     },
   });
 
-  if (noOfImeptusTeams.length >= 60) {
+  if (noOfImeptusTeams.length >= 39) {
     return next(
       new AppError(
         "Functionality has been disabled, because Maximum number of teams have been reached",
@@ -2043,7 +2043,7 @@ exports.eHackGetMemberRequest = catchAsync(async (req, res, next) => {
     },
   });
 
-  if (noOfEHackTeams.length >= 120) {
+  if (noOfEHackTeams.length >= 69) {
     return next(
       new AppError(
         "Functionality has been disabled, because Maximum number of teams have been reached",
@@ -2092,7 +2092,7 @@ exports.innoventureGetMemberRequest = catchAsync(async (req, res, next) => {
     },
   });
 
-  if (noOfInnoventureTeams.length >= 70) {
+  if (noOfInnoventureTeams.length >= 37) {
     return next(
       new AppError(
         "Functionality has been disabled, because Maximum number of teams have been reached",
@@ -2140,7 +2140,7 @@ exports.impetusUpdateMemberRequest = catchAsync(async (req, res, next) => {
     },
   });
 
-  if (noOfImeptusTeams.length >= 60) {
+  if (noOfImeptusTeams.length >= 39) {
     return next(
       new AppError(
         "Functionality has been disabled, because Maximum number of teams have been reached",
@@ -2350,7 +2350,7 @@ exports.eHackUpdateMemberRequest = catchAsync(async (req, res, next) => {
     },
   });
 
-  if (noOfEHackTeams.length >= 120) {
+  if (noOfEHackTeams.length >= 69) {
     return next(
       new AppError(
         "Functionality has been disabled, because Maximum number of teams have been reached",
@@ -2551,7 +2551,7 @@ exports.innoventureUpdateMemberRequest = catchAsync(async (req, res, next) => {
     },
   });
 
-  if (noOfInnoventureTeams.length >= 70) {
+  if (noOfInnoventureTeams.length >= 37) {
     return next(
       new AppError(
         "Functionality has been disabled, because Maximum number of teams have been reached",

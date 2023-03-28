@@ -44,7 +44,7 @@ exports.createTeam = catchAsync(async (req, res, next) => {
     },
   });
 
-  if (noOfEHackTeams.length >= 120) {
+  if (noOfEHackTeams.length >= 69) {
     return next(
       new AppError(
         "Functionality has been disabled, because max amount of teams has been reached",
@@ -189,7 +189,7 @@ exports.updateTeam = catchAsync(async (req, res, next) => {
     },
   });
 
-  if (noOfEHackTeams.length >= 120) {
+  if (noOfEHackTeams.length >= 69) {
     return next(
       new AppError(
         "Functionality has been disabled, because max amount of teams has been reached",
@@ -296,7 +296,7 @@ exports.deleteTeam = catchAsync(async (req, res, next) => {
     },
   });
 
-  if (noOfEHackTeams.length >= 120) {
+  if (noOfEHackTeams.length >= 69) {
     return next(
       new AppError(
         "Functionality has been disabled, because max amount of teams has been reached",
@@ -414,7 +414,7 @@ exports.getTeamRequests = catchAsync(async (req, res, next) => {
     },
   });
 
-  if (noOfEHackTeams.length >= 120) {
+  if (noOfEHackTeams.length >= 69) {
     return next(
       new AppError(
         "Functionality has been disabled, because max amount of teams has been reached",
@@ -475,7 +475,7 @@ exports.updateRequest = catchAsync(async (req, res, next) => {
     },
   });
 
-  if (noOfEHackTeams.length >= 120) {
+  if (noOfEHackTeams.length >= 69) {
     return next(
       new AppError(
         "Functionality has been disabled, because max amount of teams has been reached",
@@ -694,7 +694,7 @@ exports.removeMember = catchAsync(async (req, res, next) => {
     },
   });
 
-  if (noOfEHackTeams.length >= 120) {
+  if (noOfEHackTeams.length >= 69) {
     return next(
       new AppError(
         "Functionality has been disabled, because max amount of teams has been reached",
@@ -834,7 +834,7 @@ exports.getAllTeams = catchAsync(async (req, res, next) => {
     },
   });
 
-  if (noOfEHackTeams.length >= 120) {
+  if (noOfEHackTeams.length >= 69) {
     return next(
       new AppError(
         "Functionality has been disabled, because max amount of teams has been reached",
@@ -857,7 +857,7 @@ exports.getTeamToken = catchAsync(async (req, res, next) => {
     },
   });
 
-  if (noOfEHackTeams.length >= 120) {
+  if (noOfEHackTeams.length >= 69) {
     return next(
       new AppError(
         "Functionality has been disabled, because max amount of teams has been reached",
@@ -908,7 +908,7 @@ exports.getAllMembers = catchAsync(async (req, res, next) => {
     },
   });
 
-  if (noOfEHackTeams.length >= 120) {
+  if (noOfEHackTeams.length >= 69) {
     return next(
       new AppError(
         "Functionality has been disabled, because max amount of teams has been reached",
@@ -949,7 +949,7 @@ exports.getMemberRequests = catchAsync(async (req, res, next) => {
     },
   });
 
-  if (noOfEHackTeams.length >= 120) {
+  if (noOfEHackTeams.length >= 69) {
     return next(
       new AppError(
         "Functionality has been disabled, because max amount of teams has been reached",
@@ -994,7 +994,7 @@ exports.addMemberRequest = catchAsync(async (req, res, next) => {
     },
   });
 
-  if (noOfEHackTeams.length >= 120) {
+  if (noOfEHackTeams.length >= 69) {
     return next(
       new AppError(
         "Functionality has been disabled, because max amount of teams has been reached",
@@ -1154,7 +1154,7 @@ exports.removeMemberRequest = catchAsync(async (req, res, next) => {
     },
   });
 
-  if (noOfEHackTeams.length >= 120) {
+  if (noOfEHackTeams.length >= 69) {
     return next(
       new AppError(
         "Functionality has been disabled, because max amount of teams has been reached",
