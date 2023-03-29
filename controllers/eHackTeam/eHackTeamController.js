@@ -1265,12 +1265,14 @@ exports.eHackUploadFile = catchAsync(async (req, res, next) => {
       _id: user.eHackTeamId,
     },
     {
-      projectName: req.body.projectName,
-      techStack: req.body.techStack,
-      youtubeUrl: req.body.youtubeUrl,
-      desc: req.body.desc,
-      fileUrl: req.body.fileUrl,
-      fileId: req.body.fileId,
+      $set: {
+        projectName: req.body.projectName,
+        techStack: req.body.techStack,
+        youtubeUrl: req.body.youtubeUrl,
+        desc: req.body.desc,
+        fileUrl: req.body.fileUrl,
+        fileId: req.body.fileId,
+      },
     }
   );
 
