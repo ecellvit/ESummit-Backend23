@@ -1250,10 +1250,10 @@ exports.eHackUploadFile = catchAsync(async (req, res, next) => {
 
   const user = await User.findById({ _id: req.user._id });
 
-  if (user.eHackTeamId === null || user.eHackTeamRole !== teamRole.LEADER) {
+  if (user.eHackTeamId === null) {
     return next(
       new AppError(
-        "User not part of any team or user not a leader",
+        "User not part of any team",
         412,
         errorCodes.INVALID_USERID_FOR_TEAMID_OR_USER_NOT_LEADER
       )
@@ -1284,10 +1284,10 @@ exports.eHackUploadFile = catchAsync(async (req, res, next) => {
 exports.eHackGetFile = catchAsync(async (req, res, next) => {
   const user = await User.findById({ _id: req.user._id });
 
-  if (user.eHackTeamId === null || user.eHackTeamRole !== teamRole.LEADER) {
+  if (user.eHackTeamId === null) {
     return next(
       new AppError(
-        "User not part of any team or user not a leader",
+        "User not part of any team",
         412,
         errorCodes.INVALID_USERID_FOR_TEAMID_OR_USER_NOT_LEADER
       )

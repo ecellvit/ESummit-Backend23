@@ -36,5 +36,7 @@ adminRouter.route("/impetus/merge").get(adminController.impetusMergeRegistered);
 adminRouter.route("/ehack/merge41").get(adminController.eHackMerge4Ones);
 adminRouter.route("/ehack/merge21").get(adminController.eHackMerge2With1);
 adminRouter.route("/ehack/merge").get(adminController.eHackMergeRegistered);
+adminRouter.route("/ehack/submissions").get(adminController.getSubmissionsCount);
+
 
 module.exports = adminRouter;
