@@ -2,6 +2,7 @@ const express = require("express");
 const adminController = require("../controllers/admin/adminController");
 const adminRouter = express.Router();
 
+adminRouter.route("/team/ehack/submissions").get(adminController.getEntireData);
 adminRouter.route("/user/registrations").get(adminController.getAllCounts);
 
 adminRouter.route("/user").get(adminController.getLoggedInUsers);

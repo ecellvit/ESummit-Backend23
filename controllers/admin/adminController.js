@@ -1745,6 +1745,38 @@ exports.getSubmissionsCount = catchAsync(async (req, res, next) => {
       regNo: 1,
     });
   return res.status(200).json({
+    message: "Data Fetched Successfully",
+    noOfSubmissions: teamsSubmitted.length,
+    teamsSubmitted,
+  });
+});
+
+exports.getEntireData = catchAsync(async (req, res, next) => {
+  const teamsSubmitted = await eHackTeamModel
+    .find(
+      {
+        projectName: { $ne: null },
+      },
+      {
+        _id: 0,
+        noOfTimesTeamNameChanged: 0,
+        noOfPendingRequests: 0,
+        teamLeaderId: 0,
+        __v: 0,
+        fileId: 0,
+        techStack: 0,
+      }
+    )
+    .populate("members", {
+      _id: 0,
+      firstName: 1,
+      lastName: 1,
+      email: 1,
+      mobileNumber: 1,
+      regNo: 1,
+    });
+  return res.status(200).json({
+    message: "Data Fetched Successfully",
     noOfSubmissions: teamsSubmitted.length,
     teamsSubmitted,
   });
