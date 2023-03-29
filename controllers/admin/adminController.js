@@ -1721,9 +1721,21 @@ exports.impetusMergeRegistered = catchAsync(async (req, res, next) => {
 });
 
 exports.getSubmissionsCount = catchAsync(async (req, res, next) => {
-  const teamsSubmitted = await eHackTeamModel.find({
-    projectName: { $ne: null },
-  });
+  const teamsSubmitted = await eHackTeamModel.find(
+    {
+      projectName: { $ne: null },
+    },
+    {
+      _id: 0,
+      teamLeaderId: 0,
+      noOfTimesTeamNameChanged: 0,
+      members: 0,
+      noOfPendingRequests: 0,
+      __v: 0,
+      fileId: 0,
+      techStack: 0,
+    }
+  );
   return res.status(200).json({
     noOfSubmissions: teamsSubmitted.length,
     teamsSubmitted,
