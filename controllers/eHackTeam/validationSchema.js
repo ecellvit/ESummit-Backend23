@@ -33,15 +33,15 @@ module.exports = {
 
   fileUploadBodyValidation: (body) => {
     const Schema = Joi.object({
-      projectName: Joi.string().required().allow(null),
+      projectName: Joi.string().required().allow(null, ""),
       techStack: Joi.array()
         .items(Joi.number().integer())
         .required()
         .allow(null), //array of numbers
-      youtubeUrl: Joi.string().required().allow(null),
-      desc: Joi.string().required().allow(null),
-      fileUrl: Joi.string().required().allow(null),
-      fileId: Joi.string().required().allow(null),
+      youtubeUrl: Joi.string().required().allow(null, ""),
+      desc: Joi.string().required().allow(null, ""),
+      fileUrl: Joi.string().required().allow(null, ""),
+      fileId: Joi.string().required().allow(null, ""),
     });
     return Schema.validate(body);
   },
