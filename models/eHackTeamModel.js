@@ -23,6 +23,17 @@ const teamSchema = mongoose.Schema(
       type: Number,
       default: 0,
     },
+    projectName: {
+      type: String,
+    },
+    techStack: [
+      {
+        type: Number,
+      },
+    ],
+    youtubeUrl: {
+      type: String,
+    },
     desc: {
       type: String,
     },
