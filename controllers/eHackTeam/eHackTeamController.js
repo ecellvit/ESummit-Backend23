@@ -1252,7 +1252,7 @@ exports.eHackUploadFile = catchAsync(async (req, res, next) => {
     projectName: { $ne: null },
   });
 
-  if (teamsSubmitted.length >= 19) {
+  if (teamsSubmitted.length >= 50) {
     return next(
       new AppError(
         "Submissions have been closed Temporarily",
