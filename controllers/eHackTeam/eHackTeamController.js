@@ -1248,6 +1248,20 @@ exports.eHackUploadFile = catchAsync(async (req, res, next) => {
     );
   }
 
+  const teamsSubmitted = await eHackTeams.find({
+    projectName: { $ne: null },
+  });
+
+  if (teamsSubmitted.length >= 19) {
+    return next(
+      new AppError(
+        "Submissions have been closed Temporarily",
+        412,
+        errorCodes.MAXIMUM_NUMBER_OF_TEAMS_REACHED
+      )
+    );
+  }
+
   const user = await User.findById({ _id: req.user._id });
 
   if (user.eHackTeamId === null) {
