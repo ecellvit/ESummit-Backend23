@@ -221,15 +221,15 @@ exports.registerEvent = catchAsync(async (req, res, next) => {
         "registeredEvents.4": registerTypes.REGISTERED,
       });
 
-      if (usersRegisteredForTradingWorkshop.length >= 300) {
-        return next(
-          new AppError(
-            "Maximum number of registrations reached for this event",
-            412,
-            errorCodes.MAX_REGISTRATIONS_REACHED
-          )
-        );
-      }
+      // if (usersRegisteredForTradingWorkshop.length >= 300) {
+      //   return next(
+      //     new AppError(
+      //       "Maximum number of registrations reached for this event",
+      //       412,
+      //       errorCodes.MAX_REGISTRATIONS_REACHED
+      //     )
+      //   );
+      // }
     }
 
     //registering
@@ -248,13 +248,14 @@ exports.registerEvent = catchAsync(async (req, res, next) => {
   // to unregister
   else {
     //for non team events
-    return next(
-      new AppError(
-        "Functionality has been disabled, because Maximum number of teams have been reached",
-        412,
-        errorCodes.MAXIMUM_NUMBER_OF_TEAMS_REACHED
-      )
-    );
+
+    // return next(
+    //   new AppError(
+    //     "Functionality has been disabled, because Maximum number of teams have been reached",
+    //     412,
+    //     errorCodes.MAXIMUM_NUMBER_OF_TEAMS_REACHED
+    //   )
+    // );
 
     if (
       req.body.eventCode === eventCodes.ETALK ||
@@ -286,65 +287,65 @@ exports.registerEvent = catchAsync(async (req, res, next) => {
       );
     }
     //for team events
-    else {
-      if (
-        user.registeredEvents[req.body.eventCode] ===
-        registerTypes.NOT_REGISTERED // not registered
-      ) {
-        return next(
-          new AppError(
-            "Not Registered to event",
-            412,
-            errorCodes.NOT_REGISTERED
-          )
-        );
-      }
+    // else {
+    //   if (
+    //     user.registeredEvents[req.body.eventCode] ===
+    //     registerTypes.NOT_REGISTERED // not registered
+    //   ) {
+    //     return next(
+    //       new AppError(
+    //         "Not Registered to event",
+    //         412,
+    //         errorCodes.NOT_REGISTERED
+    //       )
+    //     );
+    //   }
 
-      //part of teams check
-      if (req.body.eventCode === eventCodes.IMPETUS) {
-        if (user.impetusTeamId) {
-          return next(
-            new AppError(
-              "Part of team. Cant unregister",
-              412,
-              errorCodes.PART_OF_TEAM_CANT_UNREGSITER
-            )
-          );
-        }
-      } else if (req.body.eventCode === eventCodes.EHACK) {
-        if (user.eHackTeamId) {
-          return next(
-            new AppError(
-              "Part of team. Cant unregister",
-              412,
-              errorCodes.PART_OF_TEAM_CANT_UNREGSITER
-            )
-          );
-        }
-      } else if (req.body.eventCode === eventCodes.INNOVENTURE) {
-        if (user.innoventureTeamId) {
-          return next(
-            new AppError(
-              "Part of team. Cant unregister",
-              412,
-              errorCodes.PART_OF_TEAM_CANT_UNREGSITER
-            )
-          );
-        }
-      }
+    //   //part of teams check
+    //   if (req.body.eventCode === eventCodes.IMPETUS) {
+    //     if (user.impetusTeamId) {
+    //       return next(
+    //         new AppError(
+    //           "Part of team. Cant unregister",
+    //           412,
+    //           errorCodes.PART_OF_TEAM_CANT_UNREGSITER
+    //         )
+    //       );
+    //     }
+    //   } else if (req.body.eventCode === eventCodes.EHACK) {
+    //     if (user.eHackTeamId) {
+    //       return next(
+    //         new AppError(
+    //           "Part of team. Cant unregister",
+    //           412,
+    //           errorCodes.PART_OF_TEAM_CANT_UNREGSITER
+    //         )
+    //       );
+    //     }
+    //   } else if (req.body.eventCode === eventCodes.INNOVENTURE) {
+    //     if (user.innoventureTeamId) {
+    //       return next(
+    //         new AppError(
+    //           "Part of team. Cant unregister",
+    //           412,
+    //           errorCodes.PART_OF_TEAM_CANT_UNREGSITER
+    //         )
+    //       );
+    //     }
+    //   }
 
-      await User.findOneAndUpdate(
-        {
-          _id: req.user._id,
-        },
-        {
-          $set: {
-            [`registeredEvents.${req.body.eventCode}`]:
-              registerTypes.NOT_REGISTERED,
-          },
-        }
-      );
-    }
+    //   await User.findOneAndUpdate(
+    //     {
+    //       _id: req.user._id,
+    //     },
+    //     {
+    //       $set: {
+    //         [`registeredEvents.${req.body.eventCode}`]:
+    //           registerTypes.NOT_REGISTERED,
+    //       },
+    //     }
+    //   );
+    // }
   }
 
   res.status(201).json({
