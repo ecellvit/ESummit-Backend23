@@ -4,6 +4,7 @@ const app = require("./app");
 const path = require("path");
 require("dotenv").config({ path: path.resolve(__dirname, "./.env") });
 
+
 mongoose.set("strictQuery", true);
 mongoose.connect(
   process.env.DB_CONNECTION,
