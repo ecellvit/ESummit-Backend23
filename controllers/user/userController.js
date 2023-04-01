@@ -209,6 +209,7 @@ exports.registerEvent = catchAsync(async (req, res, next) => {
       // }
     }
 
+    
     // if (req.body.eventCode == eventCodes.TRADING_WORKSHOP) {
     //   // return next(
     //   //   new AppError(
