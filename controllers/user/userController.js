@@ -209,28 +209,28 @@ exports.registerEvent = catchAsync(async (req, res, next) => {
       // }
     }
 
-    if (req.body.eventCode == eventCodes.TRADING_WORKSHOP) {
-      // return next(
-      //   new AppError(
-      //     "Registration for this event is closed Temporarily",
-      //     412,
-      //     errorCodes.MAX_REGISTRATIONS_REACHED
-      //   )
-      // );
-      const usersRegisteredForTradingWorkshop = await User.find({
-        "registeredEvents.4": registerTypes.REGISTERED,
-      });
+    // if (req.body.eventCode == eventCodes.TRADING_WORKSHOP) {
+    //   // return next(
+    //   //   new AppError(
+    //   //     "Registration for this event is closed Temporarily",
+    //   //     412,
+    //   //     errorCodes.MAX_REGISTRATIONS_REACHED
+    //   //   )
+    //   // );
+    //   const usersRegisteredForTradingWorkshop = await User.find({
+    //     "registeredEvents.4": registerTypes.REGISTERED,
+    //   });
 
-      if (usersRegisteredForTradingWorkshop.length >= 300) {
-        return next(
-          new AppError(
-            "Maximum number of registrations reached for this event",
-            412,
-            errorCodes.MAX_REGISTRATIONS_REACHED
-          )
-        );
-      }
-    }
+    //   if (usersRegisteredForTradingWorkshop.length >= 300) {
+    //     return next(
+    //       new AppError(
+    //         "Maximum number of registrations reached for this event",
+    //         412,
+    //         errorCodes.MAX_REGISTRATIONS_REACHED
+    //       )
+    //     );
+    //   }
+    // }
 
     //registering
     await User.findOneAndUpdate(
